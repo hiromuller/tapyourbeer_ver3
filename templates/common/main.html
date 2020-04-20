@@ -1,0 +1,63 @@
+
+{% extends "common/base.html" %}
+
+
+{% block title %}{{ html_title }} | pim{% endblock %}
+
+{% block content %}
+
+{% include "common/header.html" %}
+
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-2" style="height:50px;">
+    {% include page_title %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-2">
+    {% include "common/navigation.html" %}
+  </div>
+
+  <!-- インサートボタンがあった場合 -->
+  {% if insert_button %}
+  <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
+  <div class="col-xs-12 col-sm-10">
+    {% include main_content %}
+  </div>
+
+  <!-- 変数subに呼び出すサブテンプレート名を代入 -->
+    {% include sub_content %}
+
+
+  <!-- メインのみの場合 -->
+  {% elif main_only %}
+  <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
+  <div class="col-xs-12 col-sm-10">
+    {% include main_content %}
+  </div>
+
+  <!-- 変数subに呼び出すサブテンプレート名を代入 -->
+    {% include sub_content %}
+
+
+  <!-- インサートボタンが無かった場合 -->
+  {% else %}
+  <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
+  <div class="col-xs-7 col-sm-7">
+    {% include main_content %}
+  </div>
+
+  <!-- 変数subに呼び出すサブテンプレート名を代入 -->
+  <div class="col-xs-5 col-sm-3">
+    {% include sub_content %}
+  </div>
+  {% endif %}
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    {% include "common/footer.html" %}
+  </div>
+</div>
+{% endblock %}

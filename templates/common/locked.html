@@ -1,0 +1,48 @@
+<!--{% load templatetags %}-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}favicon/pimcon.ico"/>
+  <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/common.css">
+  <!-- Bootstrap -->
+  <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/common.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery.switchHat.js"></script>
+  <title>{% block title %}{{ html_title }} | pim{% endblock %}</title>
+</head>
+<body>
+  <section class="container">
+
+      <div class="row" style="margin-top:50px;">
+        <div class="col-sm-8 col-sm-offset-2" style="height:50px;">
+	      {{statement.title}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+	      アカウント[{{ user.username }}]はロックされています。<br>
+	      お問合せは pim.club.owner@gmail.com までお願い致します。
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+        <div class="col-sm-8 col-sm-offset-2" style="height:50px;">
+          <button class="btn btn-default" onclick="location.href='http://pimclub.com/login/'">OK</button>
+        </div>
+      </div>
+
+  </section>
+
+</body>
+</html>
