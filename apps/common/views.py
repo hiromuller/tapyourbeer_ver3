@@ -40,8 +40,11 @@ def index(request):
         return view(request)
     """
 
-#準備用
-    action = request.POST["action"]
+#準備用　ログインできたら修正する
+    if request.method =="POST":
+        action = request.POST["action"]
+    else:
+        action = CONFIG.ACTION_HOME
     print (action)
     if action == CONFIG.ACTION_HOME:
         return HOME_VIEWS.index(request)

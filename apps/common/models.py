@@ -16,7 +16,7 @@ class Brewery(models.Model):
     # 名前
     name = models.CharField(max_length=200)
     # logo
-    logo = models.CharField(max_length=200, null=True)
+    logo = models.ImageField(upload_to='images/', null=True)
     # 住所
     address = models.CharField(max_length=200, null=True)
     # 説明
@@ -52,7 +52,7 @@ class Beer(models.Model):
     # ブルワリー
     brewery = models.ForeignKey(Brewery, on_delete=models.PROTECT)
     # photo (画像）
-    photo = models.CharField(max_length=200, null=True)
+    photo = models.ImageField(upload_to='images/', null=True)
     # アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
 
@@ -96,7 +96,7 @@ class Comment(models.Model):
     # 提供している店
     venue = models.ForeignKey(Venue, on_delete=models.SET_NULL, null=True)
     # 画像
-    photo = models.CharField(max_length=200, null=True)
+    photo = models.ImageField(upload_to='images/', null=True)
     # 苦味
     bitterness = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
     # 香り
@@ -172,7 +172,7 @@ class Profile(models.Model):
     # 店舗管理者
     is_managing_venue = models.BooleanField(default=False)
     # 画像
-    photo = models.CharField(max_length=200, null=True)
+    photo = models.ImageField(upload_to='images/', null=True)
     # ユーザランク
     user_rank = models.IntegerField(default=1, choices=CONST.USER_RANK_CHOICES)
 

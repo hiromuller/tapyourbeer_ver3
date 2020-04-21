@@ -1,31 +1,19 @@
-    <div id="nav">
+    <div id="navigation">
       <div class="title"></div>
       <form id="navigation_form" method="post" action="{{main_url}}">
       {% csrf_token %}
-      <ul class="nav nav-pills nav-stacked">
-        <li>
+      <ul>
+        <li id="navigation">
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_HOME}}');">&nbsp;&nbsp; Home</a>
         </li>
         <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH_LIST}}');">&nbsp;&nbsp; 検索</a>
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_BEER_DETAIL}}');">&nbsp;&nbsp; ビール詳細</a>
-        </li>
-        <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_ADD_BEER_EVALUATION}}');">&nbsp;&nbsp; ビール評価登録</a>
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_BREWERY_DETAIL}}');">&nbsp;&nbsp; ブルワリー詳細</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_VENUE_DETAIL}}');">&nbsp;&nbsp; ショップ詳細</a>
-        </li>
-        <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_USER_ACCOUNT}}');">&nbsp;&nbsp; ユーザーアカウント</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_MANAGER_ACCOUNT}}');">&nbsp;&nbsp; 管理者アカウント</a>
         </li>
       </ul>
       </form>
