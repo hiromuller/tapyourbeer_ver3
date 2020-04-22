@@ -1,9 +1,8 @@
-    <div id="navigation">
-      <div class="title"></div>
+    <div id="navigation" class="navbar fixed-bottom center-block">
       <form id="navigation_form" method="post" action="{{main_url}}">
       {% csrf_token %}
       <ul>
-        <li id="navigation">
+        <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_HOME}}');">&nbsp;&nbsp; Home</a>
         </li>
         <li>
