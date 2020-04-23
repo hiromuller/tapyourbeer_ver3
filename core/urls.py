@@ -22,6 +22,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^main/', common.views.index, name='index'),
+    path('', common.views.index, name='index'),
     path('', include('accounts.urls')),
 ]
 
