@@ -21,9 +21,8 @@ import common.views
 admin.autodiscover()
 
 urlpatterns = [
-#    url(r'^admin/', include(admin.site.urls)),
-    url(r'^main/$', common.views.index, name='index'),
-#    url(r'^', include('django.contrib.staticfiles.urls')),
+    url(r'^main/', common.views.index, name='index'),
+    path('', include('accounts.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

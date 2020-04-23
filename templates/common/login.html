@@ -1,0 +1,33 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+
+    <form action="{{main_url}}" method="POST">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
+                        {{ field }}
+                        {{ field.errors }}
+                        <hr>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success btn-lg btn-block" >ログイン</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    {% csrf_token %}
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

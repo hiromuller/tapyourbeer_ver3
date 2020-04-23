@@ -1,11 +1,10 @@
 
 {% extends "common/base.html" %}
 
-
 {% block title %}{{ html_title }} | tapyourbeer{% endblock %}
 
 {% block content %}
-
+{% if user.is_authenticated %}
 {% include "common/header.html" %}
 
 <div class="row">
@@ -31,4 +30,14 @@
     {% include "common/footer.html" %}
   </div>
 </div>
+
+{% else %}
+<div>
+以下リンクよりログインしてください
+</div>
+<div>
+<a href="http://127.0.0.1:8000/login/">http://127.0.0.1:8000/login/</a>
+</div>
+{% endif %}
+
 {% endblock %}
