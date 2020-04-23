@@ -4,20 +4,21 @@
 {% block title %}{{ html_title }} | tapyourbeer{% endblock %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
+
 {% include "common/header.html" %}
 
-<div class="row">
-  <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
-  <div class="col-xs-7 col-sm-10">
+<!-- 変数mainに呼び出すメインテンプレート名を代入 -->
+<p>
     {% include main_content %}
-  </div>
+</p>
 
-  <!-- 変数subに呼び出すサブテンプレート名を代入 -->
-  <div class="col-xs-5 col-sm-2">
+
+<!-- 変数subに呼び出すサブテンプレート名を代入 -->
+<p>
     {% include sub_content %}
-  </div>
-</div>
+</p>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12">
@@ -39,5 +40,4 @@
 <a href="http://127.0.0.1:8000/login/">http://127.0.0.1:8000/login/</a>
 </div>
 {% endif %}
-
 {% endblock %}

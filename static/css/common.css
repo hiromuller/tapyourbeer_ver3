@@ -1,6 +1,6 @@
 .container{
   position: relative;/*←相対位置*/
-  padding-bottom: 200px;/*←footerの高さ*/
+  padding-bottom: 50px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
