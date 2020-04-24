@@ -16,9 +16,11 @@
 
 
 <!-- 変数subに呼び出すサブテンプレート名を代入 -->
+{% if sub_content %}
 <p>
     {% include sub_content %}
 </p>
+{% endif %}
 
 <div class="row">
   <div class="col-xs-12 col-sm-12">

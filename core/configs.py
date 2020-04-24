@@ -6,6 +6,8 @@ HOME_PAGE_TITLE_URL = 'home/page_title.html'
 HOME_MAIN_URL = 'home/main_content.html'
 HOME_SUB_URL = 'home/sub_content.html'
 
+SIGNUP_MAIN_URL = 'common/signup.html'
+
 BEER_PAGE_TITLE_URL = 'beer/page_title.html'
 BEER_MAIN_URL = 'beer/main_content.html'
 BEER_SUB_URL = 'beer/sub_content.html'
@@ -43,6 +45,8 @@ TOP_CONTENT_SUB = HOME_SUB_URL
 アクションの設定
 """
 ACTION_HOME = 'home'
+ACTION_SIGNUP = 'signup'
+ACTION_SIGNUP_USER = 'signup_user'
 ACTION_BEER_DETAIL = 'beer_detail'
 ACTION_ADD_BEER_EVALUATION = 'add_beer_evaluation'
 ACTION_BREWERY_DETAIL = 'brewery_detail'
@@ -53,6 +57,8 @@ ACTION_VENUE_DETAIL = 'venue_detail'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
+                'ACTION_SIGNUP':ACTION_SIGNUP,
+                'ACTION_SIGNUP_USER':ACTION_SIGNUP_USER,
                 'ACTION_BEER_DETAIL':ACTION_BEER_DETAIL,
                 'ACTION_ADD_BEER_EVALUATION':ACTION_ADD_BEER_EVALUATION,
                 'ACTION_BREWERY_DETAIL':ACTION_BREWERY_DETAIL,
@@ -72,8 +78,7 @@ CONTENT_SUB = '/sub_content.html'
 HTMLタイトル
 """
 HOME_HTML_TITLE = 'Home'
-LOGIN_HTML_TITLE = 'Login'
-LOGOUT_HTML_TITLE = 'Logout'
+SIGNUP_HTML_TITLE = 'Signup'
 BEER_HTML_TITLE = 'Beer'
 ADD_BEER_EVALUATION_HTML_TITLE = 'Add Beer'
 BREWERY_HTML_TITLE = 'Brewery'

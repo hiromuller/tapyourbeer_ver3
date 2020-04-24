@@ -28,6 +28,10 @@ def index(request):
 
     if action == CONFIG.ACTION_HOME:
         return HOME_VIEWS.index(request)
+    elif action == CONFIG.ACTION_SIGNUP:
+        return ACCOUNTS_VIEWS.signup_index(request)
+    elif action == CONFIG.ACTION_SIGNUP_USER:
+        return ACCOUNTS_VIEWS.signup_user(request)
     elif action == CONFIG.ACTION_BEER_DETAIL:
         return BEER_VIEWS.index(request)
     elif action == CONFIG.ACTION_ADD_BEER_EVALUATION:

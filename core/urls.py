@@ -18,11 +18,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path
 import common.views
+import accounts.views
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^main/', common.views.index, name='index'),
     path('', common.views.index, name='index'),
+    path('signup/', accounts.views.signup_index, name='signup'),
     path('', include('accounts.urls')),
 ]
 

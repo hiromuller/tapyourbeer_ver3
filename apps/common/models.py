@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -85,6 +86,62 @@ class Venue(models.Model):
             'name': self.name,
         }
 
+class TodaysTap(models.Model):
+    """
+    本日のタップモデル
+    """
+    # 店
+    venue = models.ForeignKey(Venue, on_delete=models.PROTECT)
+    # ビール
+    beer = models.ForeignKey(Beer, on_delete=models.PROTECT)
+    # 登録日
+    registered_date = models.DateTimeField(default=timezone.now)
+    # アクティブか非アクティブか
+    is_active = models.BooleanField(default=False)
+
+    def encode(self):
+        return {
+            'venue': self.venue.encode(),
+            'beer': self.beer.encode(),
+            'registered_date': self.registered_date,
+            'is_active': self.is_active,
+        }
+
+class CustomUser(AbstractUser):
+    """
+    ユーザー拡張モデル
+    """
+    # djangoユーザモデル
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # 性別スタイル
+    gender_style = models.CharField(max_length=200, choices=CONST.GENDER_STYLE_CHOICES, null=True)
+    # 誕生日
+    birthday = models.DateField(null=True)
+    # 住んでいる国
+    living_country = models.CharField(max_length=200, choices=CONST.COUNTRY_CHOICES, null=True)
+    # 住んでいる地域
+    living_area = models.CharField(max_length=200, null=True)
+    # アプリ管理者
+    is_admin = models.BooleanField(default=False)
+    # ブルワリー管理者
+    is_managing_brewery = models.BooleanField(default=False)
+    # 店舗管理者
+    is_managing_venue = models.BooleanField(default=False)
+    # 画像
+    photo = models.ImageField(upload_to='images/', null=True)
+    # ユーザランク
+    user_rank = models.IntegerField(default=1, choices=CONST.USER_RANK_CHOICES)
+    """
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+    """
+
 class Comment(models.Model):
     """
     味評価モデル
@@ -92,7 +149,7 @@ class Comment(models.Model):
     # ビール
     beer = models.ForeignKey(Beer, on_delete=models.PROTECT)
     # コメントしたユーザ
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
     # 提供している店
     venue = models.ForeignKey(Venue, on_delete=models.SET_NULL, null=True)
     # 画像
@@ -130,69 +187,14 @@ class Comment(models.Model):
             'comment': self.comment,
         }
 
-class TodaysTap(models.Model):
-    """
-    本日のタップモデル
-    """
-    # 店
-    venue = models.ForeignKey(Venue, on_delete=models.PROTECT)
-    # ビール
-    beer = models.ForeignKey(Beer, on_delete=models.PROTECT)
-    # 登録日
-    registered_date = models.DateTimeField(default=timezone.now)
-    # アクティブか非アクティブか
-    is_active = models.BooleanField(default=False)
-
-    def encode(self):
-        return {
-            'venue': self.venue.encode(),
-            'beer': self.beer.encode(),
-            'registered_date': self.registered_date,
-            'is_active': self.is_active,
-        }
-
-class Profile(models.Model):
-    """
-    ユーザー拡張モデル
-    """
-    # djangoユーザモデル
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # 性別スタイル
-    gender_style = models.CharField(max_length=200, choices=CONST.GENDER_STYLE_CHOICES)
-    # 誕生日
-    birthday = models.DateField()
-    # 住んでいる国
-    living_country = models.CharField(max_length=200, choices=CONST.COUNTRY_CHOICES)
-    # 住んでいる地域
-    living_area = models.CharField(max_length=200, null=True)
-    # アプリ管理者
-    is_admin = models.BooleanField(default=False)
-    # ブルワリー管理者
-    is_managing_brewery = models.BooleanField(default=False)
-    # 店舗管理者
-    is_managing_venue = models.BooleanField(default=False)
-    # 画像
-    photo = models.ImageField(upload_to='images/', null=True)
-    # ユーザランク
-    user_rank = models.IntegerField(default=1, choices=CONST.USER_RANK_CHOICES)
-
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
-
 class Follow(models.Model):
     """
     フォローモデル
     """
     # ユーザ
-    user = models.ForeignKey(User, related_name='following_user', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='following_user', on_delete=models.CASCADE)
     # フォロー
-    follow = models.ForeignKey(User, related_name='followed_user', on_delete=models.CASCADE)
+    follow = models.ForeignKey(CustomUser, related_name='followed_user', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('user', 'follow')
@@ -217,7 +219,7 @@ class BreweryManager(models.Model):
     # ブルワリー
     brewery = models.ForeignKey(Brewery, on_delete=models.PROTECT)
     # ユーザー
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
 
     class Meta:
         unique_together = ('brewery', 'user')
@@ -229,7 +231,7 @@ class VenueManager(models.Model):
     # 店舗
     venue = models.ForeignKey(Venue, on_delete=models.PROTECT)
     # ユーザー
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
 
     class Meta:
         unique_together = ('venue', 'user')
@@ -241,7 +243,7 @@ class Like(models.Model):
     #　コメント
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     # ユーザー
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('comment', 'user')
@@ -252,7 +254,7 @@ admin.site.register(Brewery)
 admin.site.register(Venue)
 admin.site.register(Comment)
 admin.site.register(TodaysTap)
-admin.site.register(Profile)
+#admin.site.register(Profile)
 admin.site.register(Follow)
 admin.site.register(TCBFParticipant)
 admin.site.register(BreweryManager)

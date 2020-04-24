@@ -1,0 +1,74 @@
+
+{% extends "common/base.html" %}
+
+{% block title %}{{ html_title }} | tapyourbeer{% endblock %}
+
+{% block content %}
+
+
+{% if page_title %}
+  {% include "common/header.html" %}
+{% endif %}
+
+<!-- サインアップフォーム作成 -->
+{% if SignUpForm %}
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <p>
+    <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+
+          <div class="fieldWrapper form-group">
+          {{ SignUpForm.username.errors }}
+          <label for="id_name">名前:</label>
+          {{ SignUpForm.username }}
+          </div>
+
+          <div class="fieldWrapper form-group">
+          {{ SignUpForm.gender_style.errors }}
+          <label for="id_name">性別:</label>
+          {{ SignUpForm.gender_style }}
+          </div>
+
+          <div class="fieldWrapper form-group">
+          {{ SignUpForm.birthday.errors }}
+          <label for="id_name">生年月日:</label>
+          {{ SignUpForm.birthday }}
+          </div>
+
+          <div class="fieldWrapper form-group">
+          {{ SignUpForm.password1.errors }}
+          <label for="id_name">パスワード:</label>
+          {{ SignUpForm.password1 }}
+          </div>
+
+          <div class="fieldWrapper form-group">
+          {{ SignUpForm.password2.errors }}
+          <label for="id_name">パスワード再入力:</label>
+          {{ SignUpForm.password2 }}
+          </div>
+
+          <div class="fieldWrapper form-group">
+          {{ SignUpForm.email.errors }}
+          <label for="id_name">メールアドレス:</label>
+          {{ SignUpForm.email }}
+          </div>
+
+        <button id="signup_user" type="submit" class="btn btn-primary">登録</button>
+        <input type="hidden" name="action" value="{{ACTION_SIGNUP_USER}}">
+      </form>
+      </p>
+  </div>
+</div>
+
+{% endif%}
+
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    {% include "common/footer.html" %}
+  </div>
+</div>
+
+{% endblock %}
