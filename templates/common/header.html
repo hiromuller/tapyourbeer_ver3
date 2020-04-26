@@ -1,6 +1,16 @@
       <div id="header">
         <div class="row">
+
+        {% if detail_search_button %}
+        <div class="col-0 col-sm-2"></div>
+        <div class="col-2 col-sm-2"><a href="javascript:void(0)" onClick="movePage('{{ACTION_DETAIL_SEARCH}}');">詳細検索へ</a></div>
+        {% elif search_button %}
+        <div class="col-0 col-sm-2"></div>
+        <div class="col-2 col-sm-2"><a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');">名前検索へ</a></div>
+        {% else %}
         <div class="col-2 col-sm-4"></div>
+        {% endif %}
+
         <div class="col-8 col-sm-4">
           <h3 class="text-center title">
               {% include page_title %}

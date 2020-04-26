@@ -27,6 +27,10 @@ SEARCH_PAGE_TITLE_URL = 'search/page_title.html'
 SEARCH_MAIN_URL = 'search/main_content.html'
 SEARCH_SUB_URL = 'search/sub_content.html'
 
+DETAIL_SEARCH_PAGE_TITLE_URL = 'detail_search/page_title.html'
+DETAIL_SEARCH_MAIN_URL = 'detail_search/main_content.html'
+DETAIL_SEARCH_SUB_URL = 'detail_search/sub_content.html'
+
 USER_PAGE_TITLE_URL = 'user/page_title.html'
 USER_MAIN_URL = 'user/main_content.html'
 USER_SUB_URL = 'user/sub_content.html'
@@ -51,7 +55,8 @@ ACTION_BEER_DETAIL = 'beer_detail'
 ACTION_ADD_BEER_EVALUATION = 'add_beer_evaluation'
 ACTION_BREWERY_DETAIL = 'brewery_detail'
 ACTION_MANAGER_ACCOUNT = 'manager_account'
-ACTION_SEARCH_LIST = 'search_list'
+ACTION_SEARCH = 'search'
+ACTION_DETAIL_SEARCH = 'detail_search'
 ACTION_USER_ACCOUNT = 'user_account'
 ACTION_VENUE_DETAIL = 'venue_detail'
 
@@ -63,7 +68,8 @@ ACTION_DICT = {
                 'ACTION_ADD_BEER_EVALUATION':ACTION_ADD_BEER_EVALUATION,
                 'ACTION_BREWERY_DETAIL':ACTION_BREWERY_DETAIL,
                 'ACTION_MANAGER_ACCOUNT':ACTION_MANAGER_ACCOUNT,
-                'ACTION_SEARCH_LIST':ACTION_SEARCH_LIST,
+                'ACTION_SEARCH':ACTION_SEARCH,
+                'ACTION_DETAIL_SEARCH':ACTION_DETAIL_SEARCH,
                 'ACTION_USER_ACCOUNT':ACTION_USER_ACCOUNT,
                 'ACTION_VENUE_DETAIL':ACTION_VENUE_DETAIL,
                }
@@ -85,4 +91,5 @@ BREWERY_HTML_TITLE = 'Brewery'
 MANAGER_HTML_TITLE = 'Manager'
 USER_HTML_TITLE = 'User'
 SEARCH_HTML_TITLE = 'Search'
+DETAIL_SEARCH_HTML_TITLE = 'Detail Search'
 VENUE_HTML_TITLE = 'Venue'

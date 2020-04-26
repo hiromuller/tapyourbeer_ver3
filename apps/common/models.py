@@ -248,6 +248,27 @@ class Like(models.Model):
     class Meta:
         unique_together = ('comment', 'user')
 
+class BeerTasteAvg(models.Model):
+    """
+    ビールの味わい平均値モデル
+    """
+    # ビール
+    beer = models.ForeignKey(Beer, on_delete=models.CASCADE)
+    # 苦味
+    bitterness = models.DecimalField(max_digits=3, decimal_places=2)
+    # 香り
+    aroma = models.DecimalField(max_digits=3, decimal_places=2)
+    # ボディ
+    body= models.DecimalField(max_digits=3, decimal_places=2)
+    # 飲みやすさ
+    drinkability = models.DecimalField(max_digits=3, decimal_places=2)
+    # 圧
+    pressure = models.DecimalField(max_digits=3, decimal_places=2)
+    # 苦味
+    specialness = models.DecimalField(max_digits=3, decimal_places=2)
+    # 総合
+    overall = models.DecimalField(max_digits=3, decimal_places=2)
+
 
 admin.site.register(Beer)
 admin.site.register(Brewery)
@@ -259,4 +280,5 @@ admin.site.register(TCBFParticipant)
 admin.site.register(BreweryManager)
 admin.site.register(VenueManager)
 admin.site.register(Like)
+admin.site.register(BeerTasteAvg)
 #test
