@@ -135,11 +135,38 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	line-height:1.2em;
 }
 
+.description-text {
+	font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	font-size:1em;
+	margin-bottom:15px;
+	color:#FDF9F4;
+	line-height:1em;
+}
+
+.topic {
+	font-family: 'M PLUS Rounded 1c', 'Kosugi', Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	font-size:2em;
+	margin-bottom:15px;
+	color:#FDF9F4;
+	line-height:1em;
+}
+.subtopic {
+	font-family: 'M PLUS Rounded 1c', 'Kosugi', Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	font-size:1.5em;
+	margin-bottom:15px;
+	color:#FDF9F4;
+	line-height:1em;
+}
+
+
 .title,
 .subtitle {
-	font-family: 'Wire One', Helvetica, Arial, sans-serif;
+	font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
 	font-weight:normal;
-	font-size:3em;
+	font-size:1em;
 	margin-bottom:15px;
 	color:#FDF9F4;
 	line-height:1em;

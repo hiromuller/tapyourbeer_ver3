@@ -14,6 +14,7 @@ BEER_SUB_URL = 'beer/sub_content.html'
 
 ADD_BEER_EVALUATION_PAGE_TITLE_URL = 'beer/add_page_title.html'
 ADD_BEER_EVALUATION_MAIN_URL = 'beer/add_main_content.html'
+ADD_BEER_SUB_URL = 'beer/add_sub_content.html'
 
 BREWERY_PAGE_TITLE_URL = 'brewery/page_title.html'
 BREWERY_MAIN_URL = 'brewery/main_content.html'

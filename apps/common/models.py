@@ -170,6 +170,8 @@ class Comment(models.Model):
     overall = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
     # コメント
     comment = models.CharField(max_length=200, null=True)
+    # 登録日
+    registered_date = models.DateTimeField(default=timezone.now)
 
     def encode(self):
         return {
@@ -253,7 +255,7 @@ class BeerTasteAvg(models.Model):
     ビールの味わい平均値モデル
     """
     # ビール
-    beer = models.ForeignKey(Beer, on_delete=models.CASCADE)
+    beer = models.ForeignKey(Beer, unique=True, on_delete=models.CASCADE)
     # 苦味
     bitterness = models.DecimalField(max_digits=3, decimal_places=2)
     # 香り
