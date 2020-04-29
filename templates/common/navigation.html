@@ -9,13 +9,17 @@
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');">&nbsp;&nbsp; 検索</a>
         </li>
         <li>
+          {% if beer %}
+          <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_ADD_BEER_EVALUATION}}', {{ beer.id }});">&nbsp;&nbsp; ビール評価登録</a>
+          {% else %}
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_ADD_BEER_EVALUATION}}');">&nbsp;&nbsp; ビール評価登録</a>
+          {% endif %}
         </li>
         <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_USER_ACCOUNT}}');">&nbsp;&nbsp; ユーザーアカウント</a>
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="moveToBeerDetail('{{ACTION_BEER_DETAIL}}', '1');">&nbsp;&nbsp; ビール詳細サンプル</a>
+          <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_BEER_DETAIL}}', '1');">&nbsp;&nbsp; ビール詳細サンプル</a>
         </li>
       </ul>
       </form>
