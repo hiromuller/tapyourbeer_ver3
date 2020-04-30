@@ -19,14 +19,16 @@ def index(request):
     page_title = CONFIG.SEARCH_PAGE_TITLE_URL
     main_content = CONFIG.SEARCH_MAIN_URL
     sub_content = CONFIG.SEARCH_SUB_URL
+    search_bar = CONFIG.SEARCH_BAR_URL
     action_dict = CONFIG.ACTION_DICT
     url_dict = {'main_url':main_url,
                 'page_title':page_title,
                 'main_content':main_content,
                 'sub_content':sub_content,
+                'search_bar':search_bar,
                 }
     c.update({'html_title':CONFIG.SEARCH_HTML_TITLE})
-    c.update({'detail_search_button':True})
+    c.update({'move_to_detail_search_button':True})
     c.update(url_dict)
     c.update(action_dict)
     return render(request, 'common/main.html', c)

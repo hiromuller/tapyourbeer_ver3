@@ -27,10 +27,12 @@ MANAGER_SUB_URL = 'manager/sub_content.html'
 SEARCH_PAGE_TITLE_URL = 'search/page_title.html'
 SEARCH_MAIN_URL = 'search/main_content.html'
 SEARCH_SUB_URL = 'search/sub_content.html'
+SEARCH_BAR_URL = 'search/search_bar.html'
 
 DETAIL_SEARCH_PAGE_TITLE_URL = 'detail_search/page_title.html'
 DETAIL_SEARCH_MAIN_URL = 'detail_search/main_content.html'
 DETAIL_SEARCH_SUB_URL = 'detail_search/sub_content.html'
+DETAIL_SEARCH_BAR_URL = 'detail_search/search_bar.html'
 
 USER_PAGE_TITLE_URL = 'user/page_title.html'
 USER_MAIN_URL = 'user/main_content.html'

@@ -9,6 +9,11 @@
 
 {% include "common/header.html" %}
 
+<!-- 検索画面の場合 -->
+{%  if search_bar %}
+  {% include search_bar %}
+{% endif %}
+
 <!-- 変数mainに呼び出すメインテンプレート名を代入 -->
 <p>
     {% include main_content %}
