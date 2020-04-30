@@ -4,6 +4,7 @@ from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 from core import configs as CONFIG
 from core import consts as CONSTS
+from core import messages as MSG
 from core import settings as SETTING
 import detail_search.services as SERVICES
 import detail_search.forms as FORMS
@@ -11,47 +12,48 @@ import logging
 
 logger = logging.getLogger('app')
 
+def detailSearchList(request):
+    logger.info('detail_search_list')
+    c = {}
+
+    if request.method == "POST" and FORMS.detailSearchForm(request.POST).is_valid():
+        form = FORMS.detailSearchForm(request.POST)
+        detail_search_form = {'detail_search_form':form}
+        c.update(detail_search_form)
+
+        is_valid_detail_search_form_condition = SERVICES.validateDetailSearchFormCondition(form)
+
+        if is_valid_detail_search_form_condition:
+            keys = {'overall':form.cleaned_data['overall'],
+                    'bitterness':form.cleaned_data['bitterness'],
+                    'aroma':form.cleaned_data['aroma'],
+                    'body':form.cleaned_data['body'],
+                    'drinkability':form.cleaned_data['drinkability'],
+                    'pressure':form.cleaned_data['pressure'],
+                    'specialness':form.cleaned_data['specialness'],
+                    }
+            search_result_beer_list = SERVICES.selectDetailSearchResultList(keys)
+            c.update({'beer_list':search_result_beer_list})
+            if len(search_result_beer_list) == 0:
+                c.update({'no_search_result':MSG.RESULT_NOT_FOUND})
+        else:
+            c.update({'form_message':MSG.PLEASE_INSERT_KEYS})
+    else:
+        return index(request)
+
+    return showDetailSearch(request, c)
+
 def index(request):
     logger.info('detail_search')
     c = {}
 
-    #検索リクエストが入っていない場合
     detail_search_form = {'detail_search_form':FORMS.detailSearchForm()}
-
-    #検索リクエストが入っていた場合
-    detail_search_form = {'detail_search_form':FORMS.detailSearchForm(request)}
-    #detail_search_result = SERVICES.detailSearch()
-
-    """
-    味わい詳細検索算出
-    １．それぞれの味わい指標の誤差の点数を決める（ピタリマッチだと０点、プラマイ0.5だと１点、プラマイ１だと２点）
-    ２．指定した指標が１項目のみの場合、０点のデータをセレクト、なければ１点、それでもなければ２点と検索を増やしていく。検索結果が50件貯まるか、最大点数の8点の検索が終了したら検索終了。
-    ２．指定した指標が２項目の場合、２項目で誤差０点のデータをセレクトし、なければ１点（つまり誤差はプラマイ0.25）、それでもなければ２点で、検索結果が５０件貯まるか最大点数の１６点の検索が終了したら検索終了。
-    ２．指定した指標が３項目の場合、２項目の場合と同様の点数処理を行う。
-
-    #１項目の場合
-    指標　誤差　点数
-    1 0 0
-    1.5 0.5 1
-    2   1   2
-    2.5 1.5 3
-    3   2   4
-    3.5 2.5 5
-    4   3   6
-    4.5 3.5 7
-    5   4   8
-
-    ３．データのセレクトは公平性を保つためにランダム順にする。（あえてランダム順処理を入れる）
-    """
 
     c.update(detail_search_form)
     return showDetailSearch(request, c)
 
 
 def showDetailSearch(request, c):
-#def index(request):
-#    logger.info('detail_search')
-#    c = {}
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.DETAIL_SEARCH_PAGE_TITLE_URL
     main_content = CONFIG.DETAIL_SEARCH_MAIN_URL

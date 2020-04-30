@@ -12,3 +12,7 @@
 #navigation li{
   display: inline;
 }
+
+#search_bar {
+  padding-bottom: 50px;
+}

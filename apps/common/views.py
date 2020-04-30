@@ -45,6 +45,8 @@ def index(request):
         return SEARCH_VIEWS.index(request)
     elif action == CONFIG.ACTION_DETAIL_SEARCH:
         return DETAIL_SEARCH_VIEWS.index(request)
+    elif action == CONFIG.ACTION_DETAIL_SEARCH_LIST:
+        return DETAIL_SEARCH_VIEWS.detailSearchList(request)
     elif action == CONFIG.ACTION_USER_ACCOUNT:
         return USER_VIEWS.index(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:

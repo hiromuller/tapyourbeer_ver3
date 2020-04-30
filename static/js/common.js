@@ -33,7 +33,7 @@ function moveToDetail(action, key){
 //とりあえずビール詳細画面へ遷移させる用
 function moveToDetail(action, key){
 
-    var form = document.getElementById("navigation_form");
+    var form = document.getElementById("list_form");
 
     var elm = document.createElement("input");
     elm.setAttribute("name", "action");

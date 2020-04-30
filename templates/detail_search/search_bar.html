@@ -1,9 +1,109 @@
 <div class="row">
-  <div class="col-xs-0 col-sm-2"></div>
-  <div class="col-xs-12 col-sm-8">
-    <div id="sub_content" class="thumbnail">
-search bar
+  <div class="col-0 col-sm-1"></div>
+  <div class="col-12 col-sm-10">
+    <div id="search_bar">
+
+      {% if detail_search_form %}
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+      {%csrf_token%}
+
+      <div class="row">
+        <div class="col-5 text-right">
+          <div class="fieldWrapper form-group">
+            {{ detail_search_form.overall.errors }}
+            <label for="id_overall">総合</label>
+            <div  style="display:inline-block">
+              {{ detail_search_form.overall }}
+            </div>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5 text-right">
+          {{form_message}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-5 text-right">
+          <div class="fieldWrapper form-group">
+            {{ detail_search_form.bitterness.errors }}
+            <label for="id_bitterness">苦味<label>
+            <div  style="display:inline-block">
+            {{ detail_search_form.bitterness }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-1"></div>
+
+        <div class="col-5 text-right">
+          <div class="fieldWrapper form-group">
+            {{ detail_search_form.aroma.errors }}
+            <label for="id_aroma">香り</label>
+            <div  style="display:inline-block">
+            {{ detail_search_form.aroma }}
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-5 text-right">
+        <div class="fieldWrapper form-group">
+          {{ detail_search_form.body.errors }}
+          <label for="id_body">ボディ</label>
+          <div  style="display:inline-block">
+          {{ detail_search_form.body }}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-1"></div>
+
+      <div class="col-5 text-right">
+        <div class="fieldWrapper form-group">
+          {{ detail_search_form.drinkability.errors }}
+          <label for="id_drinkability">飲み易さ</label>
+          <div  style="display:inline-block">
+          {{ detail_search_form.drinkability }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-5 text-right">
+        <div class="fieldWrapper form-group">
+          {{ detail_search_form.pressure.errors }}
+          <label for="id_pressure">炭酸</label>
+          <div  style="display:inline-block">
+          {{ detail_search_form.pressure }}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-1"></div>
+
+      <div class="col-5 text-right">
+        <div class="fieldWrapper form-group">
+          {{ detail_search_form.specialness.errors }}
+          <label for="id_specialness">独自感</label>
+          <div  style="display:inline-block">
+          {{ detail_search_form.specialness }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+      <input type="hidden" name="action" value="{{ACTION_DETAIL_SEARCH_LIST}}">
+      <button id="id_detail_search" type="submit" class="btn btn-default">検索</button>
+      </div>
+    </div>
+    </form>
+  {% endif %}
+
     </div>
   </div>
-  <div class="col-xs-0 col-sm-2"></div>
+  <div class="col-0 col-sm-1"></div>
 </div>
