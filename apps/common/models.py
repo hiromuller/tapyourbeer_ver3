@@ -43,7 +43,7 @@ class Beer(models.Model):
     # 名前
     name = models.CharField(max_length=200)
     # style
-    style = models.CharField(max_length=200)
+    style = models.CharField(max_length=200, null=True)
     # 説明
     description = models.CharField(max_length=200, null=True)
     # ibu（苦さ）
@@ -56,6 +56,9 @@ class Beer(models.Model):
     photo = models.ImageField(upload_to='images/', null=True)
     # アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ('name', 'brewery')
 
     def encode(self):
         return {
@@ -155,19 +158,19 @@ class Comment(models.Model):
     # 画像
     photo = models.ImageField(upload_to='images/', null=True)
     # 苦味
-    bitterness = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    bitterness = models.IntegerField(choices=CONST.EVALUATION_CHOICES_STRONGNESS)
     # 香り
-    aroma = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    aroma = models.IntegerField(choices=CONST.EVALUATION_CHOICES_STRONGNESS)
     # ボディ
-    body= models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    body= models.IntegerField(choices=CONST.EVALUATION_CHOICES_EXISTNESS)
     # 飲みやすさ
-    drinkability = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    drinkability = models.IntegerField(choices=CONST.EVALUATION_CHOICES_GOODNESS)
     # 圧
-    pressure = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    pressure = models.IntegerField(choices=CONST.EVALUATION_CHOICES_STRONGNESS)
     # 苦味
-    specialness = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    specialness = models.IntegerField(choices=CONST.EVALUATION_CHOICES_EXISTNESS)
     # 総合
-    overall = models.IntegerField(choices=CONST.EVALUATION_CHOICES)
+    overall = models.IntegerField(choices=CONST.EVALUATION_CHOICES_GOODNESS)
     # コメント
     comment = models.CharField(max_length=200, null=True)
     # 登録日

@@ -16,7 +16,7 @@
       <hr>
         {% for beer in beer_list %}
         <div class="topic text-center">
-          <p><b><a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+          <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
         </div>
         <div class="subtopic text-center">
           <p>by <b>{{ beer.brewery.name }}</b></p>

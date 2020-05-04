@@ -1,37 +1,152 @@
 <div class="row">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
+
+  <div class="col-0 col-sm-1"></div>
+  <div class="col-12 col-sm-10">
     <div id="main_content" class="thumbnail">
-      <ul>
-        <li>
-          login
-        </li>
-        <li>
-          Home
-        </li>
-        <li>
-          検索
-        </li>
-        <li>
-          ビール詳細
-        </li>
-        <li>
-          ビール登録
-        </li>
-        <li>
-          ブルワリー詳細
-        </li>
-        <li>
-          店舗詳細
-        </li>
-        <li>
-          ユーザーアカウント
-        </li>
-        <li>
-          管理者アカウント
-        </li>
-      </ul>
+      {% if comment_form %}
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+          {% csrf_token %}
+          {% if comment_form.errors %}
+            {{ comment_form.non_field_errors }}
+          {% endif %}
+          {{ form_message }}
+
+        <div class="row">
+          <div class="col-5 text-right">
+            <div class="fieldWrapper form-group">
+              {{ comment_form.brewery_name.errors }}
+              <label for="id_brewery_name">ブルワリー名<label>
+              <div  style="display:inline-block">
+              {{ comment_form.brewery_name }}
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-5 text-right">
+              <div class="fieldWrapper form-group">
+                {{ comment_form.beer_name.errors }}
+                <label for="id_beer_name">ビール名<label>
+                <div  style="display:inline-block">
+                {{ comment_form.beer_name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5 text-right">
+              <div class="fieldWrapper form-group">
+                {{ comment_form.venue_name.errors }}
+                <label for="id_venue_name">店舗名<label>
+                <div  style="display:inline-block">
+                {{ comment_form.venue_name }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5 text-right">
+              <div class="fieldWrapper form-group">
+                {{ comment_form.overall.errors }}
+                <label for="id_overall">総合<label>
+                <div  style="display:inline-block">
+                {{ comment_form.overall }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5 text-right">
+              <div class="fieldWrapper form-group">
+                {{ comment_form.bitterness.errors }}
+                <label for="id_bitterness">苦味<label>
+                <div  style="display:inline-block">
+                {{ comment_form.bitterness }}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-1"></div>
+
+            <div class="col-5 text-right">
+              <div class="fieldWrapper form-group">
+                {{ comment_form.aroma.errors }}
+                <label for="id_aroma">香り</label>
+                <div  style="display:inline-block">
+                {{ comment_form.aroma }}
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-5 text-right">
+            <div class="fieldWrapper form-group">
+              {{ comment_form.body.errors }}
+              <label for="id_body">ボディ</label>
+              <div  style="display:inline-block">
+              {{ comment_form.body }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-5 text-right">
+            <div class="fieldWrapper form-group">
+              {{ comment_form.drinkability.errors }}
+              <label for="id_drinkability">飲み易さ</label>
+              <div  style="display:inline-block">
+              {{ comment_form.drinkability }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-5 text-right">
+            <div class="fieldWrapper form-group">
+              {{ comment_form.pressure.errors }}
+              <label for="id_pressure">炭酸</label>
+              <div  style="display:inline-block">
+              {{ comment_form.pressure }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-1"></div>
+
+          <div class="col-5 text-right">
+            <div class="fieldWrapper form-group">
+              {{ comment_form.specialness.errors }}
+              <label for="id_specialness">独自感</label>
+              <div  style="display:inline-block">
+              {{ comment_form.specialness }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fieldWrapper form-group w-100">
+          {{ comment_form.comment.errors }}
+          <label for="id_specialness">コメント</label>
+          <div  style="display:inline-block">
+          {{ comment_form.comment }}
+          </div>
+        </div>
+
+
+          <!--Hidden値（beer,brewery,venue）-->
+          {{ comment_form.beer_id }}
+          {{ comment_form.brewery_id }}
+          {{ comment_form.venue_id }}
+
+          <button id="add_comment" type="submit" class="btn btn-primary">登録</button>
+          <input type="hidden" name="action" value="{{ACTION_ADD_BEER_EVALUATION}}">
+        </form>
+      {%  endif %}
     </div>
   </div>
-  <div class="col-0 col-sm-2"></div>
+  <div class="col-0 col-sm-1"></div>
 </div>

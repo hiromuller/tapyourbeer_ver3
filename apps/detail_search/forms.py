@@ -8,13 +8,13 @@ class detailSearchForm(forms.ModelForm):
     class Meta:
         model = MODELS.BeerTasteAvg
         widgets = {
-            'overall': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_GOODNESS),
-            'bitterness': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_STRONGNESS),
-            'aroma': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_STRONGNESS),
-            'body': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_EXISTNESS),
-            'drinkability': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_GOODNESS),
-            'pressure': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_EXISTNESS),
-            'specialness': forms.Select(choices=CONST.SEARCH_EVALUATION_CHOICES_EXISTNESS),
+            'overall': forms.Select(choices=CONST.EVALUATION_CHOICES_GOODNESS),
+            'bitterness': forms.Select(choices=CONST.EVALUATION_CHOICES_STRONGNESS),
+            'aroma': forms.Select(choices=CONST.EVALUATION_CHOICES_STRONGNESS),
+            'body': forms.Select(choices=CONST.EVALUATION_CHOICES_EXISTNESS),
+            'drinkability': forms.Select(choices=CONST.EVALUATION_CHOICES_GOODNESS),
+            'pressure': forms.Select(choices=CONST.EVALUATION_CHOICES_STRONGNESS),
+            'specialness': forms.Select(choices=CONST.EVALUATION_CHOICES_EXISTNESS),
         }
 
         fields = ("bitterness", "aroma", "body", "drinkability", "pressure", "specialness", "overall")

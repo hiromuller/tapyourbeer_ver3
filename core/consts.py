@@ -23,7 +23,7 @@ EVALUATION_CHOICES = (
 """
 検索用味わい評価
 """
-SEARCH_EVALUATION_CHOICES_STRONGNESS = (
+EVALUATION_CHOICES_STRONGNESS = (
                 (0,u'選択しない'),
                 (1,u'1:とても弱い'),
                 (2,u'2:弱い'),
@@ -35,7 +35,7 @@ SEARCH_EVALUATION_CHOICES_STRONGNESS = (
 """
 検索用味わい評価
 """
-SEARCH_EVALUATION_CHOICES_GOODNESS = (
+EVALUATION_CHOICES_GOODNESS = (
                 (0,u'選択しない'),
                 (1,u'1:よくない'),
                 (2,u'2:あまりよくない'),
@@ -47,8 +47,43 @@ SEARCH_EVALUATION_CHOICES_GOODNESS = (
 """
 検索用味わい評価
 """
-SEARCH_EVALUATION_CHOICES_EXISTNESS = (
+EVALUATION_CHOICES_EXISTNESS = (
                 (0,u'選択しない'),
+                (1,u'1:ない'),
+                (2,u'2:あまりない'),
+                (3,u'3:どっちつかず'),
+                (4,u'4:ある'),
+                (5,u'5:とてもある')
+                )
+"""
+登録用用味わい評価
+"""
+EVALUATION_ADD_CHOICES_STRONGNESS = (
+                (0,u'---------'),
+                (1,u'1:とても弱い'),
+                (2,u'2:弱い'),
+                (3,u'3:どっちつかず'),
+                (4,u'4:強い'),
+                (5,u'5:とても強い')
+                )
+
+"""
+検索用味わい評価
+"""
+EVALUATION_ADD_CHOICES_GOODNESS = (
+                (0,u'---------'),
+                (1,u'1:よくない'),
+                (2,u'2:あまりよくない'),
+                (3,u'3:どっちつかず'),
+                (4,u'4:よい'),
+                (5,u'5:とてもよい')
+                )
+
+"""
+検索用味わい評価
+"""
+EVALUATION_ADD_CHOICES_EXISTNESS = (
+                (0,u'---------'),
                 (1,u'1:ない'),
                 (2,u'2:あまりない'),
                 (3,u'3:どっちつかず'),

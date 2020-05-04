@@ -7,6 +7,7 @@ from core import consts as CONST
 from core import configs as CONFIG
 from core import settings as SETTING
 import common.services as SERVICES
+import common.models as MODELS
 import home.views as HOME_VIEWS
 import beer.views as BEER_VIEWS
 import brewery.views as BREWERY_VIEWS
@@ -35,8 +36,10 @@ def index(request):
         return ACCOUNTS_VIEWS.signup_user(request)
     elif action == CONFIG.ACTION_BEER_DETAIL:
         return BEER_VIEWS.beerDetail(request)
+    elif action == CONFIG.ACTION_ADD_BEER_EVALUATION_FORM:
+        return BEER_VIEWS.addBeerEvaluationForm(request)
     elif action == CONFIG.ACTION_ADD_BEER_EVALUATION:
-        return BEER_VIEWS.showAddBeerForm(request)
+        return BEER_VIEWS.addBeerEvaluation(request)
     elif action == CONFIG.ACTION_BREWERY_DETAIL:
         return BREWERY_VIEWS.index(request)
     elif action == CONFIG.ACTION_MANAGER_ACCOUNT:

@@ -48,11 +48,9 @@ def selectDetailSearchResultList(keys):
     condition_pressure = Q()
     condition_specialness = Q()
 
-#    for i in range(MAX_SEARCH):
-    for i in range(11):
+    for i in range(MAX_SEARCH):
         #検索の範囲
-#        absolute_value = Decimal(4/(MAX_SEARCH - 1) * i).quantize(Decimal("0.01"))
-        absolute_value = Decimal(4/(11 - 1) * i).quantize(Decimal("0.01"))
+        absolute_value = Decimal(4/(MAX_SEARCH - 1) * i).quantize(Decimal("0.01"))
 
         #検索条件設定
         if keys.get('overall') != 0:
