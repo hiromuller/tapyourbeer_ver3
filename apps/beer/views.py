@@ -144,13 +144,10 @@ def addBeerEvaluationForm(request):
                                                 })
         form.fields['beer_name'].widget.attrs['readonly'] = 'readonly'
         form.fields['brewery_name'].widget.attrs['readonly'] = 'readonly'
-        data_preset = True
     else:
         form = FORMS.addCommentForm()
-        data_preset = False
 
     c.update({'comment_form':form})
-    c.update({'data_preset':data_preset})
     return showAddBeerEvaluationForm(request, c)
 
 def showAddBeerEvaluationForm(request, c):

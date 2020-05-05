@@ -4,136 +4,127 @@
   <div class="col-12 col-sm-10">
     <div id="main_content" class="thumbnail">
       {% if comment_form %}
-      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}" >
+      <div class="form-inner">
           {% csrf_token %}
           {% if comment_form.errors %}
             {{ comment_form.non_field_errors }}
           {% endif %}
           {{ form_message }}
 
-        <div class="row">
-          <div class="col-5 text-right">
-            <div class="fieldWrapper form-group">
+        <div>
+          <div class="fieldWrapper form-group underline">
               {{ comment_form.brewery_name.errors }}
-              <label for="id_brewery_name">ブルワリー名<label>
-              <div  style="display:inline-block">
               {{ comment_form.brewery_name }}
-              </div>
-            </div>
+              <label for="id_brewery_name">ブルワリー名</label>
+              <span class="placeholder">ブルワリー名</span>
           </div>
         </div>
-          <div class="row">
-            <div class="col-5 text-right">
-              <div class="fieldWrapper form-group">
-                {{ comment_form.beer_name.errors }}
-                <label for="id_beer_name">ビール名<label>
-                <div  style="display:inline-block">
-                {{ comment_form.beer_name }}
-                </div>
-              </div>
-            </div>
+
+        <div>
+          <div class="fieldWrapper form-group underline">
+              {{ comment_form.beer_name.errors }}
+              {{ comment_form.beer_name }}
+              <label for="id_beer_name">ビール名</label>
+              <span class="placeholder">ビール名</span>
           </div>
-          <div class="row">
-            <div class="col-5 text-right">
-              <div class="fieldWrapper form-group">
-                {{ comment_form.venue_name.errors }}
-                <label for="id_venue_name">店舗名<label>
-                <div  style="display:inline-block">
-                {{ comment_form.venue_name }}
-                </div>
-              </div>
-            </div>
+        </div>
+
+        <div>
+          <div class="fieldWrapper form-group underline">
+              {{ comment_form.venue_name.errors }}
+              {{ comment_form.venue_name }}
+              <label for="id_venue_name">店舗名</label>
+              <span class="placeholder">店舗名</span>
           </div>
-          <div class="row">
-            <div class="col-5 text-right">
-              <div class="fieldWrapper form-group">
-                {{ comment_form.overall.errors }}
-                <label for="id_overall">総合<label>
-                <div  style="display:inline-block">
+          <div class="col-2"></div>
+        </div>
+
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.overall.errors }}
+              <div class="underline right-control">
+              <input name="overall" type="text"/>
+              <label for="id_overall">総合</label>
+              <span class="placeholder">総合</span>
+              <div class="dropdown-arrow"><div></div></div>
+              </div>
                 {{ comment_form.overall }}
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div class="row">
-            <div class="col-5 text-right">
-              <div class="fieldWrapper form-group">
-                {{ comment_form.bitterness.errors }}
-                <label for="id_bitterness">苦味<label>
-                <div  style="display:inline-block">
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.bitterness.errors }}
+              <div class="underline right-control">
+              <input name="aroma" type="text"/>
+              <label for="id_bitterness">苦味</label>
+              <span class="placeholder">苦味</span>
+              <div class="dropdown-arrow"><div></div></div>
+              </div>
                 {{ comment_form.bitterness }}
-                </div>
+          </div>
+
+
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.aroma.errors }}
+              <div class="underline right-control">
+              <input name="aroma" type="text"/>
+              <label for="id_aroma">香り</label>
+              <span class="placeholder">香り</span>
+              <div class="dropdown-arrow"><div></div></div>
               </div>
-            </div>
-
-            <div class="col-1"></div>
-
-            <div class="col-5 text-right">
-              <div class="fieldWrapper form-group">
-                {{ comment_form.aroma.errors }}
-                <label for="id_aroma">香り</label>
-                <div  style="display:inline-block">
                 {{ comment_form.aroma }}
-                </div>
-              </div>
-            </div>
-        </div>
+          </div>
 
-        <div class="row">
-          <div class="col-5 text-right">
-            <div class="fieldWrapper form-group">
-              {{ comment_form.body.errors }}
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.body.errors }}
+              <div class="underline right-control">
+              <input name="body" type="text"/>
               <label for="id_body">ボディ</label>
-              <div  style="display:inline-block">
-              {{ comment_form.body }}
+              <span class="placeholder">ボディ</span>
+              <div class="dropdown-arrow"><div></div></div>
               </div>
-            </div>
+                {{ comment_form.body }}
           </div>
 
-          <div class="col-1"></div>
-
-          <div class="col-5 text-right">
-            <div class="fieldWrapper form-group">
-              {{ comment_form.drinkability.errors }}
-              <label for="id_drinkability">飲み易さ</label>
-              <div  style="display:inline-block">
-              {{ comment_form.drinkability }}
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.drinkability.errors }}
+              <div class="underline right-control">
+              <input name="drinkability" type="text"/>
+              <label for="id_drinkability">飲みやすさ</label>
+              <span class="placeholder">飲みやすさ</span>
+              <div class="dropdown-arrow"><div></div></div>
               </div>
-            </div>
+                {{ comment_form.drinkability }}
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-5 text-right">
-            <div class="fieldWrapper form-group">
-              {{ comment_form.pressure.errors }}
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.pressure.errors }}
+              <div class="underline right-control">
+              <input name="pressure" type="text"/>
               <label for="id_pressure">炭酸</label>
-              <div  style="display:inline-block">
-              {{ comment_form.pressure }}
+              <span class="placeholder">炭酸</span>
+              <div class="dropdown-arrow"><div></div></div>
               </div>
-            </div>
+                {{ comment_form.pressure }}
           </div>
 
-          <div class="col-1"></div>
-
-          <div class="col-5 text-right">
-            <div class="fieldWrapper form-group">
-              {{ comment_form.specialness.errors }}
+          <div class="half dropdown fieldWrapper form-group">
+            {{ comment_form.specialness.errors }}
+              <div class="underline right-control">
+              <input name="specialness" type="text"/>
               <label for="id_specialness">独自感</label>
-              <div  style="display:inline-block">
-              {{ comment_form.specialness }}
+              <span class="placeholder">独自感</span>
+              <div class="dropdown-arrow"><div></div></div>
               </div>
-            </div>
+                {{ comment_form.specialness }}
           </div>
-        </div>
 
-        <div class="fieldWrapper form-group w-100">
+        <div>
+        <div class="fieldWrapper form-group underline">
           {{ comment_form.comment.errors }}
-          <label for="id_specialness">コメント</label>
-          <div  style="display:inline-block">
           {{ comment_form.comment }}
-          </div>
+          <label for="id_comment">コメント</label>
+          <span class="placeholder">コメント</span>
+        </div>
         </div>
 
 
@@ -141,9 +132,13 @@
           {{ comment_form.beer_id }}
           {{ comment_form.brewery_id }}
           {{ comment_form.venue_id }}
-
-          <button id="add_comment" type="submit" class="btn btn-primary">登録</button>
           <input type="hidden" name="action" value="{{ACTION_ADD_BEER_EVALUATION}}">
+          <div class="buttons">
+            <div>
+          <button id="add_comment" type="submit" class="btn btn-primary">登録</button>
+            </div>
+          </div>
+        </div>
         </form>
       {%  endif %}
     </div>
