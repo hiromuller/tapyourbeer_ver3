@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-0 col-sm-1"></div>
   <div class="col-12 col-sm-10">
     <div id="main_content">
@@ -37,11 +36,15 @@
               <label for="id_venue_name">店舗名</label>
               <span class="placeholder">店舗名</span>
           </div>
-          <div class="col-2"></div>
         </div>
 
+        {% if evaluation_missing_message %}
+        <div class="text-center">
+        {{ evaluation_missing_message }}
+        </div>
+        {% endif %}
+
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.overall.errors }}
               <div class="underline right-control">
               <input name="overall" type="text"/>
               <label for="id_overall">総合</label>
@@ -52,7 +55,6 @@
           </div>
 
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.bitterness.errors }}
               <div class="underline right-control">
               <input name="aroma" type="text"/>
               <label for="id_bitterness">苦味</label>
@@ -64,7 +66,6 @@
 
 
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.aroma.errors }}
               <div class="underline right-control">
               <input name="aroma" type="text"/>
               <label for="id_aroma">香り</label>
@@ -75,7 +76,6 @@
           </div>
 
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.body.errors }}
               <div class="underline right-control">
               <input name="body" type="text"/>
               <label for="id_body">ボディ</label>
@@ -86,7 +86,6 @@
           </div>
 
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.drinkability.errors }}
               <div class="underline right-control">
               <input name="drinkability" type="text"/>
               <label for="id_drinkability">飲みやすさ</label>
@@ -97,7 +96,6 @@
           </div>
 
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.pressure.errors }}
               <div class="underline right-control">
               <input name="pressure" type="text"/>
               <label for="id_pressure">炭酸</label>
@@ -108,7 +106,6 @@
           </div>
 
           <div class="half dropdown fieldWrapper form-group">
-            {{ comment_form.specialness.errors }}
               <div class="underline right-control">
               <input name="specialness" type="text"/>
               <label for="id_specialness">独自感</label>

@@ -51,51 +51,69 @@ class addCommentForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-    #    for field in self.fields.values():
-    #        field.widget.attrs['class'] = 'form-control'
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
     #        field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
 
     def clean_overall(self):
         overall = self.cleaned_data.get('overall')
         if overall == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return overall
 
     def clean_bitterness(self):
         bitterness = self.cleaned_data.get('bitterness')
         if bitterness == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return bitterness
 
     def clean_aroma(self):
         aroma = self.cleaned_data.get('aroma')
         if aroma == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return aroma
 
     def clean_body(self):
         body = self.cleaned_data.get('body')
         if body == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return body
 
     def clean_drinkability(self):
         drinkability = self.cleaned_data.get('drinkability')
         if drinkability == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return drinkability
 
     def clean_pressure(self):
         pressure = self.cleaned_data.get('pressure')
         if pressure == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return pressure
 
     def clean_specialness(self):
         specialness = self.cleaned_data.get('specialness')
         if specialness == "0":
+            self.reset_evaluation_values()
             raise forms.ValidationError(MSG.PLEASE_SELECT)
         return specialness
+
+    def reset_evaluation_values(self):
+        self.data = self.data.copy()
+        self.data['overall'] = 0
+        self.data['bitterness'] = 0
+        self.data['aroma'] = 0
+        self.data['body'] = 0
+        self.data['drinkability'] = 0
+        self.data['pressure'] = 0
+        self.data['specialness'] = 0
+        return
 
     def clean(self):
         cleaned_data = super(addCommentForm, self).clean()

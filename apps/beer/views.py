@@ -120,6 +120,9 @@ def addBeerEvaluation(request):
                 else:
                     c.update({'form_message':MSG.COMMENT_NOT_ADDED})
 
+        else:
+            c.update({'evaluation_missing_message':MSG.PLEASE_INSERT_ALL_EVALUATION})
+
         c.update({'comment_form':form})
 
     else:
