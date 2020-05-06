@@ -1,36 +1,111 @@
 <div class="row">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
-    <div id="main_content" class="thumbnail">
-      <ul>
-        <li>
-          login
-        </li>
-        <li>
-          Home
-        </li>
-        <li>
-          検索
-        </li>
-        <li>
-          ビール詳細
-        </li>
-        <li>
-          ビール登録
-        </li>
-        <li>
-          ブルワリー詳細
-        </li>
-        <li>
-          店舗詳細
-        </li>
-        <li>
-          ユーザーアカウント
-        </li>
-        <li>
-          管理者アカウント
-        </li>
-      </ul>
+    <div id="main_content">
+
+      <div class="tab_wrap">
+       <input id="tab1" type="radio" name="tab_btn" checked>
+       <input id="tab2" type="radio" name="tab_btn">
+       <input id="tab3" type="radio" name="tab_btn">
+       <input id="tab4" type="radio" name="tab_btn">
+
+       <div class="tab_area">
+       <label class="tab_label active" for="tab1"><b>Beer</b></label>
+       <label class="tab_label" for="tab2"><b>Brewery</b></label>
+       <label class="tab_label" for="tab3"><b>Venue</b></label>
+       <label class="tab_label" for="tab4"><b>People</b></label>
+       </div>
+
+
+       <form id="list_form" method="post" action="{{main_url}}">
+       {% csrf_token %}
+
+       <div class="panel_area" id="cj_panelarea">
+
+
+                <div id="panel4" class="tab_panel">
+                  {% if user_list %}
+                  <hr>
+                    {% for user in user_list %}
+                    <div class="topic text-center">
+                      <p><b>{{ user.username }}</b></p>
+                    </div>
+                    <hr>
+                    {% endfor %}
+
+                  {% else %}
+                  <div class="subtopic text-center">
+                    <p><b>There is no related results/keyword not typed</b></p>
+                  </div>
+                  {% endif %}
+                </div>
+
+
+                       <div id="panel3" class="tab_panel">
+                         {% if venue_list %}
+                         <hr>
+                           {% for venue in venue_list %}
+                           <div class="topic text-center">
+                             <p><b>{{ venue.name }}</b></p>
+                           </div>
+                           <hr>
+                           {% endfor %}
+
+                         {% else %}
+                         <div class="subtopic text-center">
+                           <p><b>There is no related results/keyword not typed</b></p>
+                         </div>
+                         {% endif %}
+                       </div>
+
+
+       <div id="panel2" class="tab_panel">
+         {% if brewery_list %}
+         <hr>
+           {% for brewery in brewery_list %}
+           <div class="topic text-center">
+             <p><b>{{ brewery.name }}</b></p>
+           </div>
+           <hr>
+           {% endfor %}
+
+         {% else %}
+         <div class="subtopic text-center">
+           <p><b>There is no related results/keyword not typed</b></p>
+         </div>
+         {% endif %}
+       </div>
+
+
+              <div id="panel1" class="tab_panel">
+
+                {% if beer_list %}
+                <hr>
+                  {% for beer in beer_list %}
+                  <div class="topic text-center">
+                    <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+                  </div>
+                  <div class="subtopic text-center">
+                    <p>by <b>{{ beer.brewery.name }}</b></p>
+                  </div>
+                  <hr>
+                  {% endfor %}
+
+                {% else %}
+                <div class="subtopic text-center">
+                  <p><b>There is no related results/keyword not typed</b></p>
+                </div>
+                {% endif %}
+
+              </div>
+
+
+       </div>
+      </form>
+
+
+      </div>
+
     </div>
   </div>
   <div class="col-0 col-sm-2"></div>

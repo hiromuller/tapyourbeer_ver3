@@ -59,9 +59,10 @@ ACTION_ADD_BEER_EVALUATION_FORM = 'add_beer_evaluation_form'
 ACTION_ADD_BEER_EVALUATION = 'add_beer_evaluation'
 ACTION_BREWERY_DETAIL = 'brewery_detail'
 ACTION_MANAGER_ACCOUNT = 'manager_account'
-ACTION_SEARCH = 'search'
-ACTION_DETAIL_SEARCH = 'detail_search'
-ACTION_DETAIL_SEARCH_LIST = 'detail_search_list'
+ACTION_SEARCH = 'search' #検索画面へ遷移
+ACTION_SEARCH_LIST = 'search_list' #検索実行
+ACTION_DETAIL_SEARCH = 'detail_search' #詳細検索画面へ遷移
+ACTION_DETAIL_SEARCH_LIST = 'detail_search_list' #詳細検索実行
 ACTION_USER_ACCOUNT = 'user_account'
 ACTION_VENUE_DETAIL = 'venue_detail'
 
@@ -75,6 +76,7 @@ ACTION_DICT = {
                 'ACTION_BREWERY_DETAIL':ACTION_BREWERY_DETAIL,
                 'ACTION_MANAGER_ACCOUNT':ACTION_MANAGER_ACCOUNT,
                 'ACTION_SEARCH':ACTION_SEARCH,
+                'ACTION_SEARCH_LIST':ACTION_SEARCH_LIST,
                 'ACTION_DETAIL_SEARCH':ACTION_DETAIL_SEARCH,
                 'ACTION_DETAIL_SEARCH_LIST':ACTION_DETAIL_SEARCH_LIST,
                 'ACTION_USER_ACCOUNT':ACTION_USER_ACCOUNT,

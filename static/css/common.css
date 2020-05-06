@@ -13,6 +13,106 @@
   display: inline;
 }
 
-#search_bar {
+#detail_search_bar {
   padding-bottom: 50px;
+}
+
+#search_bar {
+  padding-bottom: 20px;
+}
+
+
+/* === タブのSTYLE設定 ============================= */
+@keyframes tabAnim{
+ 0%{top:-100%;}
+ 100%{top:0;}
+ }
+.tab_wrap{
+  width:100%;
+  text-align:center;
+}
+
+input[type="radio"]{
+  display:none;
+}
+
+.tab_area{
+  font-size:0;
+  margin:0px;
+  padding-bottom: 50px;
+}
+.tab_area label{
+  width:80px;
+  display:inline-block;
+  color:#fff;
+  background:transparent;
+  text-align:center;
+  font-size:15px;
+  font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
+  font-weight:normal;
+  border-top: solid 4px #fff;
+  border-bottom: solid 4px #fff;
+  border-right: solid 2px #fff;
+  border-left: solid 2px #fff;
+  cursor:pointer;
+  transition:ease 0.2s opacity;
+}
+
+.tab_area label:hover{
+}
+.panel_area{
+  overflow:hidden;
+  height:2000px;
+  position:relative;
+}
+.tab_panel{
+  width:100%;
+  background:#87ceeb;
+  overflow:hidden;
+  position:absolute;
+  height:100%;
+}
+
+#tab4:checked ~ .tab_area .tab4_label{background:#fff; color:#000;}
+#tab4:checked ~ .panel_area #panel4{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+#tab1:checked ~ .tab_area .tab1_label{background:#fff; color:#000;}
+#tab1:checked ~ .panel_area #panel1{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+#tab2:checked ~ .tab_area .tab2_label{background:#fff; color:#000;}
+#tab2:checked ~ .panel_area #panel2{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+#tab3:checked ~ .tab_area .tab3_label{background:#fff; color:#000;}
+#tab3:checked ~ .panel_area #panel3{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+
+.tab_area label.active {
+  background:#fff;
+  color:#87ceeb;
+}
+
+/* === 検索入力欄のSTYLE設定 ============================= */
+.btn-search {
+  margin-bottom    : 6px;
+}
+
+.searchBox {
+ width              : auto;            /* inputの幅           */
+ background-color   : transparent;             /* 背景色              */
+ margin             : 0 5px 0 0;           /* サンプルは中央寄せ  */
+ padding-left       : 5px;             /* 虫眼鏡分の左余白    */
+ padding-right      : 30px;             /* 虫眼鏡分の左余白    */
+ border             : 1px solid #8c8c8c;   /* 枠線　幅,実践,色    */
+ border-radius      : 6px;              /* 角丸                */
+ color              : #555;             /* 文字色              */
+ font-size          : 18px;             /* フォントサイズ      */
+ letter-spacing     : 0.1em;            /* 文字間隔            */
+ font-weight        : bold;             /* 太字                */
+ outline            : 0;                /* 入力薄枠を非表示    */
+}
+
+/* === テキスト入力欄にフォーカスか来たとき ================== */
+.searchBox:focus {
+ background-color     : transparent;        /* フォーカス時背景色  */
+}
+
+/* === IEの入力エリア右側×消し ============================== */
+.searchBox::-ms-clear {
+ display        : none;                 /* ×を消す            */
 }
