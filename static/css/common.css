@@ -21,6 +21,9 @@
   padding-bottom: 20px;
 }
 
+.form-control:disabled, .form-control[readonly]{
+  background-color:transparent;
+}
 
 /* === タブのSTYLE設定 ============================= */
 @keyframes tabAnim{
