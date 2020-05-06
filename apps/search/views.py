@@ -26,22 +26,18 @@ def searchList(request):
             #ビール取得（最大５０件）
             beer_list = SERVICES.selectBeerListByNameKey(key)
             c.update({'beer_list':beer_list})
-            print (str(beer_list))
 
             #ブルワリー取得（最大５０件）
             brewery_list = SERVICES.selectBreweryListByNameKey(key)
             c.update({'brewery_list':brewery_list})
-            print (str(brewery_list))
 
             #店舗取得（最大５０件）
             venue_list = SERVICES.selectVenueListByNameKey(key)
             c.update({'venue_list':venue_list})
-            print (str(venue_list))
 
             #ユーザ取得（最大５０件）
             user_list = SERVICES.selectUserListByUsernameKey(key)
             c.update({'user_list':user_list})
-            print (str(user_list))
 
     else:
         return index(request)
