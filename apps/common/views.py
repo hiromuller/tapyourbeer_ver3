@@ -38,7 +38,7 @@ def index(request):
     elif action == CONFIG.ACTION_ADD_BEER_EVALUATION:
         return BEER_VIEWS.showAddBeerForm(request)
     elif action == CONFIG.ACTION_BREWERY_DETAIL:
-        return BREWERY_VIEWS.index(request)
+        return BREWERY_VIEWS.breweryDetail(request)
     elif action == CONFIG.ACTION_MANAGER_ACCOUNT:
         return MANAGER_VIEWS.index(request)
     elif action == CONFIG.ACTION_SEARCH:

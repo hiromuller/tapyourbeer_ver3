@@ -1,9 +1,63 @@
-<div class="row">
-  <div class="col-xs-0 col-sm-2"></div>
-  <div class="col-xs-12 col-sm-8">
-    <div id="sub_content" class="thumbnail">
-sub content
-    </div>
-  </div>
-  <div class="col-xs-0 col-sm-2"></div>
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
 </div>
+
+<div class="row" id="sub_title">
+  <div class="col-1 col-sm-2"></div>
+    <div class="col-3 col-sm-2">
+      <div class="subtopic text-center">
+        Beer
+      </div>
+    </div>
+
+      <div class="col-4 col-sm-4">
+        <div class="subtopic text-center">
+          User Comment
+        </div>
+      </div>
+
+    <div class="col-3 col-sm-2">
+      <div class="subtopic text-center">
+        User
+      </div>
+    </div>
+
+  <div class="col-1 col-sm-2"></div>
+</div>
+
+  <div class="row" id=sub_content>
+    <div class="col-1 col-sm-2"></div>
+      <div class="col-xs-3 col-sm-2">
+        <div id="sub_content" >
+          <div class="description-text text-center">
+            {% for comment in comment_list %}
+                <p>{{ comment.beer.name }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    <div class="col-xs-4 col-sm-4">
+      <div id="sub_content" >
+        <div class="description-text text-center">
+          {% for comment in comment_list %}
+              <p>{{ comment.comment }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+      <div class="col-xs-3 col-sm-2">
+        <div id="sub_content">
+          <div class="description-text text-center">
+            {% for comment in comment_list %}
+                <p>by {{ comment.user }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    <div class="col-xs-1 col-sm-2"></div>
+  </div>
