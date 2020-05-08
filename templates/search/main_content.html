@@ -46,7 +46,7 @@
                          <hr>
                            {% for venue in venue_list %}
                            <div class="topic text-center">
-                             <p><b>{{ venue.name }}</b></p>
+                             <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{venue.id}}');">{{ venue.name }}</a></b></p>
                            </div>
                            <hr>
                            {% endfor %}

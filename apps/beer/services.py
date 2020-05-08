@@ -68,11 +68,12 @@ def selectVenueListByBeer(beer):
         comment_list = selectCommentListByBeer(beer)
         venue_list = []
         for comment in comment_list:
-            venue = MODELS.Venue.objects.get(id=comment.venue.id)
+            try:
+                venue = MODELS.Venue.objects.get(id=comment.venue.id)
+            except:
+                continue
             venue_list.append(venue)
-
         venue_list = set(venue_list)
-
         return venue_list
     except:
         return []

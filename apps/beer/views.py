@@ -188,7 +188,6 @@ def beerDetailInfo(request, key):
     beer_taste_avg = SERVICES.selectBeerTasteAvgByBeer(beer)
     comment_list = SERVICES.selectCommentListByBeer(beer)
     venue_list = SERVICES.selectVenueListByBeer(beer)
-
     c.update({'beer':beer})
     c.update({'brewery':brewery})
     c.update({'beer_taste_avg':beer_taste_avg})

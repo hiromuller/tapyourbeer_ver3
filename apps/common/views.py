@@ -55,7 +55,7 @@ def index(request):
     elif action == CONFIG.ACTION_USER_ACCOUNT:
         return USER_VIEWS.index(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:
-        return VENUE_VIEWS.index(request)
+        return VENUE_VIEWS.venueDetail(request)
     else:
         return view(request)
 
