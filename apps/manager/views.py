@@ -6,7 +6,10 @@ from core import configs as CONFIG
 from core import consts as CONSTS
 from core import settings as SETTING
 import manager.services as SERVICES
+import manager.forms as FORMS
+import common.services as COMMON_SERVICES
 import search.views as SEARCH_VIEWS
+import beer.views as BEER_VIEWS
 import logging
 
 logger = logging.getLogger('app')
@@ -20,10 +23,53 @@ def deleteComment(request):
 
     return SEARCH_VIEWS.index(request)
 
+def updateBeer(request):
+    form = FORMS.updateBeerForm(request.POST)
+    if request.method == "POST":
+        beer_id = request.POST.get("beer_id")
+
+    if form.is_valid() and beer_id:
+        beer = SERVICES.selectBeerById(beer_id)
+        beer.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
+        beer.style = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('style'))
+        beer.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+        beer.ibu = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('ibu'))
+        beer.abv = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('abv'))
+        beer.save()
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    return BEER_VIEWS.beerDetailInfo(request, beer.id)
+
+def showBeerUpdate(request):
+    logger.info('show beer update form')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if not key:
+        return SEARCH_VIEWS.index(request)
+
+    beer = SERVICES.selectBeerById(key)
+    form = FORMS.updateBeerForm(initial = {
+                                        'name':beer.name,
+                                        'style':beer.style,
+                                        'description':beer.description,
+                                        'ibu':beer.ibu,
+                                        'abv':beer.abv,
+                                        })
+
+    c.update({'beer':beer})
+    c.update({'beer_update_form':form})
+
+    return show(request, c)
+
 def index(request):
     logger.info('beer')
     c = {}
+    return show(request, c)
 
+def show(request, c):
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.MANAGER_PAGE_TITLE_URL
     main_content = CONFIG.MANAGER_MAIN_URL

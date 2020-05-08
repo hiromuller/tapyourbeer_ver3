@@ -43,17 +43,17 @@ class Beer(models.Model):
     # 名前
     name = models.CharField(max_length=200)
     # style
-    style = models.CharField(max_length=200, null=True)
+    style = models.CharField(max_length=200, null=True, blank=True)
     # 説明
-    description = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
     # ibu（苦さ）
-    ibu = models.CharField(max_length=200, null=True)
+    ibu = models.CharField(max_length=200, null=True, blank=True)
     # abv（アルコール度数）
-    abv = models.CharField(max_length=200, null=True)
+    abv = models.CharField(max_length=200, null=True, blank=True)
     # ブルワリー
     brewery = models.ForeignKey(Brewery, on_delete=models.PROTECT)
     # photo (画像）
-    photo = models.ImageField(upload_to='images/', null=True)
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
     # アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
 

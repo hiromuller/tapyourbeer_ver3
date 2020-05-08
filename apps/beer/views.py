@@ -9,6 +9,7 @@ from core import messages as MSG
 import beer.services as SERVICES
 import beer.forms as FORMS
 import common.models as MODELS
+import common.services as COMMON_SERVICES
 import home.views as HOME_VIEWS
 import logging
 
@@ -54,9 +55,9 @@ def addBeerEvaluation(request):
             venue_name = form.cleaned_data.get('venue_name')
 
             #全角半角/大文字小文字加工
-            brewery_name = SERVICES.normalizeStr(brewery_name)
-            beer_name = SERVICES.normalizeStr(beer_name)
-            venue_name = SERVICES.normalizeStr(venue_name)
+            brewery_name = COMMON_SERVICES.normalizeStr(brewery_name)
+            beer_name = COMMON_SERVICES.normalizeStr(beer_name)
+            venue_name = COMMON_SERVICES.normalizeStr(venue_name)
 
             all_registered = True
             if not brewery_id and not beer_id:

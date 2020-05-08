@@ -1,36 +1,18 @@
 <div class="row">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
-    <div id="main_content" class="thumbnail">
-      <ul>
-        <li>
-          login
-        </li>
-        <li>
-          Home
-        </li>
-        <li>
-          検索
-        </li>
-        <li>
-          ビール詳細
-        </li>
-        <li>
-          ビール登録
-        </li>
-        <li>
-          ブルワリー詳細
-        </li>
-        <li>
-          店舗詳細
-        </li>
-        <li>
-          ユーザーアカウント
-        </li>
-        <li>
-          管理者アカウント
-        </li>
-      </ul>
+    <div id="main_content">
+      {% if beer_update_form %}
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+        {{ beer_update_form.as_p }}
+
+        <input type="hidden" name="action" value="{{ACTION_UPDATE_BEER}}">
+        <input type="hidden" name="beer_id" value="{{ beer.id }}">
+        <button id="id_update_beer" type="submit" class="btn btn-default">登録</button>
+
+      </form>
+      {% endif %}
     </div>
   </div>
   <div class="col-0 col-sm-2"></div>

@@ -58,6 +58,10 @@ def index(request):
         return VENUE_VIEWS.venueDetail(request)
     elif action == CONFIG.ACTION_DELETE_COMMENT:
         return MANAGER_VIEWS.deleteComment(request)
+    elif action == CONFIG.ACTION_BEER_UPDATE:
+        return MANAGER_VIEWS.showBeerUpdate(request)
+    elif action == CONFIG.ACTION_UPDATE_BEER:
+        return MANAGER_VIEWS.updateBeer(request)
     else:
         return view(request)
 

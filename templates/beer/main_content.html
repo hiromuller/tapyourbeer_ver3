@@ -9,12 +9,22 @@
       </div>
 
       <div class="description-text text-center">
-        style: {{ beer.style }} - abv: {{ beer.abv }}%
+        {% if beer.style %}style: {{ beer.style }}{% endif %}&nbsp;&nbsp;&nbsp;{% if beer.abv %}abv: {{ beer.abv }}% {% endif %}
       </div>
 
       <div class="description-text text-center">
-        {{ beer.description }}
+        {%if beer.description %}{{ beer.description }}{% endif %}
       </div>
+
+      {% if request.user.is_admin %}
+      <form id="list_form" method="post" action="{{main_url}}">
+        {% csrf_token %}
+      <div class="description-text text-center">
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_UPDATE}}', '{{beer.id}}');">編集</a>
+      </div>
+      </form>
+      {% endif %}
+
 
       <br>
       <div class="subtopic text-center">
