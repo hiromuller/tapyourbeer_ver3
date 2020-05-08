@@ -65,6 +65,11 @@ ACTION_DETAIL_SEARCH = 'detail_search' #詳細検索画面へ遷移
 ACTION_DETAIL_SEARCH_LIST = 'detail_search_list' #詳細検索実行
 ACTION_USER_ACCOUNT = 'user_account'
 ACTION_VENUE_DETAIL = 'venue_detail'
+ACTION_DELETE_BEER = 'delete_beer'
+ACTION_DELETE_USER = 'delete_user'
+ACTION_DELETE_BREWERY = 'delete_brewery'
+ACTION_DELETE_VENUE = 'delete_venue'
+ACTION_DELETE_COMMENT = 'delete_comment'
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -81,6 +86,11 @@ ACTION_DICT = {
                 'ACTION_DETAIL_SEARCH_LIST':ACTION_DETAIL_SEARCH_LIST,
                 'ACTION_USER_ACCOUNT':ACTION_USER_ACCOUNT,
                 'ACTION_VENUE_DETAIL':ACTION_VENUE_DETAIL,
+                'ACTION_DELETE_BEER':ACTION_DELETE_BEER,
+                'ACTION_DELETE_USER':ACTION_DELETE_USER,
+                'ACTION_DELETE_BREWERY':ACTION_DELETE_BREWERY,
+                'ACTION_DELETE_VENUE':ACTION_DELETE_VENUE,
+                'ACTION_DELETE_COMMENT':ACTION_DELETE_COMMENT,
                }
 """
 コンテンツHTML

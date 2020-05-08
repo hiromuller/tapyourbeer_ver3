@@ -21,7 +21,11 @@
   <div class="col-8 col-sm-8">
     {% for comment in comment_list %}
     <div class="description-text text-left">
-    <p><b>{{ comment.user.username }}</b></p>
+      {% if request.user.is_admin %}
+      <p><b>{{ comment.user.username }}</b> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a></p>
+      {% else %}
+      <p><b>{{ comment.user.username }}</b></p>
+      {% endif %}
     <p>{{ comment.comment }}</p>
     </div>
     {% endfor %}
@@ -35,6 +39,7 @@
   <div class="col-3 col-sm-2"></div>
 </div>
 
+{% if venue_list %}
 <div class="row" id="subcontent_comment_title">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
@@ -57,4 +62,5 @@
 </div>
 <div class="col-2 col-sm-2"></div>
 </div>
+{% endif %}
 </form>
