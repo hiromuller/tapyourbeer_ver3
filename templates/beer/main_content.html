@@ -7,10 +7,19 @@
       <div class="subtopic text-center">
         <p>by <b>{{ brewery.name }}</b></p>
       </div>
+
+      <div class="description-text text-center">
+        style: {{ beer.style }} - abv: {{ beer.abv }}%
+      </div>
+
+      <div class="description-text text-center">
+        {{ beer.description }}
+      </div>
+
       <br>
       <div class="subtopic text-center">
         <p><u>{{ beer_taste_avg.overall }}</u></p>
-        <p>☆  ☆  ☆  ☆  ☆</p>
+        <p>{% for i in stars %}☆ {% endfor %}</p>
       </div>
     </div>
   <div class="col-0 col-sm-2"></div>
