@@ -62,6 +62,10 @@ def index(request):
         return MANAGER_VIEWS.showBeerUpdate(request)
     elif action == CONFIG.ACTION_UPDATE_BEER:
         return MANAGER_VIEWS.updateBeer(request)
+    elif action == CONFIG.ACTION_BREWERY_UPDATE:
+        return MANAGER_VIEWS.showBreweryUpdate(request)
+    elif action == CONFIG.ACTION_UPDATE_BREWERY:
+        return MANAGER_VIEWS.updateBrewery(request)
     else:
         return view(request)
 

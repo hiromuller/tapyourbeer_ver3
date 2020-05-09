@@ -17,11 +17,11 @@ class Brewery(models.Model):
     # 名前
     name = models.CharField(max_length=200)
     # logo
-    logo = models.ImageField(upload_to='images/', null=True)
+    logo = models.ImageField(upload_to='images/', null=True, blank=True)
     # 住所
-    address = models.CharField(max_length=200, null=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
     # 説明
-    description = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
     #アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
 

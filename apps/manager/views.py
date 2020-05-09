@@ -10,6 +10,7 @@ import manager.forms as FORMS
 import common.services as COMMON_SERVICES
 import search.views as SEARCH_VIEWS
 import beer.views as BEER_VIEWS
+import brewery.views as BEER_VIEWS
 import logging
 
 logger = logging.getLogger('app')
@@ -22,6 +23,47 @@ def deleteComment(request):
         SERVICES.deleteCommentById(key)
 
     return SEARCH_VIEWS.index(request)
+
+def updateBrewery(request):
+    form = FORMS.updateBreweryForm(request.POST)
+    if request.method == "POST":
+        brewery_id = request.POST.get("brewery_id")
+
+    if form.is_valid() and brewery_id:
+        brewery = SERVICES.selectBreweryById(beer_id)
+        brewery.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
+        brewery.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
+        brewery.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+        brewery.save()
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    return SEARCH_VIEWS.index(request)
+    #brewery viewができたら以下に修正
+    #return BREWERY_VIEWS.breweryDetailInfo(request, brewery.id)
+
+
+def showBreweryUpdate(request):
+    logger.info('show brewery update form')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if not key:
+        return SEARCH_VIEWS.index(request)
+
+    brewery = SERVICES.selectBreweryById(key)
+    form = FORMS.updateBreweryForm(initial = {
+                                        'name':brewery.name,
+                                        'address':brewery.address,
+                                        'description':brewery.description,
+                                        })
+
+    c.update({'brewery':brewery})
+    c.update({'brewery_update_form':form})
+
+    return show(request, c)
+
 
 def updateBeer(request):
     form = FORMS.updateBeerForm(request.POST)

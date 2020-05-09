@@ -11,10 +11,16 @@ def deleteCommentById(id):
     except:
         return
 
-
 def selectBeerById(id):
     try:
         beer = MODELS.Beer.objects.get(id=id)
         return beer
+    except:
+        return None
+
+def selectBreweryById(id):
+    try:
+        brewery = MODELS.Brewery.objects.get(id=id)
+        return brewery
     except:
         return None

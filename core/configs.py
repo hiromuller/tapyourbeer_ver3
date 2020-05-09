@@ -72,6 +72,9 @@ ACTION_DELETE_VENUE = 'delete_venue'
 ACTION_DELETE_COMMENT = 'delete_comment'
 ACTION_BEER_UPDATE = 'beer update' #ビール更新画面へ遷移
 ACTION_UPDATE_BEER = 'update beer' #ビール情報を更新してビール詳細画面へ遷移
+ACTION_BREWERY_UPDATE = 'brewery update' #ブルワリー更新画面へ遷移
+ACTION_UPDATE_BREWERY = 'update brewery' #ブルワリー情報を更新してブルワリー詳細画面へ遷移
+
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -95,6 +98,8 @@ ACTION_DICT = {
                 'ACTION_DELETE_COMMENT':ACTION_DELETE_COMMENT,
                 'ACTION_BEER_UPDATE':ACTION_BEER_UPDATE,
                 'ACTION_UPDATE_BEER':ACTION_UPDATE_BEER,
+                'ACTION_BREWERY_UPDATE':ACTION_BREWERY_UPDATE,
+                'ACTION_UPDATE_BREWERY':ACTION_UPDATE_BREWERY,
                }
 """
 コンテンツHTML
