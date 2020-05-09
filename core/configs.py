@@ -70,12 +70,12 @@ ACTION_DELETE_USER = 'delete_user'
 ACTION_DELETE_BREWERY = 'delete_brewery'
 ACTION_DELETE_VENUE = 'delete_venue'
 ACTION_DELETE_COMMENT = 'delete_comment'
-ACTION_BEER_UPDATE = 'beer update' #ビール更新画面へ遷移
-ACTION_UPDATE_BEER = 'update beer' #ビール情報を更新してビール詳細画面へ遷移
-ACTION_BREWERY_UPDATE = 'brewery update' #ブルワリー更新画面へ遷移
-ACTION_UPDATE_BREWERY = 'update brewery' #ブルワリー情報を更新してブルワリー詳細画面へ遷移
-ACTION_BEER_MERGE = 'beer merge' #ビール統合画面へ遷移
-ACTION_MERGE_BEER = 'merge beer' #ビール情報を統合してビール詳細画面へ遷移
+ACTION_BEER_UPDATE = 'beer_update' #ビール更新画面へ遷移
+ACTION_UPDATE_BEER = 'update_beer' #ビール情報を更新してビール詳細画面へ遷移
+ACTION_BREWERY_UPDATE = 'brewery_update' #ブルワリー更新画面へ遷移
+ACTION_UPDATE_BREWERY = 'update_brewery' #ブルワリー情報を更新してブルワリー詳細画面へ遷移
+ACTION_BEER_MERGE = 'beer_merge' #ビール統合画面へ遷移
+ACTION_MERGE_BEER = 'merge_beer' #ビール情報を統合してビール詳細画面へ遷移
 
 
 ACTION_DICT = {
