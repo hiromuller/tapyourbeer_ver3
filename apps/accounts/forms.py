@@ -22,6 +22,12 @@ class SignUpForm(UserCreationForm):
         }
         fields = ("username", "password1", "password2", "email", "birthday", "gender_style")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
     # 入力したパスワードの検証(バリデーション)を行っています
     def clean_password(self):
         # 入力されたパスワードを取得します

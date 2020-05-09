@@ -1,31 +1,28 @@
 {% extends "common/base.html" %}
-
+{% load static %}
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
 
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
     <div class="row">
-      <form id="navigation_form" method="post">
-        {% csrf_token %}
-      <div class="col-md-7 col-xs-10"></div>
-      <div class="col-md-2 col-xs-1">
-        <p>
-          <a href="{% url 'signup' %}">サインアップ</a>
-        </p>
+      <div class="col-2 col-sm-1"></div>
+      <div class="col-8 col-sm-10">
+        <div class="title-image">
+        <img src="{% static 'images/title.png' %}" class="img-fluid" />
+        </div>
       </div>
-      <div class="col-md-3 col-xs-1"></div>
-      </form>
+      <div class="col-2 col-sm-1"></div>
     </div>
+
     <div class="row">
-    <div class="col-xs-12 col-md-6 offset-md-3">
+        <div class="text-right description-text">
+          <div class="col-12 col-sm-6 offset-sm-3">
+            <a href="{% url 'signup' %}">サインアップ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
       <form id="login" method="POST">
             <div class="card">
                 <div class="card-body">
@@ -44,4 +41,13 @@
       </div>
       </div>
 
+      <a href="#howto" data-easing="easeInOutQuad" class="scroll-down"><span></span><div class="description-text">できること</div></a>
+      <section id="blank">
+      </section>
+
+      <section id="howto">
+          <div class="thumbnail">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>a
+          </div>
+      </section>
 {% endblock %}

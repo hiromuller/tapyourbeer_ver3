@@ -10,7 +10,7 @@ import manager.forms as FORMS
 import common.services as COMMON_SERVICES
 import search.views as SEARCH_VIEWS
 import beer.views as BEER_VIEWS
-import brewery.views as BEER_VIEWS
+import brewery.views as BREWERY_VIEWS
 import logging
 
 logger = logging.getLogger('app')
@@ -23,6 +23,47 @@ def deleteComment(request):
         SERVICES.deleteCommentById(key)
 
     return SEARCH_VIEWS.index(request)
+
+
+def mergeBeer(request):
+    form = FORMS.mergeBeerForm(request.POST)
+
+    if form.is_valid():
+        """
+        #beer(U), todaystap(U), comment(U), beertasteavg(U)
+        1. beertasteavgテーブルからmerging_beerを削除
+        2. commentテーブルから、merging_beer_idのコメントをbase_beer_idにupdateする
+        3. todaystapテーブルから、merging_beer_idのレコードをbase_beer_idにupdateする
+        4. beerテーブルからmerging_beerを削除
+        """
+        base_beer = SERVICES.selectBeerById(form.cleaned_data.get('base_beer_id'))
+        merging_beer = SERVICES.selectBeerById(form.cleaned_data.get('merging_beer_id'))
+
+        SERVICES.deleteBeerTasteAvgByBeer(merging_beer)
+        SERVICES.updateCommentBeerMerge(base_beer, merging_beer)
+        SERVICES.updateTodaystapBeerMerge(base_beer, merging_beer)
+        SERVICES.deleteBeerByBeer(merging_beer)
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    return BEER_VIEWS.beerDetailInfo(request, base_beer.id)
+
+
+def showBeerMerge(request):
+    logger.info('show beer merge form')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if key:
+        form = FORMS.mergeBeerForm(initial = {'base_beer_id':key})
+    else:
+        form = FORMS.mergeBeerForm()
+
+    c.update({'merge_beer_form':form})
+
+    return show(request, c)
+
 
 def updateBrewery(request):
     form = FORMS.updateBreweryForm(request.POST)

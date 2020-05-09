@@ -14,24 +14,25 @@
 {% if SignUpForm %}
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12">
-    <p>
+  <div class="col-12 col-sm-12">
+    <div class="card">
+        <div class="card-body">
     <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {% csrf_token %}
-
+          <div class="signupform">
           <div class="fieldWrapper form-group">
           {{ SignUpForm.username.errors }}
           <label for="id_name">名前:</label>
           {{ SignUpForm.username }}
           </div>
 
-          <div class="fieldWrapper form-group">
+          <div class="fieldWrapper form-group signup-selecter">
           {{ SignUpForm.gender_style.errors }}
           <label for="id_gender_style">性別スタイル:</label>
           {{ SignUpForm.gender_style }}
           </div>
 
-          <div class="fieldWrapper form-group">
+          <div class="fieldWrapper form-group signup-selecter">
           {{ SignUpForm.birthday.errors }}
           <label for="id_birthday">生年月日:</label>
           {{ SignUpForm.birthday }}
@@ -55,10 +56,12 @@
           {{ SignUpForm.email }}
           </div>
 
-        <button id="signup_user" type="submit" class="btn btn-primary">登録</button>
+        <button id="signup_user" type="submit" class="btn btn-success btn-lg btn-block">登録</button>
         <input type="hidden" name="action" value="{{ACTION_SIGNUP_USER}}">
+        </div>
       </form>
-      </p>
+      </div>
+      </div>
   </div>
 </div>
 

@@ -27,6 +27,7 @@
   <script type="text/javascript" src="{% static "js/common.js" %}"></script>
   <script type="text/javascript" src="{% static "js/form.js" %}"></script>
   <script type="text/javascript" src="{% static "js/magister.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/smooth-scroll.polyfills.min.js" %}"></script>
   <script type="text/javascript" src="{% static "js/modernizr.custom.72241.js" %}"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
@@ -35,5 +36,8 @@
   <script type="text/javascript" src="{% static "js/jquery.switchHat.js" %}"></script>
   <script type="text/javascript" src="{% static "js/jquery.disableOnSubmit.js" %}"></script>
   <script type="text/javascript" src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+  <script>
+	var scroll = new SmoothScroll('a[href*="#"]');
+  </script>
 </body>
 </html>

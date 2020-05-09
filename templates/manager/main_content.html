@@ -26,6 +26,18 @@
       </form>
       {% endif %}
 
+      {% if merge_beer_form %}
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+        {{ merge_beer_form.as_p }}
+
+        <input type="hidden" name="action" value="{{ACTION_MERGE_BEER}}">
+        <button id="id_merge_beer" type="submit" class="btn btn-default">登録</button>
+
+      </form>
+      {% endif %}
+
+
     </div>
   </div>
   <div class="col-0 col-sm-2"></div>

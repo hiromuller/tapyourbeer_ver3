@@ -14,3 +14,5 @@ UNMATCH_BREWERY_AND_BEER = 'ブルワリーidとビールidが一致しません
 UNMATCH_BEER_ID_AND_BREWERY_NAME = '選択したビールと入力したブルワリー名が一致しません'
 UNMATCH_VENUE_ID_AND_VENUE_NAME = '店舗名と店舗IDが一致しません'
 PLEASE_INSERT_ALL_EVALUATION = 'すべての評価項目を入力してください'
+BEER_DOES_NOT_EXIST = '入力されたIDのビールは存在しません'
+SAME_VALUE_INPUT = '同じ値が入力されています'
