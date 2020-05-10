@@ -1,22 +1,35 @@
-      <div id="header">
+{% load static %}
+      <div id="header" class="fixed-top">
         <div class="row">
 
         {% if move_to_detail_search_button %}
         <div class="col-0 col-sm-2"></div>
-        <div class="col-2 col-sm-2"><a href="javascript:void(0)" onClick="movePage('{{ACTION_DETAIL_SEARCH}}');">詳細検索へ</a></div>
+        <div class="col-3 col-sm-2">
+          <div class="description-text text-left">
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_DETAIL_SEARCH}}');"><img src="{% static 'images/detail_search.png' %}" class="header-l"/></a>
+          </div>
+        </div>
         {% elif move_to_search_button %}
         <div class="col-0 col-sm-2"></div>
-        <div class="col-2 col-sm-2"><a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');">名前検索へ</a></div>
+        <div class="col-3 col-sm-2">
+          <div class="description-text text-left">
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');"><img src="{% static 'images/search.png' %}" class="header"/></a>
+          </div>
+        </div>
         {% else %}
-        <div class="col-2 col-sm-4"></div>
+        <div class="col-3 col-sm-4"></div>
         {% endif %}
 
-        <div class="col-8 col-sm-4">
+        <div class="col-6 col-sm-4">
           <h2 class="text-center title">
               <p><b>{% include page_title %}</b></p>
           </h2>
           </div>
-          <div class="col-2 col-sm-2"><a href="{% url 'accounts:logout' %}">ログアウト</a></div>
+          <div class="col-3 col-sm-2">
+            <div class="description-text text-right">
+            <a href="{% url 'accounts:logout' %}"><img src="{% static 'images/logout.png' %}" class="header" /></a>
+          </div>
+          </div>
         </div>
 
       </div>
