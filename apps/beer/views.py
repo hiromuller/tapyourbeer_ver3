@@ -187,8 +187,10 @@ def beerDetailInfo(request, key):
     beer = SERVICES.selectBeerById(key)
     brewery = SERVICES.selectBreweryById(beer.brewery_id)
     beer_taste_avg = SERVICES.selectBeerTasteAvgByBeer(beer)
-    comment_list = SERVICES.selectCommentListByBeer(beer)
-    venue_list = SERVICES.selectVenueListByBeer(beer)
+    comment_list = list(SERVICES.selectCommentListByBeer(beer))
+    del comment_list[20:]
+    venue_list = list(SERVICES.selectVenueListByBeer(beer))
+    del venue_list[20:]
     try:
         stars = range(round(beer_taste_avg.overall))
     except:
