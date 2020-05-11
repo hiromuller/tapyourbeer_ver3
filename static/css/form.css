@@ -1,0 +1,643 @@
+/* COLORS */
+/**** FORM ****/
+/* GENERAL */
+/* LABELS */
+/* HEADINGS */
+/* INPUTS */
+/* SELECT -- DROPDOWNS */
+/* PLACEHOLDERS */
+/* TEXTAREA */
+/* BUTTONS */
+/* RADIO BUTTONS */
+/* CHECKBOXES */
+/* UNDERLINE */
+/* SPINNER ARROWS */
+/* FIELD CONTROLS */
+
+
+/*form {
+  padding: 40px 0 80px 0;
+}*/
+.form-inner {
+  zoom: 1;
+  margin: auto;
+  padding: 10px 5px 10px 5px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+.form-inner:before,
+.form-inner:after {
+  content: "";
+  display: table;
+}
+.form-inner:after {
+  clear: both;
+}
+.form-inner > h2 {
+  font-size: 28px;
+  font-family: "Roboto", sans-serif;
+  color: #777;
+  margin: 0;
+  margin-top: 50px !important;
+  margin-bottom: 10px !important;
+  margin-left: 10px;
+  font-weight: bold;
+  display: block;
+  position: relative;
+  float: left;
+  width: 90%;
+}
+.form-inner > div {
+  padding-bottom: 0;
+  padding-top: 26px;
+  width: 100%;
+  float: left;
+  position: relative;
+}
+.form-inner > div.half {
+  width: 50%;
+}
+.form-inner > div.quarter {
+  width: 25%;
+}
+@media all and (max-width: 360px) {
+  .form-inner > div.half {
+    width: 100%;
+  }
+  .form-inner > div.quarter {
+    width: 50%;
+  }
+}
+.form-inner > div.align-right {
+  float: right;
+}
+.form-inner > div.no-label {
+  padding-top: 15px;
+}
+.form-inner > div > select {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+}
+.form-inner > div.dropdown {
+  cursor: pointer;
+}
+.form-inner > div.dropdown input {
+  cursor: pointer;
+}
+.form-inner > div.dropdown label {
+  cursor: pointer !important;
+}
+.form-inner > div.dropdown .dropdown-arrow {
+  bottom: 6px;
+  padding: 12px;
+}
+.form-inner > div.dropdown .dropdown-arrow > div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-top: 7px solid #bbb;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+.form-inner > div.dropdown .dropdown-arrow:active > div {
+  border-top: 7px solid #8c8c8c;
+}
+.form-inner > div.dropdown.open .dropdown-arrow > div {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.form-inner > div.dropdown.open .underline:before,
+.form-inner > div.dropdown.open .underline::before,
+.form-inner > div.dropdown.open .underline:after,
+.form-inner > div.dropdown.open .underline::after {
+  background-color: #8c8c8c;
+  height: 35px;
+}
+.form-inner > div.dropdown.open .underline label {
+  color: #8c8c8c !important;
+}
+.form-inner > div.dropdown.open .underline.float-label:before,
+.form-inner > div.dropdown.open .underline.float-label::before {
+  height: 45px;
+}
+.form-inner > div.dropdown.open .dropdown-box {
+  padding: 8px;
+  padding-top: 0;
+  height: auto;
+  border: 2px solid #8c8c8c;
+  border-top: none;
+}
+.form-inner > div.dropdown .dropdown-box {
+  background-color: #fff;
+  border-bottom: 0px solid transparent;
+  border-left: 2px solid #8c8c8c;
+  border-right: 2px solid #8c8c8c;
+  border-top: none;
+  width: 100%;
+  max-width: 100%;
+  height: 0;
+  top: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+}
+.form-inner > div.dropdown .dropdown-box > .focus-helper {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.form-inner > div.dropdown .dropdown-box > div {
+  max-height: 150px;
+  overflow: auto;
+}
+.form-inner > div.dropdown .dropdown-box > div > div {
+  width: 100%;
+  height: 30px;
+}
+.form-inner > div.dropdown .dropdown-box > div > div > p {
+  cursor: pointer;
+  display: block;
+  line-height: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #333;
+  font-weight: normal;
+}
+.form-inner > div.buttons {
+  margin-top: 10px;
+}
+.form-inner > div.buttons > div {
+  width: 25%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin: 0;
+  float: left;
+}
+.form-inner > div.buttons > div > button {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background-color: none;
+  background: none;
+  border: 2px solid #777;
+  padding: 5px 0;
+  font-size: 12px;
+  width: 100%;
+  cursor: pointer;
+  color: #111;
+}
+.form-inner > div.buttons > div > button:focus {
+  border-color: #8c8c8c;
+  color: #333;
+}
+.form-inner > div.buttons > div > button:active {
+  background-color: #8c8c8c;
+  color: #fff !important;
+}
+.form-inner > div > div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  margin: 0 10px;
+}
+.form-inner > div > div.prefixed > input {
+  padding-left: 15px;
+}
+.form-inner > div > div.right-control {
+  padding-right: 30px !important;
+}
+.form-inner > div > div.underline {
+  border-bottom: 2px solid #bbb;
+  padding: 0 8px 6px 8px;
+}
+.form-inner > div > div.underline:before,
+.form-inner > div > div.underline::before,
+.form-inner > div > div.underline:after,
+.form-inner > div > div.underline::after {
+  content: "";
+  height: 5px;
+  width: 2px;
+  position: absolute;
+  bottom: 0;
+  background-color: #bbb;
+}
+.form-inner > div > div.underline:before,
+.form-inner > div > div.underline::before {
+  left: 0;
+}
+.form-inner > div > div.underline:after,
+.form-inner > div > div.underline::after {
+  right: 0;
+}
+.form-inner > div > div.underline.dropdown-hint:after,
+.form-inner > div > div.underline.dropdown-hint::after {
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  border-right: 5px solid #bbb;
+  border-bottom: 5px solid #bbb;
+  border-left: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+.form-inner > div > div.underline.focused {
+  border-color: #8c8c8c;
+}
+.form-inner > div > div.underline.focused:before,
+.form-inner > div > div.underline.focused::before,
+.form-inner > div > div.underline.focused:after,
+.form-inner > div > div.underline.focused::after {
+  background-color: #8c8c8c;
+}
+.form-inner > div > div.float-label > .placeholder {
+  opacity: 0 !important;
+}
+.form-inner > div > div.float-label > label,
+.form-inner > div > div.float-label .prefix {
+  opacity: 0.99 !important;
+}
+.form-inner > div > div > textarea {
+  border: none;
+  color: #111;
+  width: 100%;
+  resize: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  border-radius: 0;
+  overflow: hidden;
+  border-image-width: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  display: block;
+}
+.form-inner > div > div > textarea:focus ~ label {
+  color: #8c8c8c;
+}
+.form-inner > div > div > textarea ~ label {
+  cursor: text;
+}
+.form-inner > div > div > input {
+  position: relative;
+  border: none;
+  border-image-width: 0;
+  outline: none;
+  margin: 0;
+  font-size: 18px;
+  padding: 0;
+  z-index: 1;
+  -webkit-appearance: none;
+  border-radius: 0;
+  background-color: transparent;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  color: #111;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.form-inner > div > div > input ~ label {
+  cursor: text;
+}
+.form-inner > div > div > input[type=checkbox],
+.form-inner > div > div > input[type=radio] {
+  display: none;
+}
+.form-inner > div > div > input[type=checkbox] ~ label,
+.form-inner > div > div > input[type=radio] ~ label {
+  opacity: 1 !important;
+  cursor: pointer;
+  position: absolute;
+  font-size: 18px;
+  font-weight: normal;
+  color: #777;
+  font-family: "Roboto", sans-serif;
+  top: 0px;
+  left: 0;
+  box-sizing: border-box;
+  width: auto;
+  padding-left: 52px;
+  line-height: 32px;
+}
+.form-inner > div > div > input[type=checkbox]:checked ~ label,
+.form-inner > div > div > input[type=radio]:checked ~ label {
+  color: #333;
+}
+.form-inner > div > div > input[type=checkbox]:checked ~ .checkbox,
+.form-inner > div > div > input[type=radio]:checked ~ .checkbox {
+  border-color: #333;
+}
+.form-inner > div > div > input[type=checkbox]:checked ~ .checkbox > span,
+.form-inner > div > div > input[type=radio]:checked ~ .checkbox > span {
+  border-color: #333;
+}
+.form-inner > div > div > input[type=checkbox]:checked ~ .radio,
+.form-inner > div > div > input[type=radio]:checked ~ .radio {
+  border-color: #333;
+}
+.form-inner > div > div > input[type=checkbox]:checked ~ .radio > span,
+.form-inner > div > div > input[type=radio]:checked ~ .radio > span {
+  background-color: #333;
+}
+.form-inner > div > div > input:focus ~ label {
+  color: #8c8c8c;
+}
+.form-inner > div > div > label {
+  width: 100%;
+  padding-bottom: 2px;
+  cursor: default;
+  font-weight: bold;
+  position: absolute;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  top: -18px;
+  left: 8px;
+  opacity: 0;
+  color: #777;
+}
+.form-inner > div > div > label.invalid {
+  color: #d4412c;
+  opacity: 1;
+}
+.form-inner > div > div > .dropdown-arrow,
+.form-inner > div > div .spinner-arrow {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  right: 0;
+  z-index: 6;
+  cursor: pointer;
+}
+.form-inner > div > div > .spinner-arrow {
+  padding: 0px 12px;
+}
+.form-inner > div > div > .spinner-arrow.up {
+  bottom: 25px;
+  padding-top: 12px;
+  padding-bottom: 6px;
+}
+.form-inner > div > div > .spinner-arrow.up > div {
+  border-bottom: 7px solid #bbb;
+}
+.form-inner > div > div > .spinner-arrow.up:active > div {
+  border-bottom: 7px solid #8c8c8c;
+}
+.form-inner > div > div > .spinner-arrow.down {
+  padding-bottom: 12px;
+  padding-top: 6px;
+  bottom: 0;
+}
+.form-inner > div > div > .spinner-arrow.down > div {
+  border-top: 7px solid #bbb;
+}
+.form-inner > div > div > .spinner-arrow.down:active > div {
+  border-top: 7px solid #8c8c8c;
+}
+.form-inner > div > div > .spinner-arrow > div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+.form-inner > div > div > span.placeholder {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  color: #777;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  z-index: 0;
+  opacity: 0.99;
+}
+.form-inner > div > div > span.prefix {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  color: #777;
+  left: 8px;
+  bottom: 8px;
+  opacity: 0;
+}
+.form-inner > div > div > span.checkbox {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #bbb;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+.form-inner > div > div > span.checkbox > span {
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  width: 6px;
+  height: 14px;
+  position: relative;
+  display: block;
+  top: 4.17157288px;
+  left: 10px;
+}
+.form-inner > div > div > span.radio {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #bbb;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.form-inner > div > div > span.radio > span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: transparent;
+  position: relative;
+  display: block;
+  top: 6px;
+  left: 6px;
+}
+.form-inner > div > div > span.radio.checked {
+  border-color: #333 !important;
+}
+.form-inner > div > div > span.radio.checked > span {
+  background-color: #333 !important;
+}
+html.no-touch form *,
+html.no-touch form :before,
+html.no-touch form ::before,
+html.no-touch form :after,
+html.no-touch form ::after {
+  -webkit-transition: opacity 0.08s ease-out, background 0.08s ease-out, color 0.08s ease-out, border 0.08s ease-out, max-height 0.08s ease-out, height 0.08s ease-out, width 0.08s ease-out;
+  transition: opacity 0.08s ease-out, background 0.08s ease-out, color 0.08s ease-out, border 0.08s ease-out, max-height 0.08s ease-out, height 0.08s ease-out, width 0.08s ease-out;
+}
+html.no-touch form .checkbox:hover,
+html.no-touch form .radio:hover {
+  border-color: #777;
+}
+html.no-touch form .checkbox:hover > span {
+  border-color: #bbb;
+}
+html.no-touch form .checkbox:active,
+html.no-touch form .checkbox:focus {
+  border-color: #8c8c8c !important;
+}
+html.no-touch form .checkbox:focus ~ label {
+  color: #8c8c8c !important;
+}
+html.no-touch form .radio:active,
+html.no-touch form .radio:focus {
+  border-color: #8c8c8c !important;
+}
+html.no-touch form .radio:hover > span {
+  background-color: #bbb;
+}
+html.no-touch form .input-hover {
+  border-color: #777;
+}
+html.no-touch form .input-hover:before,
+html.no-touch form .input-hover::before,
+html.no-touch form .input-hover:after,
+html.no-touch form .input-hover::after {
+  background-color: #777;
+}
+html.no-touch form .input-hover .spinner-arrow.up > div {
+  border-bottom: 7px solid #777;
+}
+html.no-touch form .input-hover .spinner-arrow.down > div {
+  border-top: 7px solid #777;
+}
+html.no-touch form .input-hover .dropdown-arrow > div {
+  border-top: 7px solid #777;
+}
+html.no-touch form .buttons > div > button:hover {
+  border-color: #8c8c8c;
+  color: #333;
+}
+html.no-touch form .spinner-arrow:hover.up > div {
+  border-bottom: 7px solid #777;
+}
+html.no-touch form .spinner-arrow:hover.down > div {
+  border-top: 7px solid #777;
+}
+html.no-touch form .dropdown-box p:hover {
+  color: #8c8c8c !important;
+}
+html.no-touch form .dropdown:hover .dropdown-arrow > div {
+  border-top: 7px solid #777;
+}
+html.no-touch form input[type=checkbox] ~ label:hover ~ span.checkbox,
+html.no-touch form input[type=radio] ~ label:hover ~ span.checkbox {
+  border-color: #777;
+}
+html.no-touch form input[type=checkbox] ~ label:hover ~ span.checkbox > span,
+html.no-touch form input[type=radio] ~ label:hover ~ span.checkbox > span {
+  border-color: #bbb;
+}
+html.no-touch form input[type=checkbox] ~ label:hover ~ span.radio,
+html.no-touch form input[type=radio] ~ label:hover ~ span.radio {
+  border-color: #777;
+}
+html.no-touch form input[type=checkbox] ~ label:hover ~ span.radio > span,
+html.no-touch form input[type=radio] ~ label:hover ~ span.radio > span {
+  background-color: #bbb;
+}
+html.no-touch form input[type=checkbox]:checked ~ label:hover ~ span.checkbox,
+html.no-touch form input[type=radio]:checked ~ label:hover ~ span.checkbox {
+  border-color: #333;
+}
+html.no-touch form input[type=checkbox]:checked ~ label:hover ~ span.checkbox > span,
+html.no-touch form input[type=radio]:checked ~ label:hover ~ span.checkbox > span {
+  border-color: #333;
+}
+html.no-touch form input[type=checkbox]:checked ~ label:hover ~ span.radio,
+html.no-touch form input[type=radio]:checked ~ label:hover ~ span.radio {
+  border-color: #333;
+}
+html.no-touch form input[type=checkbox]:checked ~ label:hover ~ span.radio > span,
+html.no-touch form input[type=radio]:checked ~ label:hover ~ span.radio > span {
+  background-color: #333;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+::-ms-clear {
+  display: none;
+}
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input::-moz-focus-inner {
+  padding: 0 !important;
+  border: 0 none !important;
+}
+.animate {
+  -webkit-transition: opacity 0.08s ease-out, background 0.08s ease-out, color 0.08s ease-out, border 0.08s ease-out, max-height 0.08s ease-out, height 0.08s ease-out, width 0.08s ease-out;
+  transition: opacity 0.08s ease-out, background 0.08s ease-out, color 0.08s ease-out, border 0.08s ease-out, max-height 0.08s ease-out, height 0.08s ease-out, width 0.08s ease-out;
+}

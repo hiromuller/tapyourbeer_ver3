@@ -9,11 +9,15 @@
 
 {% include "common/header.html" %}
 
-<!-- 変数mainに呼び出すメインテンプレート名を代入 -->
+{%  if search_bar %}
+<!-- 検索画面の場合 -->
+  {% include search_bar %}
+{% endif %}
+
+<!-- 変数mainに呼び出すメインテンプレート名を代 -->
 <p>
     {% include main_content %}
 </p>
-
 
 <!-- 変数subに呼び出すサブテンプレート名を代入 -->
 {% if sub_content %}
@@ -24,15 +28,16 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-12">
-    {% include "common/navigation.html" %}
+    {% include "common/footer.html" %}
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12">
-    {% include "common/footer.html" %}
+    {% include "common/navigation.html" %}
   </div>
 </div>
+
 
 {% else %}
 <div>

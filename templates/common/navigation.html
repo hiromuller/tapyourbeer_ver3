@@ -1,21 +1,23 @@
-    <div id="navigation" class="navbar fixed-bottom center-block">
+{% load static %}
+    <div id="navigation" class="navbar fixed-bottom justify-content-center">
       <form id="navigation_form" method="post" action="{{main_url}}">
       {% csrf_token %}
-      <ul>
+      <ul class="navigation">
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_HOME}}');">&nbsp;&nbsp; Home</a>
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_HOME}}');" class="nav-icon"><img src="{% static 'images/home.png' %}" class="nav-icon"/></a>
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');">&nbsp;&nbsp; 検索</a>
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');" class="nav-icon"><img src="{% static 'images/search.png' %}" class="nav-icon"/></a>
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_ADD_BEER_EVALUATION}}');">&nbsp;&nbsp; ビール評価登録</a>
+          {% if beer %}
+          <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_ADD_BEER_EVALUATION_FORM}}', '{{ beer.id }}');" class="nav-icon"><img src="{% static 'images/eval.png' %}" class="nav-icon"/></a>
+          {% else %}
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_ADD_BEER_EVALUATION_FORM}}');" class="nav-icon"><img src="{% static 'images/eval.png' %}" class="nav-icon"/></a>
+          {% endif %}
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_USER_ACCOUNT}}');">&nbsp;&nbsp; ユーザーアカウント</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)" onClick="moveToBeerDetail('{{ACTION_BEER_DETAIL}}', '1');">&nbsp;&nbsp; ビール詳細サンプル</a>
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_USER_ACCOUNT}}');" class="nav-icon"><img src="{% static 'images/user.png' %}" class="nav-icon"/></a>
         </li>
         <li>
           <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_BREWERY_DETAIL}}', '3');">&nbsp;&nbsp; ブルワリー詳細サンプル</a>

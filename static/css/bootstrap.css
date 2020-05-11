@@ -2059,12 +2059,11 @@ pre code {
 
 .form-control:-moz-focusring {
   color: transparent;
-  text-shadow: 0 0 0 #495057;
 }
 
 .form-control:focus {
   color: #495057;
-  background-color: #fff;
+  background-color: transparent;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -2096,7 +2095,7 @@ pre code {
 }
 
 .form-control:disabled, .form-control[readonly] {
-  background-color: #e9ecef;
+  background-color: transparent;
   opacity: 1;
 }
 

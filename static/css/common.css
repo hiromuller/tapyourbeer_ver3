@@ -1,7 +1,49 @@
 .container{
   position: relative;/*←相対位置*/
+  padding-top: 65px;/*←footerの高さ*/
   padding-bottom: 50px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+#header{
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  background-color: #87ceeb;
+}
+
+#login{
+  padding-bottom: 100px
+}
+
+a.nav-icon{
+  padding: 0px 20px 0px 20px;
+}
+
+img.nav-icon{
+  width: 25px;
+}
+
+img.nav-icon-l{
+  width: 80px;
+}
+
+
+img.header{
+  width: 30px;
+}
+
+img.header-l{
+  width: 60px;
+}
+
+ul.navigation{
+  padding-inline-start: 0px;
+}
+
+section#blank{
+  padding-top: 300px;
 }
 
 #navigation {
@@ -11,4 +53,175 @@
 
 #navigation li{
   display: inline;
+}
+
+#detail_search_bar {
+  padding-bottom: 50px;
+}
+
+#search_bar {
+  padding-bottom: 20px;
+}
+
+.title-image {
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.signup-selecter {
+  width:30%;
+}
+
+.form-control:disabled, .form-control[readonly]{
+  background-color:transparent;
+}
+
+/* === タブのSTYLE設定 ============================= */
+@keyframes tabAnim{
+ 0%{top:-100%;}
+ 100%{top:0;}
+ }
+.tab_wrap{
+  width:100%;
+  text-align:center;
+}
+
+input[type="radio"]{
+  display:none;
+}
+
+.tab_area{
+  font-size:0;
+  margin:0px;
+  padding-bottom: 50px;
+}
+.tab_area label{
+  width:80px;
+  display:inline-block;
+  color:#fff;
+  background:transparent;
+  text-align:center;
+  font-size:15px;
+  font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
+  font-weight:normal;
+  border-top: solid 4px #fff;
+  border-bottom: solid 4px #fff;
+  border-right: solid 2px #fff;
+  border-left: solid 2px #fff;
+  cursor:pointer;
+  transition:ease 0.2s opacity;
+}
+
+.tab_area label:hover{
+}
+.panel_area{
+  overflow:hidden;
+  height:2000px;
+  position:relative;
+}
+.tab_panel{
+  width:100%;
+  background:#87ceeb;
+  overflow:hidden;
+  position:absolute;
+  height:100%;
+}
+
+#tab4:checked ~ .tab_area .tab4_label{background:#fff; color:#000;}
+#tab4:checked ~ .panel_area #panel4{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+#tab1:checked ~ .tab_area .tab1_label{background:#fff; color:#000;}
+#tab1:checked ~ .panel_area #panel1{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+#tab2:checked ~ .tab_area .tab2_label{background:#fff; color:#000;}
+#tab2:checked ~ .panel_area #panel2{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+#tab3:checked ~ .tab_area .tab3_label{background:#fff; color:#000;}
+#tab3:checked ~ .panel_area #panel3{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
+
+.tab_area label.active {
+  background:#fff;
+  color:#87ceeb;
+}
+
+/* === 検索入力欄のSTYLE設定 ============================= */
+.btn-search {
+  margin-bottom    : 6px;
+}
+
+.searchBox {
+ width              : auto;            /* inputの幅           */
+ background-color   : transparent;             /* 背景色              */
+ margin             : 0 5px 0 0;           /* サンプルは中央寄せ  */
+ padding-left       : 5px;             /* 文字の左余白    */
+ padding-right      : 5px;             /* 文字のの左余白    */
+ border             : 1px solid #8c8c8c;   /* 枠線　幅,実践,色    */
+ border-radius      : 6px;              /* 角丸                */
+ color              : #555;             /* 文字色              */
+ font-size          : 18px;             /* フォントサイズ      */
+ letter-spacing     : 0.1em;            /* 文字間隔            */
+ font-weight        : bold;             /* 太字                */
+ outline            : 0;                /* 入力薄枠を非表示    */
+}
+
+/* === テキスト入力欄にフォーカスか来たとき ================== */
+.searchBox:focus {
+ background-color     : transparent;        /* フォーカス時背景色  */
+}
+
+/* === IEの入力エリア右側×消し ============================== */
+.searchBox::-ms-clear {
+ display        : none;                 /* ×を消す            */
+}
+
+
+/* === スクロールダウンのアニメーション ============================== */
+a.scroll-down {
+  position: absolute;
+  left: 40%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  text-decoration: none;
+  padding-top: 70px;
+}
+
+a.scroll-down span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
+  -webkit-animation: sdb 1.5s infinite;
+  animation: sdb 1.5s infinite;
+  box-sizing: border-box;
+}
+@-webkit-keyframes sdb {
+  0% {
+    -webkit-transform: rotateY(0) rotateZ(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateY(720deg) rotateZ(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+@keyframes sdb {
+  0% {
+    transform: rotateY(0) rotateZ(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(720deg) rotateZ(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
 }

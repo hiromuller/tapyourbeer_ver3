@@ -7,6 +7,7 @@ from core import consts as CONST
 from core import configs as CONFIG
 from core import settings as SETTING
 import common.services as SERVICES
+import common.models as MODELS
 import home.views as HOME_VIEWS
 import beer.views as BEER_VIEWS
 import brewery.views as BREWERY_VIEWS
@@ -35,20 +36,40 @@ def index(request):
         return ACCOUNTS_VIEWS.signup_user(request)
     elif action == CONFIG.ACTION_BEER_DETAIL:
         return BEER_VIEWS.beerDetail(request)
+    elif action == CONFIG.ACTION_ADD_BEER_EVALUATION_FORM:
+        return BEER_VIEWS.addBeerEvaluationForm(request)
     elif action == CONFIG.ACTION_ADD_BEER_EVALUATION:
-        return BEER_VIEWS.showAddBeerForm(request)
+        return BEER_VIEWS.addBeerEvaluation(request)
     elif action == CONFIG.ACTION_BREWERY_DETAIL:
         return BREWERY_VIEWS.breweryDetail(request)
     elif action == CONFIG.ACTION_MANAGER_ACCOUNT:
         return MANAGER_VIEWS.index(request)
     elif action == CONFIG.ACTION_SEARCH:
         return SEARCH_VIEWS.index(request)
+    elif action == CONFIG.ACTION_SEARCH_LIST:
+        return SEARCH_VIEWS.searchList(request)
     elif action == CONFIG.ACTION_DETAIL_SEARCH:
         return DETAIL_SEARCH_VIEWS.index(request)
+    elif action == CONFIG.ACTION_DETAIL_SEARCH_LIST:
+        return DETAIL_SEARCH_VIEWS.detailSearchList(request)
     elif action == CONFIG.ACTION_USER_ACCOUNT:
         return USER_VIEWS.index(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:
-        return VENUE_VIEWS.index(request)
+        return VENUE_VIEWS.venueDetail(request)
+    elif action == CONFIG.ACTION_DELETE_COMMENT:
+        return MANAGER_VIEWS.deleteComment(request)
+    elif action == CONFIG.ACTION_BEER_UPDATE:
+        return MANAGER_VIEWS.showBeerUpdate(request)
+    elif action == CONFIG.ACTION_UPDATE_BEER:
+        return MANAGER_VIEWS.updateBeer(request)
+    elif action == CONFIG.ACTION_BREWERY_UPDATE:
+        return MANAGER_VIEWS.showBreweryUpdate(request)
+    elif action == CONFIG.ACTION_UPDATE_BREWERY:
+        return MANAGER_VIEWS.updateBrewery(request)
+    elif action == CONFIG.ACTION_BEER_MERGE:
+        return MANAGER_VIEWS.showBeerMerge(request)
+    elif action == CONFIG.ACTION_MERGE_BEER:
+        return MANAGER_VIEWS.mergeBeer(request)
     else:
         return view(request)
 

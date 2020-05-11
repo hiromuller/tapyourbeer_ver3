@@ -4,12 +4,14 @@
   {% load static %}
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- css -->
   <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="{% static "css/magister.css" %}">
   <link rel="stylesheet" type="text/css" href="{% static "css/common.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/form.css" %}">
   <!-- fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kosugi&family=M+PLUS+Rounded+1c:wght@400;700&family=Wire+One&display=swap" rel="stylesheet">
   <title>{% block title %}{% endblock %}</title>
@@ -23,7 +25,9 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="{% static "js/common.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/form.js" %}"></script>
   <script type="text/javascript" src="{% static "js/magister.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/smooth-scroll.polyfills.min.js" %}"></script>
   <script type="text/javascript" src="{% static "js/modernizr.custom.72241.js" %}"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
@@ -32,5 +36,8 @@
   <script type="text/javascript" src="{% static "js/jquery.switchHat.js" %}"></script>
   <script type="text/javascript" src="{% static "js/jquery.disableOnSubmit.js" %}"></script>
   <script type="text/javascript" src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+  <script>
+	var scroll = new SmoothScroll('a[href*="#"]');
+  </script>
 </body>
 </html>

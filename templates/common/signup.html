@@ -14,51 +14,54 @@
 {% if SignUpForm %}
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12">
-    <p>
+  <div class="col-12 col-sm-12">
+    <div class="card">
+        <div class="card-body">
     <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {% csrf_token %}
-
+          <div class="signupform">
           <div class="fieldWrapper form-group">
           {{ SignUpForm.username.errors }}
           <label for="id_name">名前:</label>
           {{ SignUpForm.username }}
           </div>
 
-          <div class="fieldWrapper form-group">
+          <div class="fieldWrapper form-group signup-selecter">
           {{ SignUpForm.gender_style.errors }}
-          <label for="id_name">性別:</label>
+          <label for="id_gender_style">性別スタイル:</label>
           {{ SignUpForm.gender_style }}
           </div>
 
-          <div class="fieldWrapper form-group">
+          <div class="fieldWrapper form-group signup-selecter">
           {{ SignUpForm.birthday.errors }}
-          <label for="id_name">生年月日:</label>
+          <label for="id_birthday">生年月日:</label>
           {{ SignUpForm.birthday }}
           </div>
 
           <div class="fieldWrapper form-group">
           {{ SignUpForm.password1.errors }}
-          <label for="id_name">パスワード:</label>
+          <label for="id_password1">パスワード:</label>
           {{ SignUpForm.password1 }}
           </div>
 
           <div class="fieldWrapper form-group">
           {{ SignUpForm.password2.errors }}
-          <label for="id_name">パスワード再入力:</label>
+          <label for="id_password2">パスワード再入力:</label>
           {{ SignUpForm.password2 }}
           </div>
 
           <div class="fieldWrapper form-group">
           {{ SignUpForm.email.errors }}
-          <label for="id_name">メールアドレス:</label>
+          <label for="id_email">メールアドレス:</label>
           {{ SignUpForm.email }}
           </div>
 
-        <button id="signup_user" type="submit" class="btn btn-primary">登録</button>
+        <button id="signup_user" type="submit" class="btn btn-success btn-lg btn-block">登録</button>
         <input type="hidden" name="action" value="{{ACTION_SIGNUP_USER}}">
+        </div>
       </form>
-      </p>
+      </div>
+      </div>
   </div>
 </div>
 
