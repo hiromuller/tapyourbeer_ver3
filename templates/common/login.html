@@ -1,11 +1,27 @@
-{% extends "common/base.html" %}
-{% load static %}
-{% block content %}
-
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- css -->
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/magister.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/common.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/form.css" %}">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi&family=M+PLUS+Rounded+1c:wght@400;700&family=M+PLUS+1p:wght@900&family=Wire+One&display=swap" rel="stylesheet">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+  <section class="container-login">
 
     <div class="row">
-      <div class="col-2 col-sm-1"></div>
-      <div class="col-8 col-sm-10">
+      <div class="col-0 col-sm-1 col-md-2"></div>
+      <div class="col-12 col-sm-10 col-md-8">
         <div class="title-image">
         <img src="{% static 'images/title.png' %}" class="img-fluid" />
         </div>
@@ -14,15 +30,14 @@
     </div>
 
     <div class="row">
-        <div class="text-right description-text">
-          <div class="col-12 col-sm-6 offset-sm-3">
+          <div class="col-0 col-sm-1 col-md-2"></div>
+          <div class="col-12 col-sm-10 col-md-8 text-right description-text">
             <a href="{% url 'signup' %}">サインアップ</a>
         </div>
       </div>
-    </div>
 
     <div class="row">
-    <div class="col-12 col-md-6 offset-md-3">
+      <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
       <form id="login" method="POST">
             <div class="card">
                 <div class="card-body">
@@ -46,8 +61,85 @@
       </section>
 
       <section id="howto">
-          <div class="thumbnail">
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>a
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="howto-topic">
+          1. ビールを記録しよう
+            </div>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10 text-center">
+            <div class="howto-description">
+              <img src="{% static 'images/howto-beer-desc.png' %}" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="howto-topic">
+          2. 知らないビールを<br><br>検索しよう
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10 text-center">
+            <div class="howto-description">
+              <img src="{% static 'images/howto-search-desc.png' %}" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="howto-topic">
+          3. 友達をフォローしよう
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10 text-center">
+            <div class="howto-description">
+              <img src="{% static 'images/howto-friends-desc.png' %}" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="howto-topic">
+          <a class="btn btn-info btn-lg" href="{% url 'signup' %}" role="button">無料登録して始める！</a>
+            </div>
+          </div>
+        </div>
+
+
       </section>
-{% endblock %}
+
+    </section>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static "js/common.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/form.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/magister.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/smooth-scroll.polyfills.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/modernizr.custom.72241.js" %}"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery.switchHat.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery.disableOnSubmit.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+    <script>
+  	var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+  </body>
+  </html>

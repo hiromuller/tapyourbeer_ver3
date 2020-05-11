@@ -5,6 +5,17 @@
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
+.container-login{
+  position: relative;/*←相対位置*/
+  padding-top: 15px;/*←footerの高さ*/
+  padding-bottom: 50px;/*←footerの高さ*/
+  padding-right: 15px;
+  padding-left:15px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
 #header{
   padding-top: 10px;
   padding-right: 20px;
@@ -46,6 +57,10 @@ section#blank{
   padding-top: 300px;
 }
 
+section#howto{
+  padding-top: 70px;
+}
+
 #navigation {
   width: 100%;
   background-color: #89c7de;
@@ -64,16 +79,49 @@ section#blank{
 }
 
 .title-image {
-  padding-top: 100px;
-  padding-bottom: 50px;
+/*  padding-top: 10px;
+  padding-bottom: 10px; */
 }
 
 .signup-selecter {
   width:30%;
 }
 
+
+
 .form-control:disabled, .form-control[readonly]{
   background-color:transparent;
+}
+
+.page-title-img {
+  height: 30px;
+}
+
+/* howto セクションのスタイル*/
+.howto-topic {
+	font-family: 'M PLUS 1p', sans-serif;
+	color:#FDF9F4;
+  font-size:2em;
+  padding-bottom:30px;
+}
+
+.howto-description {
+	font-family: 'M PLUS 1c', sans-serif;
+	color:#FDF9F4;
+  font-size:1.5em;
+	margin-bottom:100px;
+}
+
+a.btn-info {
+  color: #fff;
+  background-color: #3399ff;
+  border-color: #3399ff;
+}
+
+.btn-info:hover {
+  color: #fff;
+  background-color: #0066ff;
+  border-color: #0066ff;
 }
 
 /* === タブのSTYLE設定 ============================= */
