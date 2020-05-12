@@ -22,15 +22,13 @@ def breweryDetail(request):
 
     brewery = SERVICES.selectBreweryById(key)
     beer_list = SERVICES.selectBeerlistByBrewery(brewery)
-#    beer_taste_avg = SERVICES.selectBeerTasteAvgByBeer(beer)
     comment_list = SERVICES.selectCommentListByBrewery(brewery)
-#    venue_list = SERVICES.selectVenueListByBeer(beer)
+    venue_list = SERVICES.selectVenueListByBrewery(brewery)
 
     c.update({'brewery':brewery})
     c.update({'beer_list':beer_list})
-#    c.update({'beer_taste_avg':beer_taste_avg})
     c.update({'comment_list':comment_list})
-#    c.update({'venue_list':venue_list})
+    c.update({'venue_list':venue_list})
     return showBreweryDetail(request, c)
 
 

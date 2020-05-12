@@ -1,63 +1,33 @@
-<div class="row" id="hrizontalline">
+<div class="row" id="hrizontalline2">
   <div class="col-3 col-sm-2"></div>
   <div class="col-6 col-sm-8"><hr/></div>
   <div class="col-3 col-sm-2"></div>
 </div>
 
-<div class="row" id="sub_title">
-  <div class="col-1 col-sm-2"></div>
-    <div class="col-3 col-sm-2">
-      <div class="subtopic text-center">
-        Beer
-      </div>
-    </div>
+<div class="row" id="sub_content_title">
 
-      <div class="col-4 col-sm-4">
+  <div class="col-2 col-sm-2"></div>
+
+    <div class="col-8 col-sm-8">
         <div class="subtopic text-center">
-          User Comment
+          <p>=Venue List=</p>
         </div>
-      </div>
-
-    <div class="col-3 col-sm-2">
-      <div class="subtopic text-center">
-        User
-      </div>
     </div>
 
-  <div class="col-1 col-sm-2"></div>
+  <div class="col-2 col-sm-2"></div>
 </div>
 
-  <div class="row" id=sub_content>
-    <div class="col-1 col-sm-2"></div>
-      <div class="col-xs-3 col-sm-2">
-        <div id="sub_content" >
-          <div class="description-text text-center">
-            {% for comment in comment_list %}
-                <p>{{ comment.beer.name }}</p>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
+<div class="row" id="sub_content">
 
-    <div class="col-xs-4 col-sm-4">
-      <div id="sub_content" >
+  <div class="col-2 col-sm-2"></div>
+
+    <div class="col-8 col-sm-8">
+      {% for venue in venue_list %}
         <div class="description-text text-center">
-          {% for comment in comment_list %}
-              <p>{{ comment.comment }}</p>
-          {% endfor %}
+          {{ venue }}
         </div>
-      </div>
+      {% endfor %}
     </div>
 
-      <div class="col-xs-3 col-sm-2">
-        <div id="sub_content">
-          <div class="description-text text-center">
-            {% for comment in comment_list %}
-                <p>by {{ comment.user }}</p>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-    <div class="col-xs-1 col-sm-2"></div>
-  </div>
+  <div class="col-2 col-sm-2"></div>
+</div>
