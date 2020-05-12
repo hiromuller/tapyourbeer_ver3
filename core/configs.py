@@ -52,24 +52,33 @@ TOP_CONTENT_SUB = HOME_SUB_URL
 """
 アクションの設定
 """
+#home機能
 ACTION_HOME = 'home'
+#アカウント機能
 ACTION_SIGNUP = 'signup'
 ACTION_SIGNUP_USER = 'signup_user'
+#beer機能
 ACTION_BEER_DETAIL = 'beer_detail'
 ACTION_ADD_BEER_EVALUATION_FORM = 'add_beer_evaluation_form'
 ACTION_ADD_BEER_EVALUATION = 'add_beer_evaluation'
+#brewery機能
 ACTION_BREWERY_DETAIL = 'brewery_detail'
-ACTION_MANAGER_ACCOUNT = 'manager_account'
+#search機能
 ACTION_SEARCH = 'search' #検索画面へ遷移
 ACTION_SEARCH_LIST = 'search_list' #検索実行
+#detailsearch機能
 ACTION_DETAIL_SEARCH = 'detail_search' #詳細検索画面へ遷移
 ACTION_DETAIL_SEARCH_LIST = 'detail_search_list' #詳細検索実行
+#user機能
 ACTION_USER_ACCOUNT = 'user_account'
 ACTION_USER_UPDATE = 'user_update' #ユーザ情報編集画面へ遷移
 ACTION_UPDATE_USER = 'update_user' #ユーザ情報を編集し、ユーザ詳細画面へ遷移
 ACTION_FOLLOW = 'follow'
 ACTION_UNFOLLOW = 'unfollow'
+#venue機能
 ACTION_VENUE_DETAIL = 'venue_detail'
+#manager機能
+ACTION_MANAGER_ACCOUNT = 'manager_account'
 ACTION_DELETE_BEER = 'delete_beer'
 ACTION_DELETE_USER = 'delete_user'
 ACTION_DELETE_BREWERY = 'delete_brewery'
@@ -83,6 +92,8 @@ ACTION_BEER_MERGE = 'beer_merge' #ビール統合画面へ遷移
 ACTION_MERGE_BEER = 'merge_beer' #ビール情報を統合してビール詳細画面へ遷移
 ACTION_BREWERY_MERGE = 'brewery_merge' #ブルワリー統合画面へ遷移
 ACTION_MERGE_BREWERY = 'merge_brewery' #ブルワリー情報を統合してブルワリー詳細画面へ遷移
+ACTION_VENUE_UPDATE = 'venue_update' #店舗更新画面へ遷移
+ACTION_UPDATE_VENUE = 'update_venue' #店舗情報を更新してビール詳細画面へ遷移
 
 
 ACTION_DICT = {
@@ -117,6 +128,8 @@ ACTION_DICT = {
                 'ACTION_MERGE_BEER':ACTION_MERGE_BEER,
                 'ACTION_BREWERY_MERGE':ACTION_BREWERY_MERGE,
                 'ACTION_MERGE_BREWERY':ACTION_MERGE_BREWERY,
+                'ACTION_VENUE_UPDATE':ACTION_VENUE_UPDATE,
+                'ACTION_UPDATE_VENUE':ACTION_UPDATE_VENUE,
                }
 """
 コンテンツHTML

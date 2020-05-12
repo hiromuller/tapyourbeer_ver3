@@ -12,6 +12,7 @@ import search.views as SEARCH_VIEWS
 import beer.views as BEER_VIEWS
 import user.views as USER_VIEWS
 import brewery.views as BREWERY_VIEWS
+import venue.views as VENUE_VIEWS
 import logging
 
 logger = logging.getLogger('app')
@@ -108,6 +109,54 @@ def showBeerMerge(request):
         form = FORMS.mergeBeerForm()
 
     c.update({'merge_beer_form':form})
+
+    return show(request, c)
+
+def updateVenue(request):
+    form = FORMS.updateVenueForm(request.POST)
+    if request.method == "POST":
+        venue_id = request.POST.get("venue_id")
+
+    if form.is_valid() and venue_id:
+        venue = SERVICES.selectVenueById(venue_id)
+        venue.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
+        try:
+            venue.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
+        except:
+            venue.address = None
+        try:
+            venue.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+        except:
+            venue.description = None
+        venue.save()
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    c = {}
+    comment_list = SERVICES.selectCommentListByVenue(venue)
+    c.update({'venue':venue})
+    c.update({'comment_list':comment_list})
+    return VENUE_VIEWS.showVenueDetail(request, c)
+
+
+def showVenueUpdate(request):
+    logger.info('show venue update form')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if not key:
+        return SEARCH_VIEWS.index(request)
+
+    venue = SERVICES.selectVenueById(key)
+    form = FORMS.updateVenueForm(initial = {
+                                        'name':venue.name,
+                                        'address':venue.address,
+                                        'description':venue.description,
+                                        })
+
+    c.update({'venue':venue})
+    c.update({'venue_update_form':form})
 
     return show(request, c)
 

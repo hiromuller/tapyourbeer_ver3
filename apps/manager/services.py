@@ -11,6 +11,13 @@ def deleteCommentById(id):
     except:
         return False
 
+def selectCommentListByVenue(venue):
+    try:
+        comment_list = MODELS.Comment.objects.filter(venue=venue.id)
+        return comment_list
+    except:
+        return None
+
 def selectCommentListByUser(user):
     try:
         comment_list = MODELS.Comment.objects.filter(user = user.id).order_by('registered_date').reverse()
@@ -23,6 +30,13 @@ def selectUserByCommentId(id):
         comment = MODELS.Comment.objects.get(id=id)
         user = comment.user
         return user
+    except:
+        return None
+
+def selectVenueById(id):
+    try:
+        venue = MODELS.Venue.objects.get(id=id)
+        return venue
     except:
         return None
 

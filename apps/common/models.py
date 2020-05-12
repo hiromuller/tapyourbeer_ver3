@@ -80,6 +80,10 @@ class Venue(models.Model):
     gurunavi_id = models.IntegerField(null=True)
     # 名前
     name = models.CharField(max_length=200)
+    # 住所
+    address = models.CharField(max_length=200, null=True, blank=True)
+    # 説明
+    description = models.CharField(max_length=200, null=True, blank=True)
     # アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
 
@@ -87,6 +91,7 @@ class Venue(models.Model):
         return {
             'gurunavi_id': self.gurunavi_id,
             'name': self.name,
+            'address': self.address,
         }
 
 class TodaysTap(models.Model):

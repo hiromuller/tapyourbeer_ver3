@@ -48,6 +48,17 @@
       </form>
       {% endif %}
 
+      {% if venue_update_form %}
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+        {{ venue_update_form.as_p }}
+
+        <input type="hidden" name="action" value="{{ACTION_UPDATE_VENUE}}">
+        <input type="hidden" name="venue_id" value="{{ venue.id }}">
+        <button id="id_update_venue" type="submit" class="btn btn-default">登録</button>
+
+      </form>
+      {% endif %}
 
     </div>
   </div>

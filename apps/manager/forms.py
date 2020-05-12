@@ -29,6 +29,18 @@ class updateBreweryForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
 
+class updateVenueForm(forms.ModelForm):
+
+    class Meta:
+        model = MODELS.Venue
+        fields = ('name', 'address', 'description')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
 class mergeBreweryForm(forms.Form):
     base_brewery_id = forms.CharField(label='ベースとなるブルワリー', max_length=200)
     merging_brewery_id = forms.CharField(label='統合して消えるブルワリー', max_length=200)
