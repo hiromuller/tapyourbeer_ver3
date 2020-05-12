@@ -10,6 +10,7 @@ import manager.forms as FORMS
 import common.services as COMMON_SERVICES
 import search.views as SEARCH_VIEWS
 import beer.views as BEER_VIEWS
+import user.views as USER_VIEWS
 import brewery.views as BREWERY_VIEWS
 import logging
 
@@ -20,9 +21,15 @@ def deleteComment(request):
         key = request.POST.get("key")
 
     if key:
+        user = SERVICES.selectUserByCommentId(key)
         SERVICES.deleteCommentById(key)
+        comment_list = SERVICES.selectCommentListByUser(user)
 
-    return SEARCH_VIEWS.index(request)
+    #ユーザ画面に遷移する処理を入れる
+    c = {}
+    c.update({'friend':user})
+    c.update({'comment_list':comment_list})
+    return USER_VIEWS.show(request, c)
 
 
 def mergeBeer(request):

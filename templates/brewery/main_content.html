@@ -16,6 +16,9 @@
     </div>
 </div>
 
+<form id="list_form" method="post" action="{{main_url}}">
+  {% csrf_token %}
+
 <div class="row" id="main_content2">
   <div class="col-0 col-sm-2"></div>
     <div class="col-12 col-sm-8">
@@ -24,7 +27,7 @@
       </div>
       <div class="subtopic text-center">
         {% for beer in beer_list %}
-          {{ beer.name }}
+          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a>
         {% endfor %}
       </div>
     </div>
@@ -65,7 +68,7 @@
 
     <div class="col-3 col-sm-2">
         <div class="description-text text-center">
-          <p>{{ comment.beer.name }}</p>
+          <p><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></p>
         </div>
     </div>
 
@@ -77,10 +80,11 @@
 
     <div class="col-3 col-sm-2">
       <div class="description-text text-center">
-        <p>by {{ comment.user }}</p>
+        <p>by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user }}</a></p>
       </div>
     </div>
 
     <div class="col-1 col-sm-2"></div>
   {% endfor %}
 </div>
+</form>

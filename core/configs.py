@@ -37,6 +37,7 @@ DETAIL_SEARCH_BAR_URL = 'detail_search/search_bar.html'
 USER_PAGE_TITLE_URL = 'user/page_title.html'
 USER_MAIN_URL = 'user/main_content.html'
 USER_SUB_URL = 'user/sub_content.html'
+USER_UPDATE_URL = 'user/edit.html'
 
 VENUE_PAGE_TITLE_URL = 'venue/page_title.html'
 VENUE_MAIN_URL = 'venue/main_content.html'
@@ -64,6 +65,8 @@ ACTION_SEARCH_LIST = 'search_list' #検索実行
 ACTION_DETAIL_SEARCH = 'detail_search' #詳細検索画面へ遷移
 ACTION_DETAIL_SEARCH_LIST = 'detail_search_list' #詳細検索実行
 ACTION_USER_ACCOUNT = 'user_account'
+ACTION_USER_UPDATE = 'user_update' #ユーザ情報編集画面へ遷移
+ACTION_UPDATE_USER = 'update_user' #ユーザ情報を編集し、ユーザ詳細画面へ遷移
 ACTION_VENUE_DETAIL = 'venue_detail'
 ACTION_DELETE_BEER = 'delete_beer'
 ACTION_DELETE_USER = 'delete_user'
@@ -92,6 +95,8 @@ ACTION_DICT = {
                 'ACTION_DETAIL_SEARCH':ACTION_DETAIL_SEARCH,
                 'ACTION_DETAIL_SEARCH_LIST':ACTION_DETAIL_SEARCH_LIST,
                 'ACTION_USER_ACCOUNT':ACTION_USER_ACCOUNT,
+                'ACTION_USER_UPDATE':ACTION_USER_UPDATE,
+                'ACTION_UPDATE_USER':ACTION_UPDATE_USER,
                 'ACTION_VENUE_DETAIL':ACTION_VENUE_DETAIL,
                 'ACTION_DELETE_BEER':ACTION_DELETE_BEER,
                 'ACTION_DELETE_USER':ACTION_DELETE_USER,

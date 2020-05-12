@@ -17,7 +17,7 @@
           {% endif %}
         </li>
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_USER_ACCOUNT}}');" class="nav-icon"><img src="{% static 'images/user.png' %}" class="nav-icon"/></a>
+          <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_USER_ACCOUNT}}', '{{ request.user.id }}');" class="nav-icon"><img src="{% static 'images/user.png' %}" class="nav-icon"/></a>
         </li>
       </ul>
       </form>

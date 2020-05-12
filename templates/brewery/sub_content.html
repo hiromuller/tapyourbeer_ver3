@@ -22,11 +22,15 @@
   <div class="col-2 col-sm-2"></div>
 
     <div class="col-8 col-sm-8">
+      <form id="list_form" method="post" action="{{main_url}}">
+        {% csrf_token %}
+
       {% for venue in venue_list %}
         <div class="description-text text-center">
-          {{ venue }}
+          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{venue.id}}');">{{ venue.name }}</a>
         </div>
       {% endfor %}
+      </form>
     </div>
 
   <div class="col-2 col-sm-2"></div>

@@ -1,37 +1,45 @@
-<div class="row">
+{% load static %}
+<div class="row" id="main_content">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
-    <div id="main_content" class="thumbnail">
-      <ul>
-        <li>
-          login
-        </li>
-        <li>
-          Home
-        </li>
-        <li>
-          検索
-        </li>
-        <li>
-          ビール詳細
-        </li>
-        <li>
-          ビール登録
-        </li>
-        <li>
-          ブルワリー詳細
-        </li>
-        <li>
-          店舗詳細
-        </li>
-        <li>
-          ユーザーアカウント
-        </li>
-        <li>
-          管理者アカウント
-        </li>
-      </ul>
+      <div class="topic text-center">
+          <p><b>{{ friend.username }}</b></p>
+      </div>
+
+
+      {% if friend.living_area and not friend.living_country %}
+      <div class="description-text text-center">
+        <p>in <b>{{ friend.living_area }}</b></p>
+      </div>
+      {% elif not friend.living_area and friend.living_country %}
+      <div class="description-text text-center">
+        <p>in <b>{{ friend.living_country }}</b></p>
+      </div>
+      {% elif friend.living_area and friend.living_country %}
+      <div class="description-text text-center">
+        <p>in <b>{{ friend.living_area }}</b> - <b>{{ friend.living_country }}</b></p>
+      </div>
+      {%  endif %}
+
+
+
+
+      <div class="description-text text-center">
+        {% if friend.description %}
+        {{ friend.description }}
+        {% else %}
+        no description
+        {% endif %}
+      </div>
+
+      {% ifequal friend.id request.user.id %}
+      <form id="list_form" method="post" action="{{main_url}}">
+        {% csrf_token %}
+      <div class="description-text text-center">
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_UPDATE}}', '{{request.user.id}}');">編集する</a>
+      </div>
+      </form>
+      {% endifequal %}
+
     </div>
-  </div>
-  <div class="col-0 col-sm-2"></div>
 </div>

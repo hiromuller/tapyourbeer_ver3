@@ -11,6 +11,21 @@ def deleteCommentById(id):
     except:
         return False
 
+def selectCommentListByUser(user):
+    try:
+        comment_list = MODELS.Comment.objects.filter(user = user.id).order_by('registered_date').reverse()
+        return comment_list
+    except:
+        return []
+
+def selectUserByCommentId(id):
+    try:
+        comment = MODELS.Comment.objects.get(id=id)
+        user = comment.user
+        return user
+    except:
+        return None
+
 def selectBeerById(id):
     try:
         beer = MODELS.Beer.objects.get(id=id)

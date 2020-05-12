@@ -1,0 +1,43 @@
+{% if update_user_form %}
+
+<div class="row">
+  <div class="col-12 col-sm-12">
+    <div class="card">
+        <div class="card-body">
+    <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+          {{request.user.username}}
+
+          <div class="fieldWrapper form-group signup-selecter">
+          {{ update_user_form.gender_style.errors }}
+          <label for="id_gender_style">性別スタイル:</label>
+          {{ update_user_form.gender_style }}
+          </div>
+
+          <div class="fieldWrapper form-group signup-selecter">
+          {{ update_user_form.living_country.errors }}
+          <label for="id_birthday">国:</label>
+          {{ update_user_form.living_country }}
+          </div>
+
+          <div class="fieldWrapper form-group signup-selecter">
+          {{ update_user_form.living_area.errors }}
+          <label for="id_birthday">地域:</label>
+          {{ update_user_form.living_area }}
+          </div>
+
+          <div class="fieldWrapper form-group">
+          {{ update_user_form.description.errors }}
+          <label for="id_birthday">自己紹介:</label>
+          {{ update_user_form.description }}
+          </div>
+
+        <button id="signup_user" type="submit" class="btn btn-success btn-lg btn-block">編集</button>
+        <input type="hidden" name="action" value="{{ACTION_UPDATE_USER}}">
+      </form>
+      </div>
+      </div>
+  </div>
+</div>
+
+{% endif%}

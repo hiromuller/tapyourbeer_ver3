@@ -117,13 +117,13 @@ class CustomUser(AbstractUser):
     # djangoユーザモデル
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     # 性別スタイル
-    gender_style = models.CharField(max_length=200, choices=CONST.GENDER_STYLE_CHOICES, null=True)
+    gender_style = models.CharField(max_length=200, choices=CONST.GENDER_STYLE_CHOICES, null=True, blank=True)
     # 誕生日
-    birthday = models.DateField(null=True)
+    birthday = models.DateField(null=True, blank=True)
     # 住んでいる国
-    living_country = models.CharField(max_length=200, choices=CONST.COUNTRY_CHOICES, null=True)
+    living_country = models.CharField(max_length=200, choices=CONST.COUNTRY_CHOICES, null=True, blank=True)
     # 住んでいる地域
-    living_area = models.CharField(max_length=200, null=True)
+    living_area = models.CharField(max_length=200, null=True, blank=True)
     # アプリ管理者
     is_admin = models.BooleanField(default=False)
     # ブルワリー管理者
@@ -131,9 +131,11 @@ class CustomUser(AbstractUser):
     # 店舗管理者
     is_managing_venue = models.BooleanField(default=False)
     # 画像
-    photo = models.ImageField(upload_to='images/', null=True)
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
     # ユーザランク
     user_rank = models.IntegerField(default=1, choices=CONST.USER_RANK_CHOICES)
+    # ユーザ紹介
+    description = models.CharField(max_length=200, null=True, blank=True)
     """
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

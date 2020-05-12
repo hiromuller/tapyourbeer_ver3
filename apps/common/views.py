@@ -53,7 +53,11 @@ def index(request):
     elif action == CONFIG.ACTION_DETAIL_SEARCH_LIST:
         return DETAIL_SEARCH_VIEWS.detailSearchList(request)
     elif action == CONFIG.ACTION_USER_ACCOUNT:
-        return USER_VIEWS.index(request)
+        return USER_VIEWS.showUser(request)
+    elif action == CONFIG.ACTION_USER_UPDATE:
+        return USER_VIEWS.showUserUpdate(request)
+    elif action == CONFIG.ACTION_UPDATE_USER:
+        return USER_VIEWS.updateUser(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:
         return VENUE_VIEWS.venueDetail(request)
     elif action == CONFIG.ACTION_DELETE_COMMENT:
