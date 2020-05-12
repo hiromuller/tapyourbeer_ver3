@@ -73,8 +73,14 @@ def updateBrewery(request):
     if form.is_valid() and brewery_id:
         brewery = SERVICES.selectBreweryById(beer_id)
         brewery.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
-        brewery.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
-        brewery.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+        try:
+            brewery.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
+        except:
+            brewery.address = None
+        try:
+            brewery.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+        except:
+            brewery.description = None
         brewery.save()
     else:
         return SEARCH_VIEWS.index(request)
@@ -114,10 +120,22 @@ def updateBeer(request):
     if form.is_valid() and beer_id:
         beer = SERVICES.selectBeerById(beer_id)
         beer.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
-        beer.style = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('style'))
-        beer.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
-        beer.ibu = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('ibu'))
-        beer.abv = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('abv'))
+        try:
+            beer.style = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('style'))
+        except:
+            beer.style = None
+        try:
+            beer.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+        except:
+            beer.description = None
+        try:
+            beer.ibu = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('ibu'))
+        except:
+            beer.ibu = None
+        try:
+            beer.abv = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('abv'))
+        except:
+            beer.abv = None
         beer.save()
     else:
         return SEARCH_VIEWS.index(request)
