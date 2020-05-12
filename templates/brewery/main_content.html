@@ -20,8 +20,8 @@
 
 {% if brewery.description %}
 <div class="row">
-  <div class="col-0 col-sm-2"></div>
-    <div class="col-12 col-sm-8">
+  <div class="col-1 col-sm-2"></div>
+    <div class="col-10 col-sm-8">
       <div class="description-text text-center">
         {{ brewery.description }}
       </div>
@@ -46,8 +46,8 @@
   {% endif %}
 
 <div class="row" id="main_content2">
-  <div class="col-0 col-sm-2"></div>
-    <div class="col-12 col-sm-8">
+  <div class="col-1 col-sm-2"></div>
+    <div class="col-10 col-sm-8">
       <div class="subtopic text-center">
         <p>Brewing Beers</p>
       </div>
@@ -66,14 +66,16 @@
 </div>
 
 <div class="row" id="subcontent_comment_list">
-  <div class="col-2 col-sm-2"></div>
-  <div class="col-8 col-sm-8">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
     {% for comment in comment_list %}
     <div class="description-text text-left">
       {% if request.user.is_admin %}
-      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a></p>
+      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>
+      <br>rate : {{comment.overall}}</p>
       {% else %}
-      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}</p>
+      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}
+      <br>rate : {{comment.overall}}</p>
       {% endif %}
     <p>{{ comment.comment }}</p>
     </div>

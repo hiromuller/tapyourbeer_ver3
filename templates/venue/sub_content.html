@@ -19,14 +19,15 @@
 
 {% for comment in comment_list %}
 <div class="row">
-  <div class="col-2 col-sm-2"></div>
-  <div class="col-8 col-sm-8">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
     <div class="description-text text-left">
-    <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a></p>
+    <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
+    <br>rate : {{comment.overall}}</p>
     <p>{{ comment.comment }}</p>
     </div>
 </div>
-<div class="col-2 col-sm-2"></div>
+<div class="col-0 col-sm-2"></div>
 </div>
 {% endfor %}
 
