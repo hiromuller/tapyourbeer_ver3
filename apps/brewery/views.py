@@ -12,7 +12,6 @@ logger = logging.getLogger('app')
 
 def breweryDetail(request):
     logger.info('brewry_detail')
-    c = {}
 
     if request.method == "POST":
         key = request.POST["key"]
@@ -20,7 +19,12 @@ def breweryDetail(request):
     if key is None:
         return HOME_VIEWS.index(request)
 
-    brewery = SERVICES.selectBreweryById(key)
+    return breweryDetailInfo(request, key)
+
+def breweryDetailInfo(request, brewery_id):
+    c = {}
+
+    brewery = SERVICES.selectBreweryById(brewery_id)
     beer_list = SERVICES.selectBeerlistByBrewery(brewery)
     comment_list = SERVICES.selectCommentListByBrewery(brewery)
     venue_list = SERVICES.selectVenueListByBrewery(brewery)

@@ -19,6 +19,18 @@
 <form id="list_form" method="post" action="{{main_url}}">
   {% csrf_token %}
 
+  {% if request.user.is_admin %}
+  <div class="row">
+      <div class="col-12">
+        <div class="description-text text-center">
+
+    <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_UPDATE}}', '{{brewery.id}}');">編集</a>
+    <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_MERGE}}', '{{brewery.id}}');">統合</a>
+    </div>
+    </div>
+    </div>
+  {% endif %}
+
 <div class="row" id="main_content2">
   <div class="col-0 col-sm-2"></div>
     <div class="col-12 col-sm-8">

@@ -78,7 +78,7 @@ def updateBrewery(request):
         brewery_id = request.POST.get("brewery_id")
 
     if form.is_valid() and brewery_id:
-        brewery = SERVICES.selectBreweryById(beer_id)
+        brewery = SERVICES.selectBreweryById(brewery_id)
         brewery.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
         try:
             brewery.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
@@ -92,9 +92,8 @@ def updateBrewery(request):
     else:
         return SEARCH_VIEWS.index(request)
 
-    return SEARCH_VIEWS.index(request)
-    #brewery viewができたら以下に修正
-    #return BREWERY_VIEWS.breweryDetailInfo(request, brewery.id)
+
+    return BREWERY_VIEWS.breweryDetailInfo(request, brewery.id)
 
 
 def showBreweryUpdate(request):
