@@ -48,7 +48,8 @@ def selectVenueListByBrewery(brewery):
         comment_list = selectCommentListByBrewery(brewery)
         venue_list = []
         for comment in comment_list:
-            venue_list.append(comment.venue.name)
+            if comment.venue:
+                venue_list.append(comment.venue)
         venue_list = list(set(venue_list))
         return venue_list
     except:
