@@ -29,6 +29,42 @@ class updateBreweryForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
 
+class mergeBreweryForm(forms.Form):
+    base_brewery_id = forms.CharField(label='ベースとなるブルワリー', max_length=200)
+    merging_brewery_id = forms.CharField(label='統合して消えるブルワリー', max_length=200)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+    def clean_base_brewery_id(self):
+        base_brewery_id = self.cleaned_data.get('base_brewery_id')
+        if base_brewery_id:
+            is_brewery_exist = SERVICES.is_brewery_exist(base_brewery_id)
+            if not is_brewery_exist:
+                raise forms.ValidationError(MSG.BREWERY_DOES_NOT_EXIST)
+        return base_brewery_id
+
+    def clean_merging_brewery_id(self):
+        merging_brewery_id = self.cleaned_data.get('merging_brewery_id')
+        if merging_brewery_id:
+            is_brewery_exist = SERVICES.is_brewery_exist(merging_brewery_id)
+            if not is_brewery_exist:
+                raise forms.ValidationError(MSG.BREWERY_DOES_NOT_EXIST)
+        return merging_brewery_id
+
+
+    def clean(self):
+        cleaned_data = super(mergeBreweryForm, self).clean()
+        base_brewery_id = self.cleaned_data.get('base_brewery_id')
+        merging_brewery_id = self.cleaned_data.get('merging_brewery_id')
+
+        if base_brewery_id == merging_brewery_id:
+            raise forms.ValidationError(MSG.SAME_VALUE_INPUT)
+
+        return cleaned_data
 
 class mergeBeerForm(forms.Form):
     base_beer_id = forms.CharField(label='ベースとなるビール', max_length=200)
@@ -48,7 +84,7 @@ class mergeBeerForm(forms.Form):
                 raise forms.ValidationError(MSG.BEER_DOES_NOT_EXIST)
         return base_beer_id
 
-    def clean_mergin_beer_id(self):
+    def clean_merging_beer_id(self):
         merging_beer_id = self.cleaned_data.get('merging_beer_id')
         if merging_beer_id:
             is_beer_exist = SERVICES.is_beer_exist(merging_beer_id)

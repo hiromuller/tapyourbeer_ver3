@@ -81,6 +81,8 @@ ACTION_BREWERY_UPDATE = 'brewery_update' #ブルワリー更新画面へ遷移
 ACTION_UPDATE_BREWERY = 'update_brewery' #ブルワリー情報を更新してブルワリー詳細画面へ遷移
 ACTION_BEER_MERGE = 'beer_merge' #ビール統合画面へ遷移
 ACTION_MERGE_BEER = 'merge_beer' #ビール情報を統合してビール詳細画面へ遷移
+ACTION_BREWERY_MERGE = 'brewery_merge' #ブルワリー統合画面へ遷移
+ACTION_MERGE_BREWERY = 'merge_brewery' #ブルワリー情報を統合してブルワリー詳細画面へ遷移
 
 
 ACTION_DICT = {
@@ -113,6 +115,8 @@ ACTION_DICT = {
                 'ACTION_UPDATE_BREWERY':ACTION_UPDATE_BREWERY,
                 'ACTION_BEER_MERGE':ACTION_BEER_MERGE,
                 'ACTION_MERGE_BEER':ACTION_MERGE_BEER,
+                'ACTION_BREWERY_MERGE':ACTION_BREWERY_MERGE,
+                'ACTION_MERGE_BREWERY':ACTION_MERGE_BREWERY,
                }
 """
 コンテンツHTML

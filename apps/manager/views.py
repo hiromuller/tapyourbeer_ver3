@@ -32,6 +32,46 @@ def deleteComment(request):
     return USER_VIEWS.show(request, c)
 
 
+def mergeBrewery(request):
+    form = FORMS.mergeBreweryForm(request.POST)
+
+    if form.is_valid():
+        """
+        brewery(U), beer(U), TCBFParticipant(U), brewerymanager(U)
+        1. brewerymanagerテーブルから、merging_brewery_idのレコードをbase_brewery_idにupdateする。すでにレコードが存在した場合はmerging_brewery_idのレコードを削除する。
+        2. TCBFParticipantテーブルから、merging_brewery_idのレコードをbase_brewery_idにupdateする。すでにレコードが存在した場合はmerging_brewery_idのレコードを削除する。
+        3. beerテーブルから、merging_brewery_idのレコードをbase_brewery_idにupdateする。
+        4. breweryテーブルからmerging_breweryを削除する
+        """
+        base_brewery = SERVICES.selectBreweryById(form.cleaned_data.get('base_brewery_id'))
+        merging_brewery = SERVICES.selectBreweryById(form.cleaned_data.get('merging_brewery_id'))
+
+        SERVICES.updateBreweryManagerBreweryMerge(base_brewery, merging_brewery)
+        SERVICES.updateTCBFParticipantBreweryMerge(base_brewery, merging_brewery)
+        SERVICES.updateBeerBreweryMerge(base_brewery, merging_brewery)
+        SERVICES.deleteBreweryByBrewery(merging_brewery)
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    return BREWERY_VIEWS.breweryDetailInfo(request, base_brewery.id)
+
+
+def showBreweryMerge(request):
+    logger.info('show breweru merge form')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if key:
+        form = FORMS.mergeBreweryForm(initial = {'base_brewery_id':key})
+    else:
+        form = FORMS.mergeBreweryForm()
+
+    c.update({'merge_brewery_form':form})
+
+    return show(request, c)
+
+
 def mergeBeer(request):
     form = FORMS.mergeBeerForm(request.POST)
 

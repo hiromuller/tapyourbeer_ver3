@@ -40,6 +40,16 @@ def selectBreweryById(id):
     except:
         return None
 
+def is_brewery_exist(id):
+    try:
+        brewery = MODELS.Brewery.objects.get(id=id)
+        if brewery:
+            return True
+        else:
+            return False
+    except:
+        return False
+
 def is_beer_exist(id):
     try:
         beer = MODELS.Beer.objects.get(id=id)
@@ -75,6 +85,46 @@ def updateCommentBeerMerge(base_beer, merging_beer):
 def updateTodaystapBeerMerge(base_beer, merging_beer):
     try:
         MODELS.TodaysTap.objects.filter(beer=merging_beer.id).update(beer=base_beer.id)
+        return True
+    except:
+        return False
+
+def updateBreweryManagerBreweryMerge(base_brewery, merging_brewery):
+    try:
+        merging_brewery_manager_list = MODELS.BreweryManager.objects.filter(brewery=merging_brewery.id)
+        for merging_brewery_manager in merging_brewery_manager_list:
+            if not MODELS.BreweryManager.filter(brewery=base_brewery.id, user=merging_brewery_manager.user.id):
+                merging_brewery_manager.brewery = base_brewery
+                merging_brewery_manager.save()
+            else:
+                merging_brewery_manager.delete()
+        return True
+    except:
+        return False
+
+def updateTCBFParticipantBreweryMerge(base_brewery, merging_brewery):
+    try:
+        merging_TCBFParticipant_list = MODELS.TCBFParticipant.objects.filter(brewery=merging_brewery.id)
+        for merging_TCBFParticipant in merging_TCBFParticipant_list:
+            if not MODELS.TCBFParticipant.filter(brewery=base_brewery.id, year=merging_TCBFParticipant.year):
+                merging_TCBFParticipant.brewery = base_brewery
+                merging_TCBFParticipant.save()
+            else:
+                merging_TCBFParticipant.delete()
+        return True
+    except:
+        return False
+
+def updateBeerBreweryMerge(base_brewery, merging_brewery):
+    try:
+        MODELS.Beer.objects.filter(brewery=merging_brewery.id).update(brewery=base_brewery.id)
+        return True
+    except:
+        return False
+
+def deleteBreweryByBrewery(brewery):
+    try:
+        MODELS.Brewery.objects.get(brewery=brewery.id).delete()
         return True
     except:
         return False

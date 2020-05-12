@@ -78,6 +78,10 @@ def index(request):
         return MANAGER_VIEWS.showBeerMerge(request)
     elif action == CONFIG.ACTION_MERGE_BEER:
         return MANAGER_VIEWS.mergeBeer(request)
+    elif action == CONFIG.ACTION_BREWERY_MERGE:
+        return MANAGER_VIEWS.showBreweryMerge(request)
+    elif action == CONFIG.ACTION_MERGE_BREWERY:
+        return MANAGER_VIEWS.mergeBrewery(request)
     else:
         return view(request)
 
