@@ -6,7 +6,7 @@
           <p><b>{{ beer.name }}</b></p>
       </div>
       <div class="subtopic text-center">
-        <p>by <b>{{ brewery.name }}</b></p>
+        <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{brewery.id}}');">{{ brewery.name }}</a></b></p>
       </div>
 
       <div class="description-text text-center">

@@ -19,7 +19,7 @@
           <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
         </div>
         <div class="subtopic text-center">
-          <p>by <b>{{ beer.brewery.name }}</b></p>
+          <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
         </div>
         <hr>
         {% endfor %}

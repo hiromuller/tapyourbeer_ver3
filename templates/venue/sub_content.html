@@ -22,7 +22,7 @@
   <div class="col-2 col-sm-2"></div>
   <div class="col-8 col-sm-8">
     <div class="description-text text-left">
-    <p><b>{{ comment.user.username }}</b> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a></p>
+    <p><b>{{ comment.user.username }}</b> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a></p>
     <p>{{ comment.comment }}</p>
     </div>
 </div>
