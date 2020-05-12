@@ -67,6 +67,8 @@ ACTION_DETAIL_SEARCH_LIST = 'detail_search_list' #詳細検索実行
 ACTION_USER_ACCOUNT = 'user_account'
 ACTION_USER_UPDATE = 'user_update' #ユーザ情報編集画面へ遷移
 ACTION_UPDATE_USER = 'update_user' #ユーザ情報を編集し、ユーザ詳細画面へ遷移
+ACTION_FOLLOW = 'follow'
+ACTION_UNFOLLOW = 'unfollow'
 ACTION_VENUE_DETAIL = 'venue_detail'
 ACTION_DELETE_BEER = 'delete_beer'
 ACTION_DELETE_USER = 'delete_user'
@@ -97,6 +99,8 @@ ACTION_DICT = {
                 'ACTION_USER_ACCOUNT':ACTION_USER_ACCOUNT,
                 'ACTION_USER_UPDATE':ACTION_USER_UPDATE,
                 'ACTION_UPDATE_USER':ACTION_UPDATE_USER,
+                'ACTION_FOLLOW':ACTION_FOLLOW,
+                'ACTION_UNFOLLOW':ACTION_UNFOLLOW,
                 'ACTION_VENUE_DETAIL':ACTION_VENUE_DETAIL,
                 'ACTION_DELETE_BEER':ACTION_DELETE_BEER,
                 'ACTION_DELETE_USER':ACTION_DELETE_USER,

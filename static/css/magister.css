@@ -195,13 +195,14 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 /*                   UI - Buttons                       */
 /********************************************************/
 .btn{
-	color:#333;
+	color:#fff;
 	text-shadow: none;
 	text-decoration: none;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	border:0 none;
+	border:1px solid;
+	border-color: #fff;
 }
 .btn:hover {
 	color:#000;

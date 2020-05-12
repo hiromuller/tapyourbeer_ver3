@@ -58,6 +58,10 @@ def index(request):
         return USER_VIEWS.showUserUpdate(request)
     elif action == CONFIG.ACTION_UPDATE_USER:
         return USER_VIEWS.updateUser(request)
+    elif action == CONFIG.ACTION_FOLLOW:
+        return USER_VIEWS.follow(request)
+    elif action == CONFIG.ACTION_UNFOLLOW:
+        return USER_VIEWS.unfollow(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:
         return VENUE_VIEWS.venueDetail(request)
     elif action == CONFIG.ACTION_DELETE_COMMENT:

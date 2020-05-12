@@ -6,13 +6,40 @@ import logging
 
 logger = logging.getLogger('app')
 
+def followFriend(user, follow):
+    try:
+        followModel = MODELS.Follow()
+        followModel.user = user
+        followModel.follow = follow
+        followModel.save()
+        return True
+    except:
+        return None
+
+def unfollowFriend(user, follow):
+    try:
+        followModel = MODELS.Follow.objects.get(user=user.id, follow=follow.id)
+        followModel.delete()
+        return True
+    except:
+        return None
+
 def updateUser(user):
     try:
         user.save()
         return user
     except:
         return None
-        
+
+def isFollowing(user, follow):
+    try:
+        is_following = MODELS.Follow.objects.get(user=user.id, follow=follow.id)
+        if is_following:
+            return True
+        else:
+            return False
+    except:
+        return False
 
 def selectUserById(id):
     try:

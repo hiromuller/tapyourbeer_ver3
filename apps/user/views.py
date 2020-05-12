@@ -12,6 +12,40 @@ import logging
 
 logger = logging.getLogger('app')
 
+def follow(request):
+    logger.info('follow')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if key:
+        friend = SERVICES.selectUserById(key)
+        follow = SERVICES.followFriend(request.user, friend)
+
+    comment_list = SERVICES.selectCommentListByUser(friend)
+    c.update({'friend':friend})
+    c.update({'comment_list':comment_list})
+
+    return show(request, c)
+
+
+def unfollow(request):
+    logger.info('unfollow')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if key:
+        friend = SERVICES.selectUserById(key)
+        SERVICES.unfollowFriend(request.user, friend)
+
+    comment_list = SERVICES.selectCommentListByUser(friend)
+    c.update({'friend':friend})
+    c.update({'comment_list':comment_list})
+
+    return show(request, c)
+
+
 def updateUser(request):
     #更新処理を入れる
     form = FORMS.updateUserForm(request.POST)
@@ -82,6 +116,12 @@ def showUser(request):
     return show(request, c)
 
 def show(request, c):
+
+    #フォロー判断
+    friend = c['friend']
+    following = SERVICES.isFollowing(request.user, friend)
+    c.update({'following':following})
+
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.USER_PAGE_TITLE_URL
     main_content = CONFIG.USER_MAIN_URL
