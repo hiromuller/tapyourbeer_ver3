@@ -20,7 +20,7 @@
       <form id="list_form" method="post" action="{{main_url}}">
         {% csrf_token %}
         <div class="description-text text-center">
-          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_ADD_BEER_EVALUATION_FORM}}', '{{ beer.id }}');" class="nav-icon"><img src="{% static 'images/eval_text.png' %}" class="nav-icon-l"/></a>
+          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_ADD_BEER_EVALUATION_FORM}}', '{{ beer.id }}');" class="nav-icon"><img src="{% static 'images/subtopic-evaluate.png' %}" class="page-title-img"/></a>
       {% if request.user.is_admin %}
 
         <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_UPDATE}}', '{{beer.id}}');">編集</a>
