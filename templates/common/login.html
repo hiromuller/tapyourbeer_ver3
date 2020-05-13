@@ -29,12 +29,6 @@
       <div class="col-2 col-sm-1"></div>
     </div>
 
-    <div class="row">
-          <div class="col-0 col-sm-1 col-md-2"></div>
-          <div class="col-12 col-sm-10 col-md-8 text-right description-text">
-            <a href="{% url 'signup' %}">サインアップ</a>
-        </div>
-      </div>
 
     <div class="row">
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
@@ -50,9 +44,16 @@
                     <button type="submit" class="btn btn-success btn-lg btn-block" >ログイン</button>
                     <input type="hidden" name="next" value="{{ next }}" />
                     {% csrf_token %}
+                    <br>
+                    <div class="text-center description-text-bl">
+                      <a href="{% url 'signup' %}">ユーザー登録</a>
+                    </div>
+
                 </div>
             </div>
         </form>
+
+
       </div>
       </div>
 
@@ -81,7 +82,7 @@
         <div class="row">
           <div class="col-12 text-center">
             <div class="howto-topic">
-          2. 知らないビールを<br><br>検索しよう
+          2. ビールを味わいから<br><br>検索しよう
             </div>
           </div>
         </div>

@@ -1,20 +1,22 @@
+{% load static %}
 <div class="row" id="hrizontalline">
   <div class="col-3 col-sm-2"></div>
   <div class="col-6 col-sm-8"><hr/></div>
   <div class="col-3 col-sm-2"></div>
 </div>
-
+<br>
 <form id="list_form" method="post" action="{{main_url}}">
   {% csrf_token %}
 <div class="row" id="subcontent_beerlist_title">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
     <div class="subtopic text-center">
-      <p>Beers</p>
+      <img src="{% static 'images/subtopic-comments.png' %}" class="page-title-img" />
     </div>
   </div>
   <div class="col-0 col-sm-2"></div>
 </div>
+<br>
 
 <div class="row" id="subcontent_beer_list">
   <div class="col-0 col-sm-2"></div>

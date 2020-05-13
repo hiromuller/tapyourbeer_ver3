@@ -63,7 +63,7 @@ section#howto{
 
 #navigation {
   width: 100%;
-  background-color: #89c7de;
+  background-color: #4f91db;
 }
 
 #navigation li{
@@ -114,8 +114,8 @@ section#howto{
 
 a.btn-info {
   color: #fff;
-  background-color: #3399ff;
-  border-color: #3399ff;
+  background-color: #00c1de;
+  border-color: #00c1de;
 }
 
 .btn-info:hover {

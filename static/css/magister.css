@@ -144,6 +144,15 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 	line-height:1em;
 }
 
+.description-text-bl a, .description-text-bl a:hover, .description-text-bl a:active{
+	font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	font-size:1em;
+	margin-bottom:15px;
+	color:#00c1de;
+	line-height:1em;
+}
+
 .topic {
 	font-family: 'M PLUS Rounded 1c', 'Kosugi', Helvetica, Arial, sans-serif;
 	font-weight:normal;
