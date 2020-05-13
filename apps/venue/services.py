@@ -13,7 +13,7 @@ def selectVenueById(id):
 
 def selectCommentListByVenue(venue):
     try:
-        comment_list = MODELS.Comment.objects.filter(venue=venue.id)
+        comment_list = MODELS.Comment.objects.filter(venue=venue.id).order_by('registered_date').reverse()[:30]
         return comment_list
     except:
         return None
