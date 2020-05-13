@@ -26,7 +26,8 @@
 
       <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}
         <br>on {{ comment.registered_date }}{% if request.user.is_admin %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endif %}{% ifequal request.user.id friend.id %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endifequal %}
-        <br> rate: {{comment.overall}}</p>
+        <br> rate:{{comment.overall}}
+        <br> 苦味:{{comment.bitterness}} 香り:{{comment.aroma}} ボディ:{{comment.body}} 飲み易さ:{{comment.drinkability}} 炭酸:{{comment.pressure}} 独自感:{{comment.specialness}}</p>
     <p>{{ comment.comment }}</p>
     </div>
     {% endfor %}
