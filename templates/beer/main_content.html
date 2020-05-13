@@ -34,7 +34,7 @@
       <br>
       <div class="subtopic text-center">
         <p><u>{{ beer_taste_avg.overall }}</u></p>
-        <p>{% for i in stars %}☆ {% endfor %}</p>
+        <p>{% for i in stars %}<img src="{% static 'images/star.png' %}" class="star" /> {% endfor %}</p>
       </div>
     </div>
   <div class="col-0 col-sm-2"></div>
