@@ -14,17 +14,9 @@ def Home(request):
     logger.info('home')
     c = {}
     if request.method == "POST":
-#        key = request.POST.get("key")
         key = request.user.id
 
-    print(request.user)
-    print(request.user.id)
-
-    customuser = SERVICES.selectCustomuserbyCustomuserID(key)
-#    following_list = SERVICES.selectFollowinguserbyCustomuser(customuser)
-##    follow_list = SERVICES.selectFollowuserbyFollowuserID(customuser)
-#    comment_list = SERVICES.selectCommentlistbyCustomuserID(followinguser_list)
-#    comment_list = SERVICES.selectCommentlistbyCustomuser(followinguser_list)
+    customuser = SERVICES.selectCustomuserbyID(key)
     comment_list = SERVICES.selectCommentlistbyCustomuser(customuser)
 
     main_url = CONFIG.TOP_URL
@@ -39,7 +31,6 @@ def Home(request):
                 }
 
     c.update({'customuser':customuser})
-##    c.update({'follow_list':follow_list})
     c.update({'comment_list':comment_list})
 
     c.update({'html_title':CONFIG.HOME_HTML_TITLE})
