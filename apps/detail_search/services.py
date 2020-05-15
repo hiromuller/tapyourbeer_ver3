@@ -56,20 +56,19 @@ def selectDetailSearchResultList(keys):
         if keys.get('overall') != 0:
             condition_overall = Q(overall__range=(keys['overall']-absolute_value, keys['overall']+absolute_value))
         if keys.get('bitterness') != 0:
-            condition_bitterness = Q(overall__range=(keys['bitterness']-absolute_value, keys['bitterness']+absolute_value))
+            condition_bitterness = Q(bitterness__range=(keys['bitterness']-absolute_value, keys['bitterness']+absolute_value))
         if keys.get('aroma') != 0:
-            condition_aroma = Q(overall__range=(keys['aroma']-absolute_value, keys['aroma']+absolute_value))
+            condition_aroma = Q(aroma__range=(keys['aroma']-absolute_value, keys['aroma']+absolute_value))
         if keys.get('body') != 0:
-            condition_body= Q(overall__range=(keys['body']-absolute_value, keys['body']+absolute_value))
+            condition_body= Q(body__range=(keys['body']-absolute_value, keys['body']+absolute_value))
         if keys.get('drinkability') != 0:
-            condition_drinkability = Q(overall__range=(keys['drinkability']-absolute_value, keys['drinkability']+absolute_value))
+            condition_drinkability = Q(drinkability__range=(keys['drinkability']-absolute_value, keys['drinkability']+absolute_value))
         if keys.get('pressure') != 0:
-            condition_pressure = Q(overall__range=(keys['pressure']-absolute_value, keys['pressure']+absolute_value))
+            condition_pressure = Q(pressure__range=(keys['pressure']-absolute_value, keys['pressure']+absolute_value))
         if keys.get('specialness') != 0:
-            condition_specialness = Q(overall__range=(keys['specialness']-absolute_value, keys['specialness']+absolute_value))
+            condition_specialness = Q(specialness__range=(keys['specialness']-absolute_value, keys['specialness']+absolute_value))
 
         result_list = MODELS.BeerTasteAvg.objects.filter(condition_overall & condition_bitterness & condition_aroma & condition_body & condition_drinkability & condition_pressure & condition_specialness)
-
 
         beer_taste_avg_list.extend(result_list)
         beer_taste_avg_list = sorted(set(beer_taste_avg_list), key=beer_taste_avg_list.index)
