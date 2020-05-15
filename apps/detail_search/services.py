@@ -68,7 +68,7 @@ def selectDetailSearchResultList(keys):
         if keys.get('specialness') != 0:
             condition_specialness = Q(specialness__range=(keys['specialness']-absolute_value, keys['specialness']+absolute_value))
 
-        result_list = MODELS.BeerTasteAvg.objects.filter(condition_overall & condition_bitterness & condition_aroma & condition_body & condition_drinkability & condition_pressure & condition_specialness)
+        result_list = MODELS.BeerTasteAvg.objects.filter(condition_overall & condition_bitterness & condition_aroma & condition_body & condition_drinkability & condition_pressure & condition_specialness).order_by('?')
 
         beer_taste_avg_list.extend(result_list)
         beer_taste_avg_list = sorted(set(beer_taste_avg_list), key=beer_taste_avg_list.index)
