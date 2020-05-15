@@ -120,8 +120,8 @@ def show(request, c):
     #フォロー判断
     friend = c['friend']
     following = SERVICES.isFollowing(request.user, friend)
-    num_follower = SERVICES.getNumFollower(request.user)
-    num_follow = SERVICES.getNumFollow(request.user)
+    num_follower = SERVICES.getNumFollower(friend)
+    num_follow = SERVICES.getNumFollow(friend)
     c.update({'following':following})
     c.update({'num_follower':num_follower})
     c.update({'num_follow':num_follow})
