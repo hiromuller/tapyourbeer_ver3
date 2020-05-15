@@ -120,7 +120,12 @@ def show(request, c):
     #フォロー判断
     friend = c['friend']
     following = SERVICES.isFollowing(request.user, friend)
+    num_follower = SERVICES.getNumFollower(request.user)
+    num_follow = SERVICES.getNumFollow(request.user)
     c.update({'following':following})
+    c.update({'num_follower':num_follower})
+    c.update({'num_follow':num_follow})
+
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.USER_PAGE_TITLE_URL

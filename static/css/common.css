@@ -91,6 +91,11 @@ section#howto{
   width:30%;
 }
 
+.follow-data {
+  padding-left: 10px;
+  padding-right: 10px;
+  display:inline-block;
+}
 
 
 .form-control:disabled, .form-control[readonly]{
