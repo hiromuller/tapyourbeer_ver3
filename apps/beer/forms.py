@@ -41,7 +41,7 @@ class addCommentForm(forms.Form):
     drinkability = forms.ChoiceField(label='飲み易さ', choices=CONST.EVALUATION_ADD_CHOICES_GOODNESS)
     pressure = forms.ChoiceField(label='炭酸', choices=CONST.EVALUATION_ADD_CHOICES_STRONGNESS)
     specialness = forms.ChoiceField(label='独自感', choices=CONST.EVALUATION_ADD_CHOICES_EXISTNESS)
-    comment = forms.CharField(label='コメント', widget=forms.Textarea)
+    comment = forms.CharField(label='コメント', widget=forms.Textarea(attrs={'rows': '3'}))
     beer_name = forms.CharField(label='ビール名', max_length=200)
     beer_id = forms.CharField(label='ビールid', widget = forms.HiddenInput, required=False)
     brewery_name = forms.CharField(label='ブルワリー名', max_length=200)
