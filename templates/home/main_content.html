@@ -1,50 +1,33 @@
-<div class="row" id="main_content">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    <div class="topic text-center">
-      <p><b>{{ customuser.username }}</b></p>
-    </div>
-  </div>
-  <div class="col-0 col-sm-0"></div>
-</div>
+<form id="list_form" method="post" action="{{main_url}}">
+  {% csrf_token %}
 
-<div class="row" id="main_content" >
+
   {% for comment in comment_list %}
-  <div class="col-0 col-sm-1"></div>
-  <div class="col-2 col-sm-2">
-    <div class="description-text text-center">
-      <p><b>
-        <p>{{ comment.user }}</p>
-      </b></p>
+    <div class="row" id="comment_list">
+      <div class="col-0 col-sm-2"></div>
+      <div class="col-12 col-sm-8">
+
+        <div class="description-text text-left">
+          <p>
+            <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span>
+            <span class="description-text">
+          <br>is drinking  <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
+          <br>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %} on　{{ comment.registered_date }}
+          <br>rate: {{comment.overall}}
+            </span>
+          </p>
+          <p>
+            <span class="description-text">
+              {{ comment.comment }}
+            </span>
+          </p>
+        </div>
+        <br>
+      </div>
+    <div class="col-0 col-sm-2"></div>
     </div>
-  </div>
+    {% endfor %}
 
-  <div class="col-2 col-sm-2">
-    <div class="description-text text-center">
-      <p><b>
-        <p>{{ comment.beer.name }}</p>
-      </b></p>
-    </div>
-  </div>
 
-  <div class="col-6 col-sm-3">
-    <div class="description-text text-center">
-      <p><b>
-        <p>{{ comment.comment }}</p>
-      </b></p>
-    </div>
-  </div>
 
-  <div class="col-2 col-sm-3">
-    <div class="description-text text-center">
-      <p><b>
-        <p>{{ comment.venue.name }}</p>
-      </b></p>
-    </div>
-  </div>
-  <div class="col-0 col-sm-1"></div>
-  {% endfor %}
-
-</div>
-
-<div class="col-0 col-sm-2"></div>
+</form>

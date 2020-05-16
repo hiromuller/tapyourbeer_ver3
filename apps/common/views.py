@@ -29,7 +29,7 @@ def index(request):
     print (action)
 
     if action == CONFIG.ACTION_HOME:
-        return HOME_VIEWS.index(request)
+        return HOME_VIEWS.Home(request)
     elif action == CONFIG.ACTION_SIGNUP:
         return ACCOUNTS_VIEWS.signup_index(request)
     elif action == CONFIG.ACTION_SIGNUP_USER:

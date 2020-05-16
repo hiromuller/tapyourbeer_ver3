@@ -8,7 +8,7 @@ import logging
 
 logger = logging.getLogger('app')
 
-def selectFollowUserListbyFollowUser(id):
+def selectFollowUserListByFollowUser(id):
     try:
         follow_list = MODELS.Follow.objects.filter(user=id)
         follow_user_list = []
@@ -19,9 +19,9 @@ def selectFollowUserListbyFollowUser(id):
     except:
         return None
 
-def selectCommentListbyFollowingUserID(id):
+def selectCommentListByFollowingUserID(id):
     try:
-        follow_user_list = selectFollowUserListbyFollowUser(id)
+        follow_user_list = selectFollowUserListByFollowUser(id)
         comment_list = []
         queries = [Q(user=follow) for follow in follow_user_list]
         query = queries.pop()

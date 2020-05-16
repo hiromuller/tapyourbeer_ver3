@@ -14,17 +14,15 @@ def Home(request):
     logger.info('home')
     c = {}
 
-    comment_list = SERVICES.selectCommentListbyFollowingUserID(request.user)
+    comment_list = SERVICES.selectCommentListByFollowingUserID(request.user)
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.HOME_PAGE_TITLE_URL
     main_content = CONFIG.HOME_MAIN_URL
-    sub_content = CONFIG.HOME_SUB_URL
     action_dict = CONFIG.ACTION_DICT
     url_dict = {'main_url':main_url,
                 'page_title':page_title,
                 'main_content':main_content,
-                'sub_content':sub_content,
                 }
 
     c.update({'comment_list':comment_list})

@@ -11,17 +11,17 @@ import random
 MAX_RESULTS = 50
 
 def selectBeerListByNameKey(key):
-    beer_list = MODELS.Beer.objects.filter(name__icontains=key, is_active=True)
+    beer_list = MODELS.Beer.objects.filter(name__icontains=key, is_active=True)[:MAX_RESULTS]
     return beer_list
 
 def selectBreweryListByNameKey(key):
-    brewery_list = MODELS.Brewery.objects.filter(name__icontains=key, is_active=True)
+    brewery_list = MODELS.Brewery.objects.filter(name__icontains=key, is_active=True)[:MAX_RESULTS]
     return brewery_list
 
 def selectVenueListByNameKey(key):
-    venue_list = MODELS.Venue.objects.filter(name__icontains=key, is_active=True)
+    venue_list = MODELS.Venue.objects.filter(name__icontains=key, is_active=True)[:MAX_RESULTS]
     return venue_list
 
 def selectUserListByUsernameKey(key):
-    user_list = MODELS.CustomUser.objects.filter(username__icontains=key, is_active=True)
+    user_list = MODELS.CustomUser.objects.filter(username__icontains=key, is_active=True)[:MAX_RESULTS]
     return user_list
