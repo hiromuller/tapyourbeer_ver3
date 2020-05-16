@@ -1,0 +1,81 @@
+{% load static %}
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
+</div>
+<br>
+
+{% if follow_list %}
+<form id="list_form" method="post" action="{{main_url}}">
+  {% csrf_token %}
+<div class="row" id="follow_list_title">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    <div class="subtopic text-center">
+      <img src="{% static 'images/subtopic-follow.png' %}" class="page-title-img" />
+    </div>
+  </div>
+  <div class="col-0 col-sm-2"></div>
+</div>
+<br>
+
+<div class="row" id="subcontent_follow_list">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    {% for follow in follow_list %}
+    <div class="description-text text-left">
+
+      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{follow.follow.id}}');">{{ follow.follow.username }}</a></b>{% if follow.follow.living_country%} - {{ follow.follow.living_country}}{% endif %}</p>
+      <p>{{ follow.follow.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+<div class="col-0 col-sm-2"></div>
+</div>
+
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
+</div>
+
+</form>
+{% endif %}
+
+{% if follower_list %}
+<form id="list_form" method="post" action="{{main_url}}">
+  {% csrf_token %}
+<div class="row" id="follower_list_title">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    <div class="subtopic text-center">
+      <img src="{% static 'images/subtopic-follower.png' %}" class="page-title-img" />
+    </div>
+  </div>
+  <div class="col-0 col-sm-2"></div>
+</div>
+<br>
+
+<div class="row" id="subcontent_follow_list">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    {% for follower in follower_list %}
+    <div class="description-text text-left">
+
+      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{follower.user.id}}');">{{ follower.user.username }}</a></b>{% if follower.user.living_country%} - {{ follower.user.living_country}}{% endif %}</p>
+      <p>{{ follower.user.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+<div class="col-0 col-sm-2"></div>
+</div>
+
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
+</div>
+
+</form>
+{% endif %}

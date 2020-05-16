@@ -12,6 +12,48 @@ import logging
 
 logger = logging.getLogger('app')
 
+def followerInfo(request):
+    logger.info('follower info')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    user = SERVICES.selectUserById(key)
+    follower_list = SERVICES.selectFollowerListByUser(user)
+    num_follower = SERVICES.getNumFollower(user)
+
+    c.update({'follower_list':follower_list})
+    c.update({'num_follower':num_follower})
+    return showFollowInfo(request, c)
+
+def followInfo(request):
+    logger.info('follow info')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    user = SERVICES.selectUserById(key)
+    follow_list = SERVICES.selectFollowListByUser(user)
+    num_follow = SERVICES.getNumFollow(user)
+
+    c.update({'follow_list':follow_list})
+    c.update({'num_follow':num_follow})
+    return showFollowInfo(request, c)
+
+def showFollowInfo(request, c):
+    main_url = CONFIG.TOP_URL
+    page_title = CONFIG.USER_PAGE_TITLE_URL
+    main_content = CONFIG.USER_FOLLOW_INFO_URL
+    action_dict = CONFIG.ACTION_DICT
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
+                'main_content':main_content,
+                }
+    c.update({'html_title':CONFIG.USER_HTML_TITLE})
+    c.update(url_dict)
+    c.update(action_dict)
+    return render(request, 'common/main.html', c)
+
 def follow(request):
     logger.info('follow')
     c = {}

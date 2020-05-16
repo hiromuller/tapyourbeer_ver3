@@ -38,6 +38,7 @@ USER_PAGE_TITLE_URL = 'user/page_title.html'
 USER_MAIN_URL = 'user/main_content.html'
 USER_SUB_URL = 'user/sub_content.html'
 USER_UPDATE_URL = 'user/edit.html'
+USER_FOLLOW_INFO_URL = 'user/follow_info.html'
 
 VENUE_PAGE_TITLE_URL = 'venue/page_title.html'
 VENUE_MAIN_URL = 'venue/main_content.html'
@@ -75,6 +76,8 @@ ACTION_USER_UPDATE = 'user_update' #ユーザ情報編集画面へ遷移
 ACTION_UPDATE_USER = 'update_user' #ユーザ情報を編集し、ユーザ詳細画面へ遷移
 ACTION_FOLLOW = 'follow'
 ACTION_UNFOLLOW = 'unfollow'
+ACTION_FOLLOW_INFO = 'follow_info'
+ACTION_FOLLOWER_INFO = 'follower_info'
 #venue機能
 ACTION_VENUE_DETAIL = 'venue_detail'
 #manager機能
@@ -114,6 +117,8 @@ ACTION_DICT = {
                 'ACTION_UPDATE_USER':ACTION_UPDATE_USER,
                 'ACTION_FOLLOW':ACTION_FOLLOW,
                 'ACTION_UNFOLLOW':ACTION_UNFOLLOW,
+                'ACTION_FOLLOW_INFO':ACTION_FOLLOW_INFO,
+                'ACTION_FOLLOWER_INFO':ACTION_FOLLOWER_INFO,
                 'ACTION_VENUE_DETAIL':ACTION_VENUE_DETAIL,
                 'ACTION_DELETE_BEER':ACTION_DELETE_BEER,
                 'ACTION_DELETE_USER':ACTION_DELETE_USER,

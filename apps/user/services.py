@@ -58,6 +58,20 @@ def selectCommentListByUser(user):
     except:
         return []
 
+def selectFollowListByUser(user):
+    try:
+        follow_list = MODELS.Follow.objects.filter(user=user.id)
+        return follow_list
+    except:
+        return []
+
+def selectFollowerListByUser(user):
+    try:
+        follower_list = MODELS.Follow.objects.filter(follow=user.id)
+        return follower_list
+    except:
+        return []
+
 def getNumFollower(user):
     return MODELS.Follow.objects.filter(follow=user.id).count()
 

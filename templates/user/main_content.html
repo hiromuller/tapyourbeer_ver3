@@ -46,7 +46,7 @@
       {% endifequal %}
       </div>
       <div class="description-text text-center">
-        <div class="follow-data">follow: {{ num_follow }}</div><div class="follow-data">follower: {{ num_follower }}</div>
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data">follower: {{ num_follower }}</div></a>
       </div>
       </form>
 
