@@ -14,9 +14,7 @@ def Home(request):
     logger.info('home')
     c = {}
 
-    customuser = SERVICES.selectCustomuserbyID(request.user.id)
-    follow_list = SERVICES.selectFollowUserLisybyFollowuser(request.user.id)
-    comment_list = SERVICES.selectCommentListbyFollowList(request.user)
+    comment_list = SERVICES.selectCommentListbyFollowingUserID(request.user)
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.HOME_PAGE_TITLE_URL
@@ -29,7 +27,6 @@ def Home(request):
                 'sub_content':sub_content,
                 }
 
-    c.update({'customuser':request.user})
     c.update({'comment_list':comment_list})
 
     c.update({'html_title':CONFIG.HOME_HTML_TITLE})
