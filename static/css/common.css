@@ -133,6 +133,14 @@ a.btn-info {
   border-color: #0066ff;
 }
 
+input {
+  font-size: 16px;
+}
+
+.form-control{
+  font-size: 16px; 
+}
+
 /* === タブのSTYLE設定 ============================= */
 @keyframes tabAnim{
  0%{top:-100%;}
