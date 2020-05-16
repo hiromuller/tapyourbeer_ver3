@@ -10,9 +10,11 @@ import logging
 
 logger = logging.getLogger('app')
 
-def index(request):
+def Home(request):
     logger.info('home')
     c = {}
+
+    comment_list = SERVICES.selectCommentListbyFollowingUserID(request.user)
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.HOME_PAGE_TITLE_URL
@@ -24,6 +26,9 @@ def index(request):
                 'main_content':main_content,
                 'sub_content':sub_content,
                 }
+
+    c.update({'comment_list':comment_list})
+
     c.update({'html_title':CONFIG.HOME_HTML_TITLE})
     c.update(url_dict)
     c.update(action_dict)
