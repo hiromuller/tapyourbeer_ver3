@@ -137,8 +137,12 @@ input {
   font-size: 16px;
 }
 
+.delete-right {
+    float: right;
+}
+
 .form-control{
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 /* === タブのSTYLE設定 ============================= */
