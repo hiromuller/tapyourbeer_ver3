@@ -21,7 +21,7 @@ class updateBreweryForm(forms.ModelForm):
 
     class Meta:
         model = MODELS.Brewery
-        fields = ('name', 'address', 'description')
+        fields = ('name', 'address', 'description', 'web', 'webshop')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

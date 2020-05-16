@@ -177,6 +177,14 @@ def updateBrewery(request):
             brewery.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
         except:
             brewery.description = None
+        try:
+            brewery.web = form.cleaned_data.get('web')
+        except:
+            brewery.web = None
+        try:
+            brewery.webshop = form.cleaned_data.get('webshop')
+        except:
+            brewery.webshop = None
         brewery.save()
     else:
         return SEARCH_VIEWS.index(request)
@@ -199,6 +207,8 @@ def showBreweryUpdate(request):
                                         'name':brewery.name,
                                         'address':brewery.address,
                                         'description':brewery.description,
+                                        'web':brewery.web,
+                                        'webshop':brewery.webshop,
                                         })
 
     c.update({'brewery':brewery})

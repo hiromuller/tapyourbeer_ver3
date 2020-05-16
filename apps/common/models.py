@@ -22,6 +22,10 @@ class Brewery(models.Model):
     address = models.CharField(max_length=200, null=True, blank=True)
     # 説明
     description = models.CharField(max_length=200, null=True, blank=True)
+    # ウェブサイト
+    web = models.CharField(max_length=200, null=True, blank=True)
+    # ウェブショップ
+    webshop = models.CharField(max_length=200, null=True, blank=True)
     #アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
 
@@ -31,6 +35,8 @@ class Brewery(models.Model):
             'logo': self.logo,
             'address': self.address,
             'description': self.description,
+            'web': self.web,
+            'webshop': self.webshop,
             'is_active': self.is_active,
         }
 

@@ -8,12 +8,12 @@
   </div>
 </div>
 
-{% if brewery.address %}
+{% if brewery.address or brewery.web or brewery.webshop %}
 <div class="row">
   <div class="col-0 col-sm-2"></div>
     <div class="col-12 col-sm-8">
-      <div class="subtopic text-center">
-        {{ brewery.address }}
+      <div class="description-text text-center">
+         {{ brewery.address }} {%if brewery.web %} <a href="{{brewery.web}}">web</a> {% endif %}{%if brewery.webshop %} <a href="{{brewery.webshop}}">webshop</a> {% endif %}
       </div>
     </div>
 </div>
