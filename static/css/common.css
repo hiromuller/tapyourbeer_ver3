@@ -16,6 +16,11 @@
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
+.form-inner > div.half-blank {
+  width : 50%;
+  padding-top: 65px;
+}
+
 .card {
     border:none;
 }
