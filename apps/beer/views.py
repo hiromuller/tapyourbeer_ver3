@@ -11,6 +11,7 @@ import beer.forms as FORMS
 import common.models as MODELS
 import common.services as COMMON_SERVICES
 import home.views as HOME_VIEWS
+import common.management.commands.createaveragetable as COMMON_COMMANDS
 import logging
 
 logger = logging.getLogger('app')
@@ -115,6 +116,9 @@ def addBeerEvaluation(request):
                                 'comment':form.cleaned_data.get('comment')
                                 }
                 comment = SERVICES.addCommentByDict(comment_dict)
+
+                SERVICES.deleteBeerTasteAvgByBeer(beer)
+                COMMON_COMMANDS.saveAverage(beer)
 
                 if comment:
                     return beerDetailInfo(request, beer.id)

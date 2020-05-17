@@ -11,36 +11,39 @@ class Command(BaseCommand):
         beer_list = MODELS.Beer.objects.filter(is_active=True)
         MODELS.BeerTasteAvg.objects.all().delete()
         for beer in beer_list:
-            comment_list = MODELS.Comment.objects.filter(beer=beer.id)
-            if len(comment_list)==0:
-                continue
+            saveAverage(beer)
 
-            overall = []
-            bitterness = []
-            aroma = []
-            body = []
-            drinkability = []
-            pressure = []
-            specialness = []
-            for comment in comment_list:
-                overall.append(comment.overall)
-                bitterness.append(comment.bitterness)
-                aroma.append(comment.aroma)
-                body.append(comment.body)
-                drinkability.append(comment.drinkability)
-                pressure.append(comment.pressure)
-                specialness.append(comment.specialness)
-            beerTasteAvg = MODELS.BeerTasteAvg(
-                                            beer=beer,
-                                            overall=getAverage(overall),
-                                            bitterness=getAverage(bitterness),
-                                            aroma=getAverage(aroma),
-                                            body=getAverage(body),
-                                            drinkability=getAverage(drinkability),
-                                            pressure=getAverage(pressure),
-                                            specialness=getAverage(specialness))
-            beerTasteAvg.save()
-            print (str(beerTasteAvg.beer.name) + 'の総合評価は' + str(beerTasteAvg.overall) + 'です。')
+def saveAverage(beer):
+    comment_list = MODELS.Comment.objects.filter(beer=beer.id)
+    if len(comment_list)==0:
+        return
+
+    overall = []
+    bitterness = []
+    aroma = []
+    body = []
+    drinkability = []
+    pressure = []
+    specialness = []
+    for comment in comment_list:
+        overall.append(comment.overall)
+        bitterness.append(comment.bitterness)
+        aroma.append(comment.aroma)
+        body.append(comment.body)
+        drinkability.append(comment.drinkability)
+        pressure.append(comment.pressure)
+        specialness.append(comment.specialness)
+    beerTasteAvg = MODELS.BeerTasteAvg(
+                                    beer=beer,
+                                    overall=getAverage(overall),
+                                    bitterness=getAverage(bitterness),
+                                    aroma=getAverage(aroma),
+                                    body=getAverage(body),
+                                    drinkability=getAverage(drinkability),
+                                    pressure=getAverage(pressure),
+                                    specialness=getAverage(specialness))
+    beerTasteAvg.save()
+    print (str(beerTasteAvg.beer.name) + 'の総合評価は' + str(beerTasteAvg.overall) + 'です。')
 
 
 

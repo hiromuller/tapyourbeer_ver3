@@ -7,6 +7,13 @@ import jaconv
 
 logger = logging.getLogger('app')
 
+def deleteBeerTasteAvgByBeer(beer):
+    try:
+        MODELS.BeerTasteAvg.objects.get(beer=beer.id).delete()
+        return True
+    except:
+        return False
+
 def selectBeerById(id):
     try:
         beer = MODELS.Beer.objects.get(id=id)
