@@ -121,11 +121,11 @@ def updateVenue(request):
         venue = SERVICES.selectVenueById(venue_id)
         venue.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
         try:
-            venue.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
+            venue.address = form.cleaned_data.get('address')
         except:
             venue.address = None
         try:
-            venue.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+            venue.description = form.cleaned_data.get('description')
         except:
             venue.description = None
         venue.save()
@@ -170,11 +170,11 @@ def updateBrewery(request):
         brewery = SERVICES.selectBreweryById(brewery_id)
         brewery.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
         try:
-            brewery.address = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('address'))
+            brewery.address = form.cleaned_data.get('address')
         except:
             brewery.address = None
         try:
-            brewery.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+            brewery.description = form.cleaned_data.get('description')
         except:
             brewery.description = None
         try:
@@ -230,7 +230,7 @@ def updateBeer(request):
         except:
             beer.style = None
         try:
-            beer.description = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('description'))
+            beer.description = form.cleaned_data.get('description')
         except:
             beer.description = None
         try:
