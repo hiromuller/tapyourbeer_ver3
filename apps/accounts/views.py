@@ -54,4 +54,4 @@ def signup_user(request):
     else:
         return signup_index(request)
 
-    return HOME_VIEWS.index(request)
+    return HOME_VIEWS.Home(request)
