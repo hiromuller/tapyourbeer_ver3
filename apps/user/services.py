@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
 import common.models as MODELS
+import common.services as COMMON_SERVICES
 from django.db import transaction
 from core import settings as SETTING
 import logging
@@ -24,12 +26,18 @@ def unfollowFriend(user, follow):
     except:
         return None
 
-def updateUser(user):
+def updateUser(form, user, previous_photo):
     try:
-        user.save()
-        return user
+        if form.is_valid():
+            if previous_photo:
+                if previous_photo != 'images/' + str(user.photo):
+                    os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_photo))
+                    pass
+            form.save()
+            if user.photo:
+                COMMON_SERVICES.resizeProfileImage(user.photo)
     except:
-        return None
+        return
 
 def isFollowing(user, follow):
     try:

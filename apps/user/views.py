@@ -91,18 +91,10 @@ def unfollow(request):
 
 def updateUser(request):
     #更新処理を入れる
-    form = FORMS.updateUserForm(request.POST, request.FILES)
-    if form.is_valid():
-        user = SERVICES.selectUserById(request.user.id)
-        user.gender_style = form.cleaned_data.get('gender_style')
-        user.living_country = form.cleaned_data.get('living_country')
-        user.living_area = form.cleaned_data.get('living_area')
-        user.description = form.cleaned_data.get('description')
-        user.photo = form.cleaned_data.get('photo')
-        user = SERVICES.updateUser(user)
-        if user.photo:
-            COMMON_SERVICES.resizeImage(user.photo)
-
+    user = request.user
+    previous_photo = request.user.photo
+    form = FORMS.updateUserForm(request.POST, request.FILES, instance=user)
+    SERVICES.updateUser(form, user, previous_photo)
 
     c ={}
     comment_list = SERVICES.selectCommentListByUser(user)
@@ -126,6 +118,7 @@ def showUserUpdate(request):
                                         'living_area':user.living_area,
                                         'living_country':user.living_country,
                                         'description':user.description,
+                                        'photo':user.photo,
                                         })
     c.update({'update_user_form':form})
 

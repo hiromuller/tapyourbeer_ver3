@@ -154,6 +154,14 @@ input {
   font-size: 16px;
 }
 
+.card-form-text > a{
+  color: #000000;
+}
+
+.card-form-text > a:hover, a:active{
+  color: #000000;
+}
+
 
 /* === ユーザ画面のプロフィール画像設定 ============================= */
 .profile-user {

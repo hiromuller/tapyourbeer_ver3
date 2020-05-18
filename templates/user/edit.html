@@ -6,11 +6,13 @@
         <div class="card-body">
     <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {% csrf_token %}
+        <h1>
           {{request.user.username}}
+        </h1>
 
-          <div class="fieldWrapper form-group">
+          <div class="fieldWrapper form-group card-form-text">
           {{ update_user_form.photo.errors }}
-          <label for="id_photo">profile photo:</label>
+          <label for="id_photo">画像</label>
           {{ update_user_form.photo }}
           </div>
 
