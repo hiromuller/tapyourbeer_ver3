@@ -198,7 +198,7 @@ def updateBrewery(request):
         """
         form.save()
         if brewery.logo:
-            COMMON_SERVICES.resizeProfileImage(brewery.logo)
+            COMMON_SERVICES.resizeImage(brewery.logo)
         if previous_logo:
             if previous_logo != str(brewery.logo):
                 os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_logo))
