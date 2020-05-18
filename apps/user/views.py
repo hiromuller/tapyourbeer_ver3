@@ -100,8 +100,9 @@ def updateUser(request):
         if user.photo:
             COMMON_SERVICES.resizeProfileImage(user.photo)
         if previous_photo:
-            if previous_photo != 'images/' + str(user.photo):
+            if previous_photo != str(user.photo):
                 os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_photo))
+                pass
 
     c ={}
     comment_list = SERVICES.selectCommentListByUser(user)
