@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- css -->
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/magister.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/common.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/form.css" %}">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi&family=M+PLUS+Rounded+1c:wght@400;700&family=M+PLUS+1p:wght@900&family=Wire+One&display=swap" rel="stylesheet">
+  <title>400 Bad Request | Tap Your Beer</title>
+</head>
+
+  <body>
+    <div class="container table">
+        <div class="row">
+            <div class="col-md-12">
+                <h1> Oops!</h1>
+                <h3> 403 Bad Request</h3>
+                <br>
+                    <a href="{% url 'accounts:logout' %}" class="btn btn-primary "><span class="glyphicon glyphicon-home"></span>
+                        Back To Home </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </body>
+</html>
