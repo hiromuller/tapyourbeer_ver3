@@ -1,6 +1,89 @@
+{% load static %}
 <form id="list_form" method="post" action="{{main_url}}">
   {% csrf_token %}
 
+  {% if not comment_list %}
+  <div class="row">
+    <div class="col-0 col-sm-2"></div>
+    <div class="col-12 col-sm-8">
+
+      <div class="topic text-center">
+        <p>
+        <b>Welcome!</b>
+        </p>
+      </div>
+    </div>
+    <div class="col-0 col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4 col-sm-3">
+      <div class="description-text text-right">
+      <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');" class="howto-icon"><img src="{% static 'images/search.png' %}" class="nav-icon"/></a> <<
+      </div>
+    </div>
+    <div class="col-7 col-sm-7">
+      <div class="description-text text-left">
+        <p>
+        ビール、ブルワリー、店舗、お友達はキーワードから検索！
+        </p>
+    </div>
+    </div>
+    <div class="col-1 col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4 col-sm-3">
+      <div class="description-text text-right">
+      <a href="javascript:void(0)" onClick="movePage('{{ACTION_DETAIL_SEARCH}}');"><img src="{% static 'images/detail_search.png' %}" class="header-l"/></a> <<
+      </div>
+    </div>
+    <div class="col-7 col-sm-7">
+      <div class="description-text text-left">
+        <p>
+        苦味や香りなど、ビールの味わいから検索しましょう！<br>検索ナビの右上のアイコンから味わい検索画面へ！
+        </p>
+    </div>
+    </div>
+    <div class="col-1 col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4 col-sm-3">
+      <div class="description-text text-right">
+      <a href="javascript:void(0)" onClick="movePage('{{ACTION_ADD_BEER_EVALUATION_FORM}}');" class="howto-icon"><img src="{% static 'images/eval.png' %}" class="nav-icon"/></a> <<
+      </div>
+    </div>
+    <div class="col-7 col-sm-7">
+      <div class="description-text text-left">
+        <p>
+        飲んだビールの味評価を登録しよう！<br>
+        ビール詳細画面から入力画面に移るとブルワリーとビールが入力された状態から始められます。
+        </p>
+    </div>
+    </div>
+    <div class="col-1 col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4 col-sm-3">
+      <div class="description-text text-right">
+      <a href="javascript:void(0)" onClick="moveToDetail('{{ACTION_USER_ACCOUNT}}', '{{ request.user.id }}');" class="howto-icon"><img src="{% static 'images/user.png' %}" class="nav-icon"/></a> <<
+      </div>
+    </div>
+    <div class="col-7 col-sm-7">
+      <div class="description-text text-left">
+        <p>
+        飲んだビールやフォロワーなどはアカウント画面から見ることができます！
+        </p>
+    </div>
+    </div>
+    <div class="col-1 col-sm-2"></div>
+  </div>
+
+
+
+  {% endif %}
 
   {% for comment in comment_list %}
     <div class="row" id="comment_list">
