@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from django.shortcuts import render
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
@@ -94,7 +95,13 @@ def updateUser(request):
     user = request.user
     previous_photo = request.user.photo
     form = FORMS.updateUserForm(request.POST, request.FILES, instance=user)
-    SERVICES.updateUser(form, user, previous_photo)
+    if form.is_valid():
+        form.save()
+        if user.photo:
+            COMMON_SERVICES.resizeProfileImage(user.photo)
+        if previous_photo:
+            if previous_photo != 'images/' + str(user.photo):
+                os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_photo))
 
     c ={}
     comment_list = SERVICES.selectCommentListByUser(user)

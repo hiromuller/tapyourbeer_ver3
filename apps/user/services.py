@@ -26,17 +26,6 @@ def unfollowFriend(user, follow):
     except:
         return None
 
-def updateUser(form, user, previous_photo):
-    try:
-        if form.is_valid():
-            form.save()
-            if user.photo:
-                COMMON_SERVICES.resizeProfileImage(user.photo)
-            if previous_photo:
-                if previous_photo != 'images/' + str(user.photo):
-                    os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_photo))
-    except:
-        return
 
 def isFollowing(user, follow):
     try:
