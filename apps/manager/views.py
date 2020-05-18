@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from django.shortcuts import render
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
@@ -162,11 +163,20 @@ def showVenueUpdate(request):
 
 
 def updateBrewery(request):
-    form = FORMS.updateBreweryForm(request.POST)
+
     if request.method == "POST":
         brewery_id = request.POST.get("brewery_id")
 
-    if form.is_valid() and brewery_id:
+    brewery = SERVICES.selectBreweryById(brewery_id)
+    previous_logo = brewery.logo
+
+    if brewery:
+        form = FORMS.updateBreweryForm(request.POST, request.FILES, instance=brewery)
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    if form.is_valid():
+        """
         brewery = SERVICES.selectBreweryById(brewery_id)
         brewery.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
         try:
@@ -185,7 +195,14 @@ def updateBrewery(request):
             brewery.webshop = form.cleaned_data.get('webshop')
         except:
             brewery.webshop = None
-        brewery.save()
+        """
+        form.save()
+        if brewery.logo:
+            COMMON_SERVICES.resizeProfileImage(brewery.logo)
+        if previous_logo:
+            if previous_logo != str(brewery.logo):
+                os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_logo))
+                pass
     else:
         return SEARCH_VIEWS.index(request)
 
@@ -209,6 +226,7 @@ def showBreweryUpdate(request):
                                         'description':brewery.description,
                                         'web':brewery.web,
                                         'webshop':brewery.webshop,
+                                        'logo':brewery.logo,
                                         })
 
     c.update({'brewery':brewery})

@@ -3,6 +3,7 @@ from django import forms
 from core import consts as CONST
 from core import messages as MSG
 import common.models as MODELS
+import common.services as COMMON_SERVICES
 import manager.services as SERVICES
 
 class updateBeerForm(forms.ModelForm):
@@ -21,13 +22,18 @@ class updateBreweryForm(forms.ModelForm):
 
     class Meta:
         model = MODELS.Brewery
-        fields = ('name', 'address', 'description', 'web', 'webshop')
+        fields = ('name', 'logo', 'address', 'description', 'web', 'webshop')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+    def clean_name(self):
+        name = COMMON_SERVICES.normalizeStr(self.cleaned_data.get('name'))
+        return name
+
 
 class updateVenueForm(forms.ModelForm):
 
