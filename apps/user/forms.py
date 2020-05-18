@@ -9,7 +9,7 @@ class updateUserForm(forms.ModelForm):
 
     class Meta:
         model = MODELS.CustomUser
-        fields = ('gender_style', 'living_country', 'living_area', 'description')
+        fields = ('gender_style', 'living_country', 'living_area', 'description', 'photo')
         widgets = {
                     'description': forms.Textarea(attrs={'cols': 80, 'rows': 5}),
                     }

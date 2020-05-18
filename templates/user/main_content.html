@@ -1,54 +1,58 @@
 {% load static %}
-<div class="row" id="main_content">
+
+
+<div class="row">
   <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-      <div class="topic text-center">
-          <p><b>{{ friend.username }}</b></p>
-      </div>
+  <div class="col-4 col-sm-3 text-center profile-frame">
+    {% if friend.photo %}
+    <img class="profile-user img-fluid" src='{{ MEDIA_URL }}{{friend.photo}}'>
+    {% else %}
+    <img src="{% static 'images/no-profile-image.png' %}" class="profile-user img-fluid" />
+    {% endif %}
+  </div>
+  <div class="col-8 col-sm-7">
+    <span class="topic text-left">
+    <b>{{ friend.username }}</b>
+    </span>
 
-
-      {% if friend.living_area and not friend.living_country %}
-      <div class="description-text text-center">
-        <p>in <b>{{ friend.living_area }}</b></p>
-      </div>
-      {% elif not friend.living_area and friend.living_country %}
-      <div class="description-text text-center">
-        <p>in <b>{{ friend.living_country }}</b></p>
-      </div>
-      {% elif friend.living_area and friend.living_country %}
-      <div class="description-text text-center">
-        <p>in <b>{{ friend.living_area }}</b> - <b>{{ friend.living_country }}</b></p>
-      </div>
-      {%  endif %}
-
-
-
-
-      <div class="description-text text-center">
-        {% if friend.description %}
-        {{ friend.description }}
-        {% else %}
-        no description
-        {% endif %}
-      </div>
-
-      <form id="list_form" method="post" action="{{main_url}}">
-        {% csrf_token %}
-        <div class="description-text text-center">
-      {% ifequal friend.id request.user.id %}
-        <a href="javascript:void(0)" class="btn btn-outline-info" onClick="moveToDetailFromList('{{ACTION_USER_UPDATE}}', '{{request.user.id}}');">編集する</a>
+    <p>
+    <span class="description-text text-left">
+    {% if friend.living_area and not friend.living_country %}
+      in {{ friend.living_area }}
+    {% elif not friend.living_area and friend.living_country %}
+      in {{ friend.living_country }}
+    {% elif friend.living_area and friend.living_country %}
+      in {{ friend.living_area }} - {{ friend.living_country }}
+    {%  endif %}
+    </span><br>
+    <span class="description-text text-left">
+      {% if friend.description %}
+      {{ friend.description }}
       {% else %}
-        {% if following %}
-        <button type="button" class="btn btn-outline-info" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_UNFOLLOW}}', '{{friend.id}}');">フォローを外す</button>
-        {% else %}
-        <button type="button" class="btn btn-outline-info" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW}}', '{{friend.id}}');">フォローする</button>
-        {% endif %}
-      {% endifequal %}
-      </div>
-      <div class="description-text text-center">
-        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data">follower: {{ num_follower }}</div></a>
-      </div>
-      </form>
+      no description
+      {% endif %}
+    </span>
+    </p>
 
+    <form id="list_form" method="post" action="{{main_url}}">
+      {% csrf_token %}
+    <div class="description-text text-left">
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data">follower: {{ num_follower }}</div></a>
     </div>
+
+    <div class="description-text text-left">
+  {% ifequal friend.id request.user.id %}
+    <a href="javascript:void(0)" class="btn btn-outline-info" onClick="moveToDetailFromList('{{ACTION_USER_UPDATE}}', '{{request.user.id}}');">編集する</a>
+  {% else %}
+    {% if following %}
+    <button type="button" class="btn btn-outline-info" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_UNFOLLOW}}', '{{friend.id}}');">フォローを外す</button>
+    {% else %}
+    <button type="button" class="btn btn-outline-info" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW}}', '{{friend.id}}');">フォローする</button>
+    {% endif %}
+  {% endifequal %}
+  </div>
+
+    </form>
+
+  </div>
 </div>

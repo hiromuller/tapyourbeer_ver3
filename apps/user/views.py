@@ -6,6 +6,7 @@ from core import configs as CONFIG
 from core import consts as CONSTS
 from core import settings as SETTING
 import common.models as MODELS
+import common.services as COMMON_SERVICES
 import user.services as SERVICES
 import user.forms as FORMS
 import logging
@@ -90,14 +91,18 @@ def unfollow(request):
 
 def updateUser(request):
     #更新処理を入れる
-    form = FORMS.updateUserForm(request.POST)
+    form = FORMS.updateUserForm(request.POST, request.FILES)
     if form.is_valid():
         user = SERVICES.selectUserById(request.user.id)
         user.gender_style = form.cleaned_data.get('gender_style')
         user.living_country = form.cleaned_data.get('living_country')
         user.living_area = form.cleaned_data.get('living_area')
         user.description = form.cleaned_data.get('description')
+        user.photo = form.cleaned_data.get('photo')
         user = SERVICES.updateUser(user)
+        if user.photo:
+            COMMON_SERVICES.resizeImage(user.photo)
+
 
     c ={}
     comment_list = SERVICES.selectCommentListByUser(user)

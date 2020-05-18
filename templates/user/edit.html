@@ -8,6 +8,12 @@
         {% csrf_token %}
           {{request.user.username}}
 
+          <div class="fieldWrapper form-group">
+          {{ update_user_form.photo.errors }}
+          <label for="id_photo">profile photo:</label>
+          {{ update_user_form.photo }}
+          </div>
+
           <div class="fieldWrapper form-group signup-selecter">
           {{ update_user_form.gender_style.errors }}
           <label for="id_gender_style">性別スタイル:</label>

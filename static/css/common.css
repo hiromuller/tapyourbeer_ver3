@@ -154,6 +154,19 @@ input {
   font-size: 16px;
 }
 
+
+/* === ユーザ画面のプロフィール画像設定 ============================= */
+.profile-user {
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit:cover;
+  background-position: center center;
+  max-height: 150px;
+}
+
+.profile-frame {
+  padding-right: 0px;
+}
+
 /* === タブのSTYLE設定 ============================= */
 @keyframes tabAnim{
  0%{top:-100%;}
