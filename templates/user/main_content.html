@@ -41,6 +41,11 @@
     </div>
 
     <div class="description-text text-left">
+      飲んだビール数: {{comment_list | length}}杯<br>
+      使った金額はおよそ {{cost}}円      
+    </div>
+
+    <div class="description-text text-left">
   {% ifequal friend.id request.user.id %}
     <a href="javascript:void(0)" class="btn btn-outline-info" onClick="moveToDetailFromList('{{ACTION_USER_UPDATE}}', '{{request.user.id}}');">編集する</a>
   {% else %}

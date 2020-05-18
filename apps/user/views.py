@@ -174,6 +174,9 @@ def show(request, c):
     c.update({'num_follower':num_follower})
     c.update({'num_follow':num_follow})
 
+    #金額
+    cost = '{:,}'.format(len(c['comment_list']) * 500)
+    c.update({'cost':cost})
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.USER_PAGE_TITLE_URL
