@@ -42,12 +42,16 @@
 
     <div class="description-text text-left">
       飲んだビール数: {{comment_list | length}}杯<br>
-      使った金額はおよそ {{cost}}円      
     </div>
 
     <div class="description-text text-left">
   {% ifequal friend.id request.user.id %}
     <a href="javascript:void(0)" class="btn btn-outline-info" onClick="moveToDetailFromList('{{ACTION_USER_UPDATE}}', '{{request.user.id}}');">編集する</a>
+    {% if request.user.is_admin%}
+      <br><a href="javascript:void(0)" class="btn btn-outline-info" onClick="movePage('{{ACTION_UNTOUCHED_BREWERY}}');">未編集ブルワリー一覧</a>
+      <br><a href="javascript:void(0)" class="btn btn-outline-info" onClick="movePage('{{ACTION_UNTOUCHED_BEER}}');">未編集ビール一覧</a>
+    {% endif %}
+
   {% else %}
     {% if following %}
     <button type="button" class="btn btn-outline-info" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_UNFOLLOW}}', '{{friend.id}}');">フォローを外す</button>

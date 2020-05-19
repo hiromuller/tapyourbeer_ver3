@@ -4,6 +4,12 @@ from django.db import transaction
 from core import settings as SETTING
 import logging
 
+def selectUntouchedBrewery():
+    return MODELS.Brewery.objects.filter(logo="", address=None, description=None, web=None, webshop=None)
+
+def selectUntouchedBeer():
+    return MODELS.Beer.objects.filter(photo="", style=None, description=None, ibu=None, abv=None)
+
 def deleteCommentById(id):
     try:
         MODELS.Comment.objects.get(id=id).delete()

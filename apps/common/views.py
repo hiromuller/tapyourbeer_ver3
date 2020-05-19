@@ -90,6 +90,10 @@ def index(request):
         return MANAGER_VIEWS.showVenueUpdate(request)
     elif action == CONFIG.ACTION_UPDATE_VENUE:
         return MANAGER_VIEWS.updateVenue(request)
+    elif action == CONFIG.ACTION_UNTOUCHED_BREWERY:
+        return MANAGER_VIEWS.untouchedBrewery(request)
+    elif action == CONFIG.ACTION_UNTOUCHED_BEER:
+        return MANAGER_VIEWS.untouchedBeer(request)
     else:
         return view(request)
 

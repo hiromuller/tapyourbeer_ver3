@@ -18,6 +18,20 @@ import logging
 
 logger = logging.getLogger('app')
 
+def untouchedBrewery(request):
+    c = {}
+    untouched_brewery_list = SERVICES.selectUntouchedBrewery()
+    c.update({'untouched_brewery_list':untouched_brewery_list})
+
+    return show(request, c)
+
+def untouchedBeer(request):
+    c = {}
+    untouched_beer_list = SERVICES.selectUntouchedBeer()
+    c.update({'untouched_beer_list':untouched_beer_list})
+
+    return show(request, c)
+
 def deleteComment(request):
     if request.method == "POST":
         key = request.POST.get("key")

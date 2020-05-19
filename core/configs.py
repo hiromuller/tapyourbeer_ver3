@@ -97,7 +97,8 @@ ACTION_BREWERY_MERGE = 'brewery_merge' #ブルワリー統合画面へ遷移
 ACTION_MERGE_BREWERY = 'merge_brewery' #ブルワリー情報を統合してブルワリー詳細画面へ遷移
 ACTION_VENUE_UPDATE = 'venue_update' #店舗更新画面へ遷移
 ACTION_UPDATE_VENUE = 'update_venue' #店舗情報を更新してビール詳細画面へ遷移
-
+ACTION_UNTOUCHED_BREWERY = 'untouched_brewery' #未編集のブルワリー一覧を表示
+ACTION_UNTOUCHED_BEER = 'untouched_beer' #未編集のビール一覧を表示
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -135,6 +136,8 @@ ACTION_DICT = {
                 'ACTION_MERGE_BREWERY':ACTION_MERGE_BREWERY,
                 'ACTION_VENUE_UPDATE':ACTION_VENUE_UPDATE,
                 'ACTION_UPDATE_VENUE':ACTION_UPDATE_VENUE,
+                'ACTION_UNTOUCHED_BREWERY':ACTION_UNTOUCHED_BREWERY,
+                'ACTION_UNTOUCHED_BEER':ACTION_UNTOUCHED_BEER,
                }
 """
 コンテンツHTML
