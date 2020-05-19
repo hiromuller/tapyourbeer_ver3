@@ -5,6 +5,8 @@ from PIL import Image
 from core import settings as SETTING
 import logging
 import jaconv
+from datetime import datetime as dt
+from django.utils import timezone
 
 logger = logging.getLogger('app')
 
@@ -52,4 +54,14 @@ def resizeProfileImage(img_path):
         center_y = int(img_resize.height / 2)
         img_crop = img_resize.crop((center_x - new_size / 2, center_y - new_size / 2, center_x + new_size / 2, center_y + new_size / 2))
         img_crop.save(SETTING.MEDIA_ROOT + '/' + str(img_path), quality=100)
-        
+
+def parseDate(dateData):
+    return dt(
+        dateData.tm_year,
+        dateData.tm_mon,
+        dateData.tm_mday,
+        dateData.tm_hour,
+        dateData.tm_min,
+        dateData.tm_sec,
+        tzinfo=timezone.utc
+    )

@@ -34,6 +34,11 @@ DETAIL_SEARCH_MAIN_URL = 'detail_search/main_content.html'
 DETAIL_SEARCH_SUB_URL = 'detail_search/sub_content.html'
 DETAIL_SEARCH_BAR_URL = 'detail_search/search_bar.html'
 
+NEWS_PAGE_TITLE_URL = 'news/page_title.html'
+NEWS_MAIN_URL = 'news/main_content.html'
+NEWS_SUB_URL = 'news/sub_content.html'
+
+
 USER_PAGE_TITLE_URL = 'user/page_title.html'
 USER_MAIN_URL = 'user/main_content.html'
 USER_SUB_URL = 'user/sub_content.html'
@@ -70,6 +75,8 @@ ACTION_SEARCH_LIST = 'search_list' #検索実行
 #detailsearch機能
 ACTION_DETAIL_SEARCH = 'detail_search' #詳細検索画面へ遷移
 ACTION_DETAIL_SEARCH_LIST = 'detail_search_list' #詳細検索実行
+#news機能
+ACTION_NEWS = 'news'
 #user機能
 ACTION_USER_ACCOUNT = 'user_account'
 ACTION_USER_UPDATE = 'user_update' #ユーザ情報編集画面へ遷移
@@ -113,6 +120,7 @@ ACTION_DICT = {
                 'ACTION_SEARCH_LIST':ACTION_SEARCH_LIST,
                 'ACTION_DETAIL_SEARCH':ACTION_DETAIL_SEARCH,
                 'ACTION_DETAIL_SEARCH_LIST':ACTION_DETAIL_SEARCH_LIST,
+                'ACTION_NEWS':ACTION_NEWS,
                 'ACTION_USER_ACCOUNT':ACTION_USER_ACCOUNT,
                 'ACTION_USER_UPDATE':ACTION_USER_UPDATE,
                 'ACTION_UPDATE_USER':ACTION_UPDATE_USER,
@@ -150,6 +158,7 @@ CONTENT_SUB = '/sub_content.html'
 HTMLタイトル
 """
 HOME_HTML_TITLE = 'Home'
+NEWS_HTML_TITLE = 'News'
 SIGNUP_HTML_TITLE = 'Signup'
 BEER_HTML_TITLE = 'Beer'
 ADD_BEER_EVALUATION_HTML_TITLE = 'Add Beer'
@@ -159,3 +168,13 @@ USER_HTML_TITLE = 'User'
 SEARCH_HTML_TITLE = 'Search'
 DETAIL_SEARCH_HTML_TITLE = 'Detail Search'
 VENUE_HTML_TITLE = 'Venue'
+
+"""
+ニュースフィード取得元
+"""
+NEWS_FEED_URLS = [
+                'https://www.jbja.jp/feed',
+                'https://craftbeer-tokyo.info/feed/',
+                'https://note.com/bestbeerjapan/rss',
+                'https://mycraftbeers.com/feed',
+                ]

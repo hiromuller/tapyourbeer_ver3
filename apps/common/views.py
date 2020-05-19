@@ -14,6 +14,7 @@ import brewery.views as BREWERY_VIEWS
 import manager.views as MANAGER_VIEWS
 import search.views as SEARCH_VIEWS
 import detail_search.views as DETAIL_SEARCH_VIEWS
+import news.views as NEWS_VIEWS
 import user.views as USER_VIEWS
 import venue.views as VENUE_VIEWS
 import accounts.views as ACCOUNTS_VIEWS
@@ -52,6 +53,8 @@ def index(request):
         return DETAIL_SEARCH_VIEWS.index(request)
     elif action == CONFIG.ACTION_DETAIL_SEARCH_LIST:
         return DETAIL_SEARCH_VIEWS.detailSearchList(request)
+    elif action == CONFIG.ACTION_NEWS:
+        return NEWS_VIEWS.news(request)
     elif action == CONFIG.ACTION_USER_ACCOUNT:
         return USER_VIEWS.showUser(request)
     elif action == CONFIG.ACTION_USER_UPDATE:

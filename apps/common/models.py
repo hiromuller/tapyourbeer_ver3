@@ -287,6 +287,30 @@ class BeerTasteAvg(models.Model):
     # 総合
     overall = models.DecimalField(max_digits=3, decimal_places=2)
 
+class NewsFeed(models.Model):
+    """
+    ニュースフィードモデル
+    """
+    # 記事取得サイト
+    site_name = models.CharField(max_length=255, blank=True, null=True)
+    # 記事タイトル
+    title = models.CharField(max_length=255, blank=True, null=True)
+    # 記事url
+    link = models.URLField(blank=True, null=True)
+    # 記事写真
+    photo = models.URLField(max_length=255, blank=True, null=True)
+    # 日時
+    date = models.DateTimeField(blank=True, null=True)
+
+    def encode(self):
+        return {
+            'site_name': self.site_name,
+            'title': self.title,
+            'link': self.link,
+            'photo': self.photo,
+            'date': self.date,
+        }
+
 
 admin.site.register(Beer)
 admin.site.register(Brewery)
@@ -300,4 +324,4 @@ admin.site.register(BreweryManager)
 admin.site.register(VenueManager)
 admin.site.register(Like)
 admin.site.register(BeerTasteAvg)
-#test
+admin.site.register(NewsFeed)

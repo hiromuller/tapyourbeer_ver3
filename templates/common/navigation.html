@@ -1,13 +1,18 @@
 {% load static %}
-    <div id="navigation" class="navbar fixed-bottom justify-content-center">
-      <form id="navigation_form" method="post" action="{{main_url}}">
+    <div id="navigation" class="navbar fixed-bottom">
+      <div class="col-0 col-sm-2 col-md-3"></div>
+      <div class="col-12 col-sm-8 col-md-6">
+      <form id="navigation_form" method="post" action="{{main_url}}" class="w-100">
       {% csrf_token %}
-      <ul class="navigation">
+      <ul class="navigation navbar w-100 justify-content-around">
         <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_HOME}}');" class="nav-icon"><img src="{% static 'images/home.png' %}" class="nav-icon"/></a>
         </li>
         <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');" class="nav-icon"><img src="{% static 'images/search.png' %}" class="nav-icon"/></a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" onClick="movePage('{{ACTION_NEWS}}');" class="nav-icon"><img src="{% static 'images/nav-news.png' %}" class="nav-icon"/></a>
         </li>
         <li>
           {% if beer %}
@@ -21,4 +26,6 @@
         </li>
       </ul>
       </form>
+      </div>
+      <div class="col-0 col-sm-2 col-md-3"></div>
     </div>
