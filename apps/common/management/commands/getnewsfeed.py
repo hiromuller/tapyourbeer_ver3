@@ -30,13 +30,16 @@ class Command(BaseCommand):
 
 
 def saveFeedNews(feedpars, feed):
-    entry = MODELS.NewsFeed()
-    entry.site_name = feedpars.feed['title']
-    entry.link = feed['link']
-    entry.title = feed['title']
-    entry.date = COMMON_SERVICES.parseDate(feed['updated_parsed'] or entry['published_parsed'])
     try:
-        entry.photo = feed['href']
+        entry = MODELS.NewsFeed()
+        entry.site_name = feedpars.feed['title']
+        entry.link = feed['link']
+        entry.title = feed['title']
+        entry.date = COMMON_SERVICES.parseDate(feed['updated_parsed'] or entry['published_parsed'])
+        try:
+            entry.photo = feed['href']
+        except:
+            pass
+        entry.save()
     except:
-        pass
-    entry.save()
+        return

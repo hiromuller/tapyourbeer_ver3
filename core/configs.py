@@ -178,6 +178,7 @@ NEWS_FEED_URLS = [
                 'https://craftbeer-tokyo.info/feed/',
                 'https://note.com/bestbeerjapan/rss',
                 'https://mycraftbeers.com/feed',
+                'http://japanbeertimes.com/feed/',
                 ]
 
 #一般的なサイト
@@ -191,4 +192,8 @@ NEWS_FEED_URLS_GENERAL = [
                         'https://headlines.yahoo.co.jp/rss/all-c_life.xml',
                         'https://headlines.yahoo.co.jp/rss/all-loc.xml',
                         'https://headlines.yahoo.co.jp/rss/newstkb-loc.xml',
+                        'https://news.google.com/rss/search?q=%E3%82%AF%E3%83%A9%E3%83%95%E3%83%88%E3%83%93%E3%83%BC%E3%83%AB&hl=ja&gl=JP&ceid=JP:ja',
+                        'https://www.fashionsnap.com/rss.xml',
+                        'https://www.jalan.net/news/feed/',
+                        'https://minkei.net/rss.xml',
 ]
