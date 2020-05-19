@@ -167,11 +167,25 @@ input {
   color: #000000;
 }
 
+hr.hr-home{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 0;
+  border-top: 0.5px solid #76b3f6;
+}
 
 /* === ブルワリーロゴ画像設定 ============================= */
 .brewery-logo-top{
   width: 130px;
   padding-bottom: 15px;
+}
+
+/* === ホーム画面のプロフィール画像設定 ============================= */
+.profile-home{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit:cover;
+  background-position: center center;
+  max-width: 50px;
 }
 
 /* === ユーザ画面のプロフィール画像設定 ============================= */
