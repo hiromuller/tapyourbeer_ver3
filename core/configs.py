@@ -172,9 +172,23 @@ VENUE_HTML_TITLE = 'Venue'
 """
 ニュースフィード取得元
 """
+#クラフトビール関連のサイト
 NEWS_FEED_URLS = [
                 'https://www.jbja.jp/feed',
                 'https://craftbeer-tokyo.info/feed/',
                 'https://note.com/bestbeerjapan/rss',
                 'https://mycraftbeers.com/feed',
                 ]
+
+#一般的なサイト
+NEWS_FEED_URLS_GENERAL = [
+                        'https://headlines.yahoo.co.jp/rss/all-dom.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-c_int.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-bus.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-c_ent.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-c_spo.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-c_sci.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-c_life.xml',
+                        'https://headlines.yahoo.co.jp/rss/all-loc.xml',
+                        'https://headlines.yahoo.co.jp/rss/newstkb-loc.xml',
+]
