@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <div class="row" id="main_content">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
@@ -34,7 +35,7 @@
       <br>
       <div class="subtopic text-center">
         <p><u>{{ beer_taste_avg.overall }}</u></p>
-        <p>{% for i in stars %}<img src="{% static 'images/star.png' %}" class="star" /> {% endfor %}</p>
+        <p>{% for i in beer_taste_avg.overall|make_range %}<img src="{% static 'images/star.png' %}" class="star" /> {% endfor %}</p>
       </div>
     </div>
   <div class="col-0 col-sm-2"></div>

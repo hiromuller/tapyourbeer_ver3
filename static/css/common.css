@@ -166,6 +166,13 @@ input {
   padding-bottom:7px;
 }
 
+img.feed-star {
+  width: 15px;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
 .form-control{
   font-size: 16px;
 }

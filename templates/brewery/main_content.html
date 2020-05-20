@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <div class="row" id="main_content">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
@@ -85,15 +86,12 @@
   <div class="col-12 col-sm-8">
     {% for comment in comment_list %}
     <div class="description-text text-left">
-      {% if request.user.is_admin %}
-      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>
-      <br>rate : {{comment.overall}}</p>
-      {% else %}
-      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}
-      <br>rate : {{comment.overall}}</p>
-      {% endif %}
+      <p><span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}{% if request.user.is_admin %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endif %}
+      <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
+      </p>
     <p>{{ comment.comment }}</p>
     </div>
+    <hr class="hr-home">
     {% endfor %}
 </div>
 <div class="col-2 col-sm-2"></div>

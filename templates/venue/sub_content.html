@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <div class="row" id="hrizontalline">
   <div class="col-3 col-sm-2"></div>
   <div class="col-6 col-sm-8"><hr/></div>
@@ -23,13 +24,15 @@
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
     <div class="description-text text-left">
-    <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
-    <br>rate : {{comment.overall}}</p>
+  <p><span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
+    <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
+  </p>
     <p>{{ comment.comment }}</p>
     </div>
 </div>
 <div class="col-0 col-sm-2"></div>
 </div>
+<hr class="hr-home">
 {% endfor %}
 
 </form>
