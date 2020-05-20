@@ -155,9 +155,15 @@ input {
     float: right;
 }
 
-.feed-info {
-  font-size:10px;  
+.feed-info-right {
+  font-size:10px;
   float: right;
+}
+
+.feed-info-left {
+  font-size:10px;
+  float: left;
+  padding-bottom:7px;
 }
 
 .form-control{

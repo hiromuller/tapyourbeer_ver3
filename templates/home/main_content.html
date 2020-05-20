@@ -101,8 +101,8 @@
             <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span>
             <span class="description-text">
           <br>is drinking  <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
-          <br>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %} on　{{ comment.registered_date }}
-          <br>rate: {{comment.overall}}
+          <br>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}
+          <br><span class="feed-info-left">rate: {{comment.overall}}</span><span class="feed-info-right"> {{ comment.registered_date }}</span>
             </span>
           </p>
         </div>
@@ -111,8 +111,8 @@
     </div>
 
     <div class="row" id="comment_list">
-    <div class="col-0 col-sm-2"></div>
-    <div class="col-12 col-sm-8">
+    <div class="col-2 col-sm-2"></div>
+    <div class="col-10 col-sm-8">
         <div class="description-text text-left">
           <p>
             <span class="description-text">

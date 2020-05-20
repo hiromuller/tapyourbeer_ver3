@@ -14,7 +14,7 @@ def Home(request):
     logger.info('home')
     c = {}
 
-    comment_list = SERVICES.selectCommentListByFollowingUserID(request.user)
+    comment_list = SERVICES.selectCommentListByFollowingUser(request.user)
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.HOME_PAGE_TITLE_URL
