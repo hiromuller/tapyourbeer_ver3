@@ -20,28 +20,48 @@
 </div>
 <br>
 
-<div class="row" id="subcontent_follow_list">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    {% for follow in follow_list %}
-    <div class="description-text text-left">
-
-      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{follow.follow.id}}');">{{ follow.follow.username }}</a></b>{% if follow.follow.living_country%} - {{ follow.follow.living_country}}{% endif %}</p>
-      <p>{{ follow.follow.description }}</p>
-    </div>
-    {% endfor %}
-</div>
-<div class="col-0 col-sm-2"></div>
-</div>
 
 <div class="row" id="hrizontalline">
-  <div class="col-3 col-sm-2"></div>
-  <div class="col-6 col-sm-8"><hr/></div>
-  <div class="col-3 col-sm-2"></div>
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8"><hr class="hr-home"></div>
+  <div class="col-0 col-sm-2"></div>
 </div>
+
+
+{% for follow in follow_list %}
+<a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{follow.follow.id}}');">
+  <div class="row" id="follow_list">
+    <div class="col-2 col-sm-2 profile-frame text-center">
+      {% if follow.follow.photo %}
+      <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{follow.follow.photo}}'>
+      {% else %}
+      <img src="{% static 'images/no-profile-image.png' %}" class="profile-follow img-fluid" />
+      {% endif %}
+    </div>
+    <div class="col-10 col-sm-8">
+      <div class="description-text text-left">
+        <p>
+          <span class="subtopic"><b>{{ follow.follow.username }}</b></span>
+          <span class="description-text">
+            <p>{{ follow.follow.description }}</p>
+          </span>
+        </p>
+      </div>
+    </div>
+  <div class="col-0 col-sm-2"></div>
+  </div>
+</a>
+
+  <div class="row" id="hrizontalline">
+    <div class="col-0 col-sm-2"></div>
+    <div class="col-12 col-sm-8"><hr class="hr-home"></div>
+    <div class="col-0 col-sm-2"></div>
+  </div>
+  {% endfor %}
 
 </form>
 {% endif %}
+
 
 {% if follower_list %}
 <form id="list_form" method="post" action="{{main_url}}">
@@ -57,19 +77,43 @@
 </div>
 <br>
 
-<div class="row" id="subcontent_follow_list">
+<div class="row" id="hrizontalline">
   <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    {% for follower in follower_list %}
-    <div class="description-text text-left">
+  <div class="col-12 col-sm-8"><hr class="hr-home"></div>
+  <div class="col-0 col-sm-2"></div>
+</div>
 
-      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{follower.user.id}}');">{{ follower.user.username }}</a></b>{% if follower.user.living_country%} - {{ follower.user.living_country}}{% endif %}</p>
-      <p>{{ follower.user.description }}</p>
+
+{% for follower in follower_list %}
+<a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{follower.user.id}}');">
+  <div class="row" id="follow_list">
+    <div class="col-2 col-sm-2 profile-frame text-center">
+      {% if follower.user.photo %}
+      <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{follower.user.photo}}'>
+      {% else %}
+      <img src="{% static 'images/no-profile-image.png' %}" class="profile-follow img-fluid" />
+      {% endif %}
     </div>
-    {% endfor %}
-</div>
-<div class="col-0 col-sm-2"></div>
-</div>
+    <div class="col-10 col-sm-8">
+      <div class="description-text text-left">
+        <p>
+          <span class="subtopic"><b>{{ follower.user.username }}</b></span>
+          <span class="description-text">
+            <p>{{ follower.user.description }}</p>
+          </span>
+        </p>
+      </div>
+    </div>
+  <div class="col-0 col-sm-2"></div>
+  </div>
+</a>
+
+  <div class="row" id="hrizontalline">
+    <div class="col-0 col-sm-2"></div>
+    <div class="col-12 col-sm-8"><hr class="hr-home"></div>
+    <div class="col-0 col-sm-2"></div>
+  </div>
+{% endfor %}
 
 <div class="row" id="hrizontalline">
   <div class="col-3 col-sm-2"></div>
