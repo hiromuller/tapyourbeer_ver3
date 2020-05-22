@@ -90,6 +90,11 @@
       <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
       </p>
     <p>{{ comment.comment }}</p>
+    {% if comment.photo %}
+          <p>
+              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+          </p>
+    {% endif %}
     </div>
     <hr class="hr-home">
     {% endfor %}

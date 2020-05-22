@@ -30,6 +30,12 @@
       <p>
       {{ comment.comment }}
       </p>
+      {% if comment.photo %}
+            <p>
+                <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+            </p>
+      {% endif %}
+      
     </div>
     <hr class="hr-home">
 
