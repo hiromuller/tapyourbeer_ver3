@@ -125,6 +125,22 @@
     <div class="col-0 col-sm-2"></div>
     </div>
 
+    {% if comment.photo %}
+    <div class="row" id="comment_list">
+    <div class="col-2 col-sm-2"></div>
+    <div class="col-10 col-sm-8">
+        <div class="description-text text-left">
+          <p>
+            <span class="description-text">
+              <img class="img-fluid" src='{{ MEDIA_URL }}{{comment.photo}}'>
+            </span>
+          </p>
+        </div>
+      </div>
+    <div class="col-0 col-sm-2"></div>
+    </div>
+    {% endif %}
+
     <div class="row" id="hrizontalline">
       <div class="col-0 col-sm-2"></div>
       <div class="col-12 col-sm-8"><hr class="hr-home"></div>

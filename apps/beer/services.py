@@ -159,6 +159,7 @@ def addCommentByDict(comment_dict):
         comment.pressure = comment_dict.get('pressure')
         comment.specialness = comment_dict.get('specialness')
         comment.comment = comment_dict.get('comment')
+        comment.photo = comment_dict.get('photo')
         comment.save()
         return comment
 

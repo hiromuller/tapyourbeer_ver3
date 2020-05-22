@@ -1,3 +1,4 @@
+{% load static %}
 <div class="row">
   <div class="col-0 col-sm-1"></div>
   <div class="col-12 col-sm-10">
@@ -35,6 +36,16 @@
               {{ comment_form.venue_name }}
               <label for="id_venue_name">店舗名</label>
               <span class="placeholder">店舗名</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="fieldWrapper form-group underline">
+            <div class="custom-file">
+              {{ comment_form.photo.errors }}
+              {{ comment_form.photo }}
+              <span class="custom-file-label" for="id_photo">写真</span>
+            </div>
           </div>
         </div>
 
@@ -143,3 +154,7 @@
   </div>
   <div class="col-0 col-sm-1"></div>
 </div>
+<script type="text/javascript" src="{% static "js/bs-custom-file-input.js" %}"></script>
+<script>
+  bsCustomFileInput.init();
+</script>

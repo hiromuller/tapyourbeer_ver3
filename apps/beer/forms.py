@@ -48,12 +48,14 @@ class addCommentForm(forms.Form):
     brewery_id = forms.CharField(label='ブルワリーid', widget = forms.HiddenInput, required=False)
     venue_name = forms.CharField(label='店舗名', max_length=200, required=False)
     venue_id = forms.CharField(label='店舗id', widget = forms.HiddenInput, required=False)
+    photo = forms.ImageField(required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
     #        field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+        self.fields['photo'].widget.attrs['class'] = 'custom-file-input'
 
     def clean_overall(self):
         overall = self.cleaned_data.get('overall')

@@ -21,7 +21,7 @@ def addBeerEvaluation(request):
     c = {}
 
     if request.method == "POST":
-        form = FORMS.addCommentForm(request.POST)
+        form = FORMS.addCommentForm(request.POST, request.FILES)
         """
         コメント登録処理概要
         １．フォームバリデーション（エラーとなる条件はフォーム側でバリデートする）
@@ -54,6 +54,10 @@ def addBeerEvaluation(request):
             brewery_name = form.cleaned_data.get('brewery_name')
             venue_id = form.cleaned_data.get('venue_id')
             venue_name = form.cleaned_data.get('venue_name')
+            try:
+                photo = form.cleaned_data.get('photo')
+            except:
+                photo = None
 
             #全角半角/大文字小文字加工
             brewery_name = COMMON_SERVICES.normalizeStr(brewery_name)
@@ -113,9 +117,13 @@ def addBeerEvaluation(request):
                                 'drinkability':form.cleaned_data.get('drinkability'),
                                 'pressure':form.cleaned_data.get('pressure'),
                                 'specialness':form.cleaned_data.get('specialness'),
-                                'comment':form.cleaned_data.get('comment')
+                                'comment':form.cleaned_data.get('comment'),
+                                'photo':photo,
                                 }
                 comment = SERVICES.addCommentByDict(comment_dict)
+
+                if comment.photo:
+                    COMMON_SERVICES.resizeImage(comment.photo)
 
                 SERVICES.deleteBeerTasteAvgByBeer(beer)
                 COMMON_COMMANDS.saveAverage(beer)

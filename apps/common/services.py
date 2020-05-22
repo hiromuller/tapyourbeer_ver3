@@ -24,6 +24,11 @@ def resizeImage(img_path):
     if img_path:
         small_size = (400, 400)
         img = Image.open(SETTING.MEDIA_ROOT + '/' + str(img_path))
+        #exif情報取得
+        try:
+            exifinfo = img._getexif()
+        except:
+            exifinfo = None
         img_w, img_h = img.size
         aspect_ratio = img_w / float(img_h)
 
@@ -37,9 +42,18 @@ def resizeImage(img_path):
             new_width = img_w
             new_height = img_h
 
-
         imaged = img.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
-        imaged.save(SETTING.MEDIA_ROOT + '/' + str(img_path), quality=100)
+
+        if exifinfo:
+            #exif情報からOrientationの取得
+            orientation = exifinfo.get(0x112, 1)
+            #画像を回転
+            final_image = rotateImage(imaged, orientation)
+        else:
+            #exif情報が取得できなかった場合は、そのまま処理を続ける
+            final_image = imaged
+
+        final_image.save(SETTING.MEDIA_ROOT + '/' + str(img_path), quality=100)
 
 def resizeProfileImage(img_path):
     logger.info('resize profile image')
@@ -54,6 +68,39 @@ def resizeProfileImage(img_path):
         center_y = int(img_resize.height / 2)
         img_crop = img_resize.crop((center_x - new_size / 2, center_y - new_size / 2, center_x + new_size / 2, center_y + new_size / 2))
         img_crop.save(SETTING.MEDIA_ROOT + '/' + str(img_path), quality=100)
+
+def rotateImage(img, orientation):
+    """
+    画像ファイルをOrientationの値に応じて回転させる
+    """
+    #orientationの値に応じて画像を回転させる
+    if orientation == 1:
+        img_rotate = img
+    elif orientation == 2:
+        #左右反転
+        img_rotate = img.transpose(Image.FLIP_LEFT_RIGHT)
+    elif orientation == 3:
+        #180度回転
+        img_rotate = img.transpose(Image.ROTATE_180)
+    elif orientation == 4:
+        #上下反転
+        img_rotate = img.transpose(Image.FLIP_TOP_BOTTOM)
+    elif orientation == 5:
+        #左右反転して90度回転
+        img_rotate = img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Image.ROTATE_90)
+    elif orientation == 6:
+        #270度回転
+        img_rotate = img.transpose(Image.ROTATE_270)
+    elif orientation == 7:
+        #左右反転して270度回転
+        img_rotate = img.transpose(Image.FLIP_LEFT_RIGHT).transpose(Image.ROTATE_270)
+    elif orientation == 8:
+        #90度回転
+        img_rotate = img.transpose(Image.ROTATE_90)
+    else:
+        img_rotate = img
+
+    return img_rotate
 
 def parseDate(dateData):
     return dt(

@@ -177,6 +177,10 @@ img.feed-star {
   font-size: 16px;
 }
 
+.custom-file-label {
+  background:transparent;
+}
+
 .card-form-text > a{
   color: #000000;
 }
