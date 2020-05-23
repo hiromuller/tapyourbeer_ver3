@@ -80,6 +80,16 @@ def is_beer_exist(id):
     except:
         return False
 
+def is_venue_exist(id):
+    try:
+        venue = MODELS.Venue.objects.get(id=id)
+        if venue:
+            return True
+        else:
+            return False
+    except:
+        return False
+
 def deleteBeerTasteAvgByBeer(beer):
     try:
         MODELS.BeerTasteAvg.objects.get(beer=beer.id).delete()
@@ -145,6 +155,42 @@ def updateBeerBreweryMerge(base_brewery, merging_brewery):
 def deleteBreweryByBrewery(brewery):
     try:
         MODELS.Brewery.objects.get(brewery=brewery.id).delete()
+        return True
+    except:
+        return False
+
+def updateTodaystapVenueMerge(base_venue, merging_venue):
+    try:
+        MODELS.TodaysTap.objects.filter(venue=merging_venue.id).update(venue=base_venue.id)
+        return True
+    except:
+        return False
+
+def updateCommentVenueMerge(base_venue, merging_venue):
+    try:
+        MODELS.Comment.objects.filter(venue=merging_venue.id).update(venue=base_venue.id)
+        return True
+    except:
+        return False
+
+def updateVenuemanagerVenueMerge(base_venue, merging_venue):
+    try:
+        base_venuemanager_list = MODELS.VenueManager.objects.filter(venue=base_venue.id)
+        base_venuemanager_id_list = []
+        for base_venuemanager in base_venuemanager_list:
+            base_venuemanager_id_list.append(base_venuemanager.venue.id)
+
+        if merging_venue.id in base_venuemanager_id_list:
+            MODELS.VenueManager.objects.filter(venue=merging_venue.id).update(venue=base_venue.id)
+        else:
+            MODELS.VenueManager.objects.filter(venue=merging_venue.id).delete()
+        return True
+    except:
+        return False
+
+def deleteVenueByVenue(merging_venue):
+    try:
+        MODELS.Venue.objects.get(id=merging_venue.id).delete()
         return True
     except:
         return False
