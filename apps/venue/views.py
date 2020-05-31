@@ -20,11 +20,16 @@ def venueDetail(request):
     if key is None:
         return HOME_VIEWS.index(request)
     else:
-        venue = SERVICES.selectVenueById(key)
-        comment_list = SERVICES.selectCommentListByVenue(venue)
-        c.update({'venue':venue})
-        c.update({'comment_list':comment_list})        
-        return showVenueDetail(request, c)
+        return venueDetailInfo(request, key)
+
+def venueDetailInfo(request, key):
+    c = {}
+    venue = SERVICES.selectVenueById(key)
+    comment_list = SERVICES.selectCommentListByVenue(venue)
+
+    c.update({'venue':venue})
+    c.update({'comment_list':comment_list})
+    return showVenueDetail(request, c)
 
 def showVenueDetail(request, c):
     main_url = CONFIG.TOP_URL

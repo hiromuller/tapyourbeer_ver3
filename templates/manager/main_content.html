@@ -60,6 +60,17 @@
       </form>
       {% endif %}
 
+      {% if merge_venue_form %}
+      <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+        {{ merge_venue_form.as_p }}
+
+        <input type="hidden" name="action" value="{{ACTION_MERGE_VENUE}}">
+        <button id="id_merge_venue" type="submit" class="btn btn-default">登録</button>
+
+      </form>
+      {% endif %}
+
       {% if untouched_brewery_list %}
       <form id="list_form" enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {% csrf_token %}
