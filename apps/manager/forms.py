@@ -120,3 +120,40 @@ class mergeBeerForm(forms.Form):
             raise forms.ValidationError(MSG.SAME_VALUE_INPUT)
 
         return cleaned_data
+
+class mergeVenueForm(forms.Form):
+    base_venue_id = forms.CharField(label='ベースとなる店舗', max_length=200)
+    merging_venue_id = forms.CharField(label='統合して消える店舗', max_length=200)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+    def clean_base_venue_id(self):
+        base_venue_id = self.cleaned_data.get('base_venue_id')
+        if base_venue_id:
+            is_venue_exist = SERVICES.is_venue_exist(base_venue_id)
+            if not is_venue_exist:
+                raise forms.ValidationError(MSG.VENUE_DOES_NOT_EXIST)
+        return base_venue_id
+
+    def clean_merging_venue_id(self):
+        merging_venue_id = self.cleaned_data.get('merging_venue_id')
+        if merging_venue_id:
+            is_venue_exist = SERVICES.is_venue_exist(merging_venue_id)
+            if not is_venue_exist:
+                raise forms.ValidationError(MSG.VENUE_DOES_NOT_EXIST)
+        return merging_venue_id
+
+
+    def clean(self):
+        cleaned_data = super(mergeVenueForm, self).clean()
+        base_venue_id = self.cleaned_data.get('base_venue_id')
+        merging_venue_id = self.cleaned_data.get('merging_venue_id')
+
+        if base_venue_id == merging_venue_id:
+            raise forms.ValidationError(MSG.SAME_VALUE_INPUT)
+
+        return cleaned_data
