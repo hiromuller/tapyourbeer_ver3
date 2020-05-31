@@ -80,6 +80,16 @@ def is_beer_exist(id):
     except:
         return False
 
+def is_venue_exist(id):
+    try:
+        venue = MODELS.Venue.objects.get(id=id)
+        if venue:
+            return True
+        else:
+            return False
+    except:
+        return False
+
 def deleteBeerTasteAvgByBeer(beer):
     try:
         MODELS.BeerTasteAvg.objects.get(beer=beer.id).delete()
@@ -145,6 +155,49 @@ def updateBeerBreweryMerge(base_brewery, merging_brewery):
 def deleteBreweryByBrewery(brewery):
     try:
         MODELS.Brewery.objects.get(brewery=brewery.id).delete()
+        return True
+    except:
+        return False
+
+def updateTodaystapVenueMerge(base_venue, merging_venue):
+    try:
+        MODELS.TodaysTap.objects.filter(venue=merging_venue.id).update(venue=base_venue.id)
+        return True
+    except:
+        return False
+
+def updateCommentVenueMerge(base_venue, merging_venue):
+    try:
+        MODELS.Comment.objects.filter(venue=merging_venue.id).update(venue=base_venue.id)
+        return True
+    except:
+        return False
+
+def updateVenuemanagerVenueMerge(base_venue, merging_venue):
+    try:
+        base_venuemanager_list = MODELS.VenueManager.objects.filter(venue=base_venue.id)
+        merging_venuemanager_list = MODELS.VenueManager.objects.filter(venue=merging_venue.id)
+        base_venuemanager_venue_list = []
+        base_venuemanager_user_list = []
+
+        for base_venuemanager in base_venuemanager_list:
+            base_venuemanager_venue_list.append(base_venuemanager.venue)
+            base_venuemanager_user_list.append(base_venuemanager.user)
+
+        for merging_venuemanager in merging_venuemanager_list:
+            if merging_venuemanager.user in base_venuemanager_user_list:
+                MODELS.VenueManager.objects.get(venue=merging_venuemanager.venue.id, user=merging_venuemanager.user.id).delete()
+            else:
+                n = base_venuemanager_user_list.index(merging_venuemanager.user)
+                MODELS.VenueManager.objects.get(venue=merging_venuemanager.venue.id, user=merging_venuemanager.user.id).update(venue=base_venuemanager_venue_list[n])
+
+        return True
+    except:
+        return False
+
+def deleteVenueByVenue(merging_venue):
+    try:
+        MODELS.Venue.objects.get(id=merging_venue.id).delete()
         return True
     except:
         return False
