@@ -127,6 +127,44 @@ def showBeerMerge(request):
 
     return show(request, c)
 
+def showVenueMerge(request):
+    logger.info('show venue merge form')
+    c = {}
+    if request.method == "POST":
+        key = request.POST.get("key")
+
+    if key:
+        form = FORMS.mergeVenueForm(initial = {'base_venue_id':key})
+    else:
+        form = FORMS.mergeVenueForm()
+
+    c.update({'merge_venue_form':form})
+
+    return show(request, c)
+
+def mergeVenue(request):
+    form = FORMS.mergeVenueForm(request.POST)
+
+    if form.is_valid():
+        """
+        #venue(U), todaystap(U), comment(U), venuemanager(U)
+        1. todaystapテーブルからmerging_venue_idのレコードをbase_venue_idにupdateする
+        2. commentテーブルから、merging_venue_idのコメントをbase_venue_idにupdateする
+        3. venuemanagerテーブルから、merging_venue_idのレコードをbase_venue_idにupdateする
+        4. venueテーブルからmerging_venueを削除
+        """
+        base_venue = SERVICES.selectVenueById(form.cleaned_data.get('base_venue_id'))
+        merging_venue = SERVICES.selectVenueById(form.cleaned_data.get('merging_venue_id'))
+
+        SERVICES.updateTodaystapVenueMerge(base_venue, merging_venue)
+        SERVICES.updateCommentVenueMerge(base_venue, merging_venue)
+        SERVICES.updateVenuemanagerVenueMerge(base_venue, merging_venue)
+        SERVICES.deleteVenueByVenue(merging_venue)
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    return VENUE_VIEWS.venueDetailInfo(request, base_venue.id)
+
 def updateVenue(request):
     form = FORMS.updateVenueForm(request.POST)
     if request.method == "POST":
