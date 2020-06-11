@@ -154,7 +154,7 @@ def updateBeerBreweryMerge(base_brewery, merging_brewery):
 
 def deleteBreweryByBrewery(brewery):
     try:
-        MODELS.Brewery.objects.get(brewery=brewery.id).delete()
+        MODELS.Brewery.objects.get(id=brewery.id).delete()
         return True
     except:
         return False
