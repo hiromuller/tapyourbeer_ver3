@@ -28,6 +28,7 @@ urlpatterns = [
     path('', common.views.index, name='index'),
     path('signup/', accounts.views.signup_index, name='signup'),
     path('', include('accounts.urls')),
+    path("api/like/<int:comment_id>/", common.views.like, name="like"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

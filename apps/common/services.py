@@ -112,3 +112,40 @@ def parseDate(dateData):
         dateData.tm_sec,
         tzinfo=timezone.utc
     )
+
+def selectCommentById(id):
+    try:
+        return MODELS.Comment.objects.get(id=id)
+    except:
+        return None
+
+def addLike(user, comment):
+    try:
+        like = MODELS.Like()
+        like.comment = comment
+        like.user = user
+        like.save()
+        return True
+    except:
+        return False
+
+def deleteLike(user, comment):
+    try:
+        like = MODELS.Like.objects.get(comment=comment.id, user=user.id)
+        like.delete()
+        return True
+    except:
+        return False
+
+def is_liked(user, comment):
+    try:
+        return MODELS.Like.objects.get(comment=comment.id, user=user.id)
+    except:
+        return False
+
+def getLikeCount(comment):
+    try:
+        num = len(MODELS.Like.objects.filter(comment = comment.id))
+        return num
+    except:
+        return 0

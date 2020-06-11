@@ -3,6 +3,7 @@
 from django.shortcuts import render
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
+from django.http.response import JsonResponse
 from core import consts as CONST
 from core import configs as CONFIG
 from core import settings as SETTING
@@ -102,3 +103,17 @@ def index(request):
 
 def view(request):
     return HOME_VIEWS.index(request)
+
+def like(request, comment_id):
+    logger.info('like method')
+    comment = SERVICES.selectCommentById(comment_id)
+    if comment:
+        if SERVICES.is_liked(request.user, comment):
+            result = SERVICES.deleteLike(request.user, comment)
+        else:
+            result = SERVICES.addLike(request.user, comment)
+        num_like = SERVICES.getLikeCount(comment)
+    else:
+        num_like = 0
+
+    return JsonResponse({"like":num_like})

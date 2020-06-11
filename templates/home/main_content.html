@@ -1,5 +1,6 @@
 {% load static %}
 {% load custom_tags %}
+
 <form id="list_form" method="post" action="{{main_url}}">
   {% csrf_token %}
 
@@ -125,9 +126,10 @@
     <div class="col-0 col-sm-2"></div>
     </div>
 
-    {% if comment.photo %}
     <div class="row" id="comment_list">
-    <div class="col-2 col-sm-2"></div>
+    <div class="col-2 col-sm-2">
+    </div>
+    {% if comment.photo %}
     <div class="col-10 col-sm-8">
         <div class="description-text text-left">
           <p>
@@ -136,10 +138,20 @@
             </span>
           </p>
         </div>
-      </div>
+    {% else %}
+    <div class="col-10 col-sm-8"></div>
+    {% endif %}
+    </div>
     <div class="col-0 col-sm-2"></div>
     </div>
-    {% endif %}
+
+    <div class="row" id="comment_list">
+    <div class="col-12 col-sm-10">
+      <div class="description-text">
+        <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+      </div>
+    </div>
+    </div>
 
     <div class="row" id="hrizontalline">
       <div class="col-0 col-sm-2"></div>
