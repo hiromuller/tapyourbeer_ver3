@@ -109,7 +109,26 @@
               <div id="panel1" class="tab_panel">
 
                 {% if beer_list %}
+
+                <div class="thumbnail">
+                  {% if number_of_user_comments >= 5 %}
+                  <div class="topic text-center">
+                    <p>コメント5件以上でおすすめビール表示</p>
+                  </div>
+                  {% else %}
+                  <div class="topic text-center">
+                    <p>Recommended Beer</p>
+                  </div>
+                  <div class="topic text-center">
+                    <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{recommended_beer.id}}');">{{ recommended_beer.name }}</a></b></p>
+                  </div>
+                  <div class="subtopic text-center">
+                    <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{recommended_beer.brewery.id}}');">{{ recommended_beer.brewery.name }}</a></b></p>
+                  </div>
+                  {% endif %}
+                </div>
                 <hr>
+
                   {% for beer in beer_list %}
                   <div class="topic text-center">
                     <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>

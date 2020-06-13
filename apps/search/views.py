@@ -49,9 +49,14 @@ def index(request):
     logger.info('search')
     c = {}
     search_form = {'search_form':FORMS.searchForm()}
+    recommended_beer = SERVICES.selectRecommendedBeerbyUserEvaluationAverage(request.user)
+    number_of_user_comments = SERVICES.selectNumnerofUserComments(request.user)
 
+    c.update({'recommended_beer':recommended_beer})
+    c.update({'number_of_user_comments':number_of_user_comments})
     c.update(search_form)
     return showSearch(request, c)
+
 
 def showSearch(request, c):
     main_url = CONFIG.TOP_URL
