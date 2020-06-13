@@ -22,22 +22,80 @@
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
     {% for comment in comment_list %}
-    <div class="description-text text-left">
-      <p>
-      <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}{% if request.user.is_admin %}<span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a></span>{% endif %}
-      <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
-      </p>
-      <p>
-      {{ comment.comment }}
-      </p>
-      {% if comment.photo %}
-            <p>
-                <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
-            </p>
-      {% endif %}
-      
+
+
+    <div class="row" id="comment_list">
+      <div class="col-2 col-sm-2 profile-frame text-center">
+        {% if comment.user.photo %}
+        <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{comment.user.photo}}'>
+        {% else %}
+        <img src="{% static 'images/no-profile-image.png' %}" class="profile-home img-fluid" />
+        {% endif %}
+      </div>
+
+      <div class="col-10 col-sm-8">
+        <div class="description-text text-left">
+          <p>
+            <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b>{% if request.user.is_admin %}<span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a></span>{% endif %}</span>
+            <span class="description-text">
+          {% if comment.venue %}<br> at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a>{% endif %}
+          <br><span class="feed-info-left">{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</span><span class="feed-info-right"> {{ comment.registered_date }}</span>
+            </span>
+          </p>
+        </div>
+      </div>
+    <div class="col-0 col-sm-2"></div>
     </div>
-    <hr class="hr-home">
+
+    <div class="row" id="comment_list">
+    <div class="col-2 col-sm-2"></div>
+    <div class="col-10 col-sm-8">
+        <div class="description-text text-left">
+          <p>
+            <span class="description-text">
+              {{ comment.comment }}
+            </span>
+          </p>
+        </div>
+      </div>
+    <div class="col-0 col-sm-2"></div>
+    </div>
+
+    <div class="row" id="comment_list">
+    <div class="col-2 col-sm-2">
+    </div>
+    {% if comment.photo %}
+    <div class="col-10 col-sm-8">
+        <div class="description-text text-left">
+          <p>
+            <span class="description-text">
+              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+            </span>
+          </p>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-10 col-sm-8"></div>
+    {% endif %}
+    <div class="col-0 col-sm-2"></div>
+    </div>
+
+    <div class="row" id="comment_list">
+    <div class="col-12 col-sm-10">
+      <div class="description-text">
+        <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+      </div>
+    </div>
+    </div>
+
+    <div class="row" id="hrizontalline">
+      <div class="col-0 col-sm-2"></div>
+      <div class="col-12 col-sm-8"><hr class="hr-home"></div>
+      <div class="col-0 col-sm-2"></div>
+    </div>
+
+
+
 
     {% endfor %}
 

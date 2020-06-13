@@ -37,6 +37,14 @@
 </div>
 <div class="col-0 col-sm-2"></div>
 </div>
+<div class="row" id="comment_list">
+<div class="col-12 col-sm-10">
+  <div class="description-text">
+    <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+  </div>
+</div>
+</div>
+
 <hr class="hr-home">
 {% endfor %}
 
