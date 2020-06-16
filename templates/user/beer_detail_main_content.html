@@ -1,7 +1,8 @@
 {% load static %}
 {% load custom_tags %}
 <div class="row" id="main_content">
-  <div class="col-0 col-sm-2"></div>
+  <div class="col-0 col-sm-4 profile-frame text-center">
+  </div>
   <div class="col-12 col-sm-8">
       <div class="topic text-center">
           <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
@@ -42,26 +43,35 @@
 </div>
 
 <div class="row" id="user-subcontent-beer-list">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    <div class="description-text text-center">
+  <div class="col-1 col-sm-2"></div>
+  <div class="col-2 col-sm-2">
+    {% if user_comment.user.photo %}
+    <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{user_comment.user.photo}}'>
+    {% else %}
+    <img src="{% static 'images/no-profile-image.png' %}" class="profile-home img-fluid" />
+    {% endif %}
+  </div>
+  <div class="col-8 col-sm-6">
+    <div class="description-text text-left">
     <p>
-    {{ user_comment.comment }}
+    <span class="description-text"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{user_comment.user.id}}');">{{ user_comment.user.username }}</a></b> says;</span>
+    <br>{{ user_comment.comment }}
+    <br><span class="feed-info-right"> {{ user_comment.registered_date }}</span>
     </p>
     </div>
   </div>
 </div>
-<br>
+<br><br>
 <div class="row" id="content-header">
     <div class="col-1 col-sm-2"></div>
     <div class="col-5 col-sm-3">
     </div>
-    <div class="col-2 col-sm-3">
+    <div class="col-3 col-sm-3">
       <div class="description-text text-center">
         <p>Average</p>
       </div>
     </div>
-    <div class="col-3 col-sm-2">
+    <div class="col-2 col-sm-2">
       <div class="description-text text-center">
         <p>{{user_comment.user.username}}</p>
       </div>
@@ -83,7 +93,7 @@
         <p>Specialness:</p>
       </div>
     </div>
-    <div class="col-2 col-sm-3">
+    <div class="col-3 col-sm-3">
       <div class="subtopic text-center">
         <p>{{ beer_taste_avg.overall }}</p>
         <p>{{ beer_taste_avg.bitterness }}</p>
@@ -94,7 +104,7 @@
         <p>{{ beer_taste_avg.specialness }}</p>
       </div>
     </div>
-    <div class="col-3 col-sm-2">
+    <div class="col-2 col-sm-2">
       <div class="subtopic text-center">
         <p>{{ user_comment.overall }}</p>
         <p>{{ user_comment.bitterness }}</p>
