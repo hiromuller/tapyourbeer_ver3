@@ -28,7 +28,7 @@
       <div class="col-6">
         <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
         {% if comment.photo %}
-        <img class="square-content" src='{{ MEDIA_URL }}/thumb_{{comment.photo}}'>
+        <img class="square-content" src='{{ MEDIA_URL }}thumb_{{comment.photo}}'>
         {% else %}
         <img class="square-content" src="{% static 'images/no-beer-image.png' %}" class="img-fluid" />
         {% endif %}
