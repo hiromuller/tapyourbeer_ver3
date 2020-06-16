@@ -47,6 +47,12 @@ def selectUserById(id):
         user.username = '存在しません'
         return user
 
+def selectCommentById(id):
+    try:
+        return MODELS.Comment.objects.get(id = id)
+    except:
+        return None
+
 def selectCommentListByUser(user):
     try:
         comment_list = MODELS.Comment.objects.filter(user = user.id).order_by('registered_date').reverse()

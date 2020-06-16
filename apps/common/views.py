@@ -70,6 +70,8 @@ def index(request):
         return USER_VIEWS.followInfo(request)
     elif action == CONFIG.ACTION_FOLLOWER_INFO:
         return USER_VIEWS.followerInfo(request)
+    elif action == CONFIG.ACTION_USER_BEER_DETAIL:
+        return USER_VIEWS.userBeerDetail(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:
         return VENUE_VIEWS.venueDetail(request)
     elif action == CONFIG.ACTION_DELETE_COMMENT:

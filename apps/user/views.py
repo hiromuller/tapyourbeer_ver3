@@ -8,6 +8,7 @@ from core import consts as CONSTS
 from core import settings as SETTING
 import common.models as MODELS
 import common.services as COMMON_SERVICES
+import beer.services as BEER_SERVICES
 import user.services as SERVICES
 import user.forms as FORMS
 import logging
@@ -88,6 +89,40 @@ def unfollow(request):
     c.update({'comment_list':comment_list})
 
     return show(request, c)
+
+def userBeerDetail(request):
+    if request.method == "POST":
+        comment_id = request.POST.get("key")
+
+    c ={}
+    comment = SERVICES.selectCommentById(comment_id)
+
+    beer_taste_avg = BEER_SERVICES.selectBeerTasteAvgByBeer(comment.beer)
+    comment_list = list(BEER_SERVICES.selectCommentListByBeer(comment.beer))
+    del comment_list[20:]
+    venue_list = list(BEER_SERVICES.selectVenueListByBeer(comment.beer))
+    del venue_list[20:]
+    c.update({'user_comment':comment})
+    c.update({'beer':comment.beer})
+    c.update({'brewery':comment.beer.brewery})
+    c.update({'beer_taste_avg':beer_taste_avg})
+    c.update({'comment_list':comment_list})
+    c.update({'venue_list':venue_list})
+
+    main_url = CONFIG.TOP_URL
+    page_title = CONFIG.USER_BEER_DETAIL_PAGE_TITLE_URL
+    main_content = CONFIG.USER_BEER_DETAIL_MAIN_URL
+    sub_content = CONFIG.USER_BEER_DETAIL_SUB_URL
+    action_dict = CONFIG.ACTION_DICT
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
+                'main_content':main_content,
+                'sub_content':sub_content,
+                }
+    c.update({'html_title':CONFIG.USER_BEER_DETAIL_HTML_TITLE})
+    c.update(url_dict)
+    c.update(action_dict)
+    return render(request, 'common/main.html', c)
 
 
 def updateUser(request):

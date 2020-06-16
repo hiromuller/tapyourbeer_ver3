@@ -19,8 +19,37 @@
 </div>
 <br>
 
+
+<div class="row" id="user-subcontent-beer-list">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    <div class="row" id="user-subcontent-beer-list">
 {% for comment in comment_list %}
-<div class="row" id="subcontent_beer_list">
+      <div class="col-6">
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+        {% if comment.photo %}
+        <img class="square-content" src='{{ MEDIA_URL }}/thumb_{{comment.photo}}'>
+        {% else %}
+        <img class="square-content" src="{% static 'images/no-beer-image.png' %}" class="img-fluid" />
+        {% endif %}
+        </a>
+        <div class="description-text user-subcontent-beer-list-desc">
+          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
+          <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %} <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+        </div>
+
+      </div>
+{% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% for comment in comment_list %}
+<div class="row" id="user-subcontent-beer-list">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
     <div class="description-text text-left">
@@ -32,7 +61,7 @@
     <p>{{ comment.comment }}</p>
     {% if comment.photo %}
           <p>
-              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+              <img class="img-fluid user-feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
           </p>
     {% endif %}
 
@@ -41,7 +70,7 @@
 <div class="col-0 col-sm-2"></div>
 </div>
 <div class="row" id="comment_list">
-  
+
 <div class="col-12 col-sm-10">
   <div class="description-text">
     <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
