@@ -115,6 +115,7 @@
     <div class="row" id="comment_list">
     <div class="col-2 col-sm-2"></div>
     <div class="col-10 col-sm-8">
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
         <div class="description-text text-left">
           <p>
             <span class="description-text">
@@ -122,6 +123,7 @@
             </span>
           </p>
         </div>
+      </a>
       </div>
     <div class="col-0 col-sm-2"></div>
     </div>
@@ -131,6 +133,7 @@
     </div>
     {% if comment.photo %}
     <div class="col-10 col-sm-8">
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
         <div class="description-text text-left">
           <p>
             <span class="description-text">
@@ -138,6 +141,7 @@
             </span>
           </p>
         </div>
+      </a>
     </div>
     {% else %}
     <div class="col-10 col-sm-8"></div>

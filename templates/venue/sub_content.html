@@ -24,28 +24,32 @@
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
     <div class="description-text text-left">
-  <p><span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
-    <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
-  </p>
-    <p>{{ comment.comment }}</p>
-    {% if comment.photo %}
-          <p>
-              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
-          </p>
-    {% endif %}
+      <p>
+        <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');"><b>{{ comment.beer.name }}</b></a> by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
+        <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
+      </p>
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+        <p>{{ comment.comment }}</p>
+      </a>
+      {% if comment.photo %}
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+        <p>
+          <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+        </p>
+      </a>
+      {% endif %}
     </div>
-</div>
-<div class="col-0 col-sm-2"></div>
+  </div>
+  <div class="col-0 col-sm-2"></div>
 </div>
 <div class="row" id="comment_list">
-<div class="col-12 col-sm-10">
-  <div class="description-text">
-    <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+  <div class="col-12 col-sm-10">
+    <div class="description-text">
+      <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+    </div>
   </div>
-</div>
 </div>
 
 <hr class="hr-home">
 {% endfor %}
-
 </form>

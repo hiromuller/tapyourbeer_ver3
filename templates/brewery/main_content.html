@@ -16,22 +16,22 @@
 {% if brewery.address or brewery.web or brewery.webshop %}
 <div class="row">
   <div class="col-0 col-sm-2"></div>
-    <div class="col-12 col-sm-8">
-      <div class="description-text text-center">
-         {{ brewery.address }} {%if brewery.web %} <a href="{{brewery.web}}" target="_blank">web</a> {% endif %}{%if brewery.webshop %} <a href="{{brewery.webshop}}" target="_blank">webshop</a> {% endif %}
-      </div>
+  <div class="col-12 col-sm-8">
+    <div class="description-text text-center">
+      {{ brewery.address }} {%if brewery.web %} <a href="{{brewery.web}}" target="_blank">web</a> {% endif %}{%if brewery.webshop %} <a href="{{brewery.webshop}}" target="_blank">webshop</a> {% endif %}
     </div>
+  </div>
 </div>
 {% endif %}
 
 {% if brewery.description %}
 <div class="row">
   <div class="col-1 col-sm-2"></div>
-    <div class="col-10 col-sm-8">
-      <div class="description-text text-center">
-        {{ brewery.description }}
-      </div>
+  <div class="col-10 col-sm-8">
+    <div class="description-text text-center">
+      {{ brewery.description }}
     </div>
+  </div>
 </div>
 {% endif %}
 
@@ -40,19 +40,18 @@
 
   {% if request.user.is_admin %}
   <div class="row">
-      <div class="col-12">
-        <div class="description-text text-center">
-
-    <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_UPDATE}}', '{{brewery.id}}');">編集</a>
-    <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_MERGE}}', '{{brewery.id}}');">統合</a>
-    id: {{brewery.id}}
+    <div class="col-12">
+      <div class="description-text text-center">
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_UPDATE}}', '{{brewery.id}}');">編集</a>
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_MERGE}}', '{{brewery.id}}');">統合</a>
+        id: {{brewery.id}}
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
   {% endif %}
-<br>
-<div class="row" id="main_content2">
-  <div class="col-1 col-sm-2"></div>
+  <br>
+  <div class="row" id="main_content2">
+    <div class="col-1 col-sm-2"></div>
     <div class="col-10 col-sm-8">
       <div class="subtopic text-center">
         <img src="{% static 'images/subtopic-beer.png' %}" class="page-title-img" />
@@ -63,53 +62,55 @@
         {% endfor %}
       </div>
     </div>
-</div>
-
-<div class="row" id="hrizontalline">
-  <div class="col-3 col-sm-2"></div>
-  <div class="col-6 col-sm-8"><hr/></div>
-  <div class="col-3 col-sm-2"></div>
-</div>
-<br>
-<div class="row" id="subcontent_comment_title">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    <div class="subtopic text-center">
-      <img src="{% static 'images/subtopic-comments.png' %}" class="page-title-img" />
-    </div>
   </div>
-  <div class="col-0 col-sm-2"></div>
-</div>
-<br>
-<div class="row" id="subcontent_comment_list">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    {% for comment in comment_list %}
-    <div class="description-text text-left">
-      <p><span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b></span> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}{% if request.user.is_admin %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endif %}
-      <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
-      </p>
-    <p>{{ comment.comment }}</p>
-    {% if comment.photo %}
-          <p>
-              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
-          </p>
-    {% endif %}
-    </div>
-    <div class="row" id="comment_list">
-    <div class="col-12 col-sm-10">
-      <div class="description-text">
-        <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+
+  <div class="row" id="hrizontalline">
+    <div class="col-3 col-sm-2"></div>
+    <div class="col-6 col-sm-8"><hr/></div>
+    <div class="col-3 col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row" id="subcontent_comment_title">
+    <div class="col-0 col-sm-2"></div>
+    <div class="col-12 col-sm-8">
+      <div class="subtopic text-center">
+        <img src="{% static 'images/subtopic-comments.png' %}" class="page-title-img" />
       </div>
     </div>
+    <div class="col-0 col-sm-2"></div>
+  </div>
+  <br>
+  <div class="row" id="subcontent_comment_list">
+    <div class="col-0 col-sm-2"></div>
+    <div class="col-12 col-sm-8">
+      {% for comment in comment_list %}
+      <div class="description-text text-left">
+        <p>
+          <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b></span> - <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}{% if request.user.is_admin %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endif %}
+          <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ comment.registered_date }}</span>
+        </p>
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+          <p>{{ comment.comment }}</p>
+        </a>
+        {% if comment.photo %}
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+          <p>
+            <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+          </p>
+        </a>
+        {% endif %}
+      </div>
+      <div class="row" id="comment_list">
+        <div class="col-12 col-sm-10">
+          <div class="description-text">
+            <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="hr-home">
+      {% endfor %}
     </div>
-
-    <hr class="hr-home">
-
-
-
-    {% endfor %}
-</div>
-<div class="col-2 col-sm-2"></div>
-</div>
+    <div class="col-2 col-sm-2"></div>
+  </div>
 </form>
