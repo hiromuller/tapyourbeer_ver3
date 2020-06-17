@@ -1,7 +1,7 @@
 {% load static %}
 {% load custom_tags %}
 <div class="row" id="main_content">
-  <div class="col-0 col-sm-4 profile-frame text-center">
+  <div class="col-0 col-sm-2 profile-frame text-center">
   </div>
   <div class="col-12 col-sm-8">
       <div class="topic text-center">
@@ -44,7 +44,7 @@
 
 <div class="row" id="user-subcontent-beer-list">
   <div class="col-1 col-sm-2"></div>
-  <div class="col-2 col-sm-2">
+  <div class="col-2 col-sm-2 text-center">
     {% if user_comment.user.photo %}
     <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{user_comment.user.photo}}'>
     {% else %}
