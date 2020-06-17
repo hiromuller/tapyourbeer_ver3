@@ -30,7 +30,7 @@
   padding-right: 20px;
   padding-left: 20px;
   width: 100%;
-  background-color: #81bafa;
+  background-color: #fff;
 }
 
 #login{
@@ -86,7 +86,7 @@ section#howto{
 
 #navigation {
   width: 100%;
-  background-color: #4f91db;
+  background-color: #d4d3d3;
 }
 
 #navigation li{
@@ -128,14 +128,14 @@ section#howto{
 /* howto セクションのスタイル*/
 .howto-topic {
 	font-family: 'M PLUS 1p', sans-serif;
-	color:#FDF9F4;
+	color:#0090ff;
   font-size:2em;
   padding-bottom:30px;
 }
 
 .howto-description {
 	font-family: 'M PLUS 1c', sans-serif;
-	color:#FDF9F4;
+	color:#000000;
   font-size:1.5em;
 	margin-bottom:100px;
 }
@@ -215,7 +215,7 @@ hr.hr-home{
   margin-top: 5px;
   margin-bottom: 15px;
   border: 0;
-  border-top: 0.5px solid #76b3f6;
+  border-top: 0.5px solid #eeeded;
 }
 
 
@@ -327,16 +327,16 @@ input[type="radio"]{
 .tab_area label{
   width:80px;
   display:inline-block;
-  color:#fff;
+  color:#d4d3d3;
   background:transparent;
   text-align:center;
   font-size:15px;
   font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
   font-weight:normal;
-  border-top: solid 4px #fff;
-  border-bottom: solid 4px #fff;
-  border-right: solid 2px #fff;
-  border-left: solid 2px #fff;
+  border-top: solid 4px #d4d3d3;
+  border-bottom: solid 4px #d4d3d3;
+  border-right: solid 2px #d4d3d3;
+  border-left: solid 2px #d4d3d3;
   cursor:pointer;
   transition:ease 0.2s opacity;
 }
@@ -350,7 +350,7 @@ input[type="radio"]{
 }
 .tab_panel{
   width:100%;
-  background:#81bafa;
+  background:#fff;
   overflow:hidden;
   position:absolute;
   height:100%;
@@ -366,8 +366,8 @@ input[type="radio"]{
 #tab3:checked ~ .panel_area #panel3{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
 
 .tab_area label.active {
-  background:#fff;
-  color:#81bafa;
+  background:#d4d3d3;
+  color:#fff;
 }
 
 /* === 検索入力欄のSTYLE設定 ============================= */
@@ -420,8 +420,8 @@ a.scroll-down span {
   width: 24px;
   height: 24px;
   margin-left: -12px;
-  border-left: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-left: 1px solid #0090ff;
+  border-bottom: 1px solid #0090ff;
   -webkit-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
   -webkit-animation: sdb 1.5s infinite;

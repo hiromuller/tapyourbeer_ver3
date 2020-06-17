@@ -9,15 +9,13 @@
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_DETAIL_SEARCH}}');"><img src="{% static 'images/detail_search.png' %}" class="header-l"/></a>
           </div>
         </div>
-        {% elif move_to_search_button %}
+        {% else %}
         <div class="col-0 col-sm-2"></div>
         <div class="col-3 col-sm-2">
           <div class="description-text text-left">
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');"><img src="{% static 'images/search.png' %}" class="header"/></a>
           </div>
         </div>
-        {% else %}
-        <div class="col-3 col-sm-4"></div>
         {% endif %}
 
         <div class="col-6 col-sm-4">

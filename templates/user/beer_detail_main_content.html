@@ -57,6 +57,7 @@
     <span class="description-text"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{user_comment.user.id}}');">{{ user_comment.user.username }}</a></b> says;</span>
     <br>{{ user_comment.comment }}
     <br><span class="feed-info-right"> {{ user_comment.registered_date }}</span>
+    {% ifequal request.user.username user_comment.user.username %}<br><span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{user_comment.id}}');">削除</a></span>{% endifequal %}
     </p>
     </div>
   </div>
