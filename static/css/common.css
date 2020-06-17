@@ -310,6 +310,7 @@ hr.hr-home{
 }
 
 /* === タブのSTYLE設定 ============================= */
+
 @keyframes tabAnim{
  0%{top:-100%;}
  100%{top:0;}
@@ -372,6 +373,10 @@ input[type="radio"]{
 .tab_area label.active {
   background:#d4d3d3;
   color:#fff;
+}
+
+.search-found {
+  color: #000000;
 }
 
 /* === 検索入力欄のSTYLE設定 ============================= */
