@@ -37,7 +37,7 @@
     <form id="list_form" method="post" action="{{main_url}}">
       {% csrf_token %}
     <div class="description-text text-left">
-      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data">follower: {{ num_follower }}</div></a>
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data-left">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data-right">follower: {{ num_follower }}</div></a>
     </div>
 
     <div class="description-text text-left">
