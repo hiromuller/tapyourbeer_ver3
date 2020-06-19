@@ -102,12 +102,32 @@ def userBeerDetail(request):
     del comment_list[20:]
     venue_list = list(BEER_SERVICES.selectVenueListByBeer(comment.beer))
     del venue_list[20:]
+
+    keys = {'overall':beer_taste_avg.overall,
+            'bitterness':beer_taste_avg.bitterness,
+            'aroma':beer_taste_avg.aroma,
+            'body':beer_taste_avg.body,
+            'drinkability':beer_taste_avg.drinkability,
+            'pressure':beer_taste_avg.pressure,
+            'specialness':beer_taste_avg.specialness,
+            }
+    result_beer_list = SERVICES.selectSimilarBeer(keys)
+    similar_beer_list = []
+    for result_beer in result_beer_list:
+        if not result_beer.id == comment.beer.id:
+            result_beer.photo = SERVICES.selectRandomBeerPhotoByBeer(result_beer)
+            similar_beer_list.append(result_beer)
+
+    for similar_beer in similar_beer_list:
+        print (similar_beer.name)
     c.update({'user_comment':comment})
     c.update({'beer':comment.beer})
     c.update({'brewery':comment.beer.brewery})
     c.update({'beer_taste_avg':beer_taste_avg})
     c.update({'comment_list':comment_list})
     c.update({'venue_list':venue_list})
+    c.update({'similar_beer_list':similar_beer_list})
+
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.USER_BEER_DETAIL_PAGE_TITLE_URL

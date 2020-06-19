@@ -222,6 +222,32 @@ hr.hr-home{
   border-top: 0.5px solid #eeeded;
 }
 
+.left-padding-md {
+  padding-left: 20px;
+}
+
+.similar-beer-list {
+  padding-right:15px;
+}
+
+.similar-beer-image{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit:cover;
+  background-position: center center;
+  max-width: 70px;
+  margin-top: 7px;
+  margin-right: 20px;
+}
+
+/* === 横スクロール ============================= */
+.horizontal_scroll {
+	/*中身スクロールします*/
+   overflow: auto;
+	/*テーブルを入れた場合、セル内の文字を折り返ししないようにします*/
+   white-space: nowrap;
+	/*惰性を与えてスムーズなスクロールにしますよ*/
+   -webkit-overflow-scrolling: touch;
+}
 
 /* === ユーザ画面の画像一覧設定 ============================= */
 .square-content {

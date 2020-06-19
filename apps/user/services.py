@@ -3,8 +3,15 @@ import os
 import common.models as MODELS
 import common.services as COMMON_SERVICES
 from django.db import transaction
+from django.db.models import Q
+from decimal import Decimal
 from core import settings as SETTING
 import logging
+
+#最大SQL発行数
+MAX_SEARCH = 201
+#誤差範囲
+DIFF_POINT = 4/(MAX_SEARCH+1)
 
 logger = logging.getLogger('app')
 
@@ -79,3 +86,57 @@ def getNumFollower(user):
 
 def getNumFollow(user):
     return MODELS.Follow.objects.filter(user=user.id).count()
+
+def selectRandomBeerPhotoByBeer(beer):
+    comment_list = MODELS.Comment.objects.filter(beer=beer.id).order_by('?')[:1]
+    if comment_list:
+        photo = comment_list[0].photo
+    else:
+        photo = None
+    return photo
+
+def selectSimilarBeer(keys):
+    beer_taste_avg_list = []
+
+    #検索条件を初期化
+    condition_overall = Q()
+    condition_bitterness = Q()
+    condition_aroma = Q()
+    condition_body = Q()
+    condition_drinkability = Q()
+    condition_pressure = Q()
+    condition_specialness = Q()
+
+    for i in range(MAX_SEARCH):
+        #検索の範囲
+        absolute_value = Decimal(0.5/(MAX_SEARCH - 1) * i).quantize(Decimal("0.01"))
+
+        #検索条件設定
+        if keys.get('overall') != 0:
+            condition_overall = Q(overall__range=(keys['overall']-absolute_value, keys['overall']+absolute_value))
+        if keys.get('bitterness') != 0:
+            condition_bitterness = Q(bitterness__range=(keys['bitterness']-absolute_value, keys['bitterness']+absolute_value))
+        if keys.get('aroma') != 0:
+            condition_aroma = Q(aroma__range=(keys['aroma']-absolute_value, keys['aroma']+absolute_value))
+        if keys.get('body') != 0:
+            condition_body= Q(body__range=(keys['body']-absolute_value, keys['body']+absolute_value))
+        if keys.get('drinkability') != 0:
+            condition_drinkability = Q(drinkability__range=(keys['drinkability']-absolute_value, keys['drinkability']+absolute_value))
+        if keys.get('pressure') != 0:
+            condition_pressure = Q(pressure__range=(keys['pressure']-absolute_value, keys['pressure']+absolute_value))
+        if keys.get('specialness') != 0:
+            condition_specialness = Q(specialness__range=(keys['specialness']-absolute_value, keys['specialness']+absolute_value))
+
+        result_list = MODELS.BeerTasteAvg.objects.filter(condition_overall & condition_bitterness & condition_aroma & condition_body & condition_drinkability & condition_pressure & condition_specialness).order_by('?')
+
+        beer_taste_avg_list.extend(result_list)
+        beer_taste_avg_list = sorted(set(beer_taste_avg_list), key=beer_taste_avg_list.index)
+
+        if len(beer_taste_avg_list) >= 10:
+            break
+
+    beer_list = []
+    for beer_taste_avg in beer_taste_avg_list:
+        beer_list.append(beer_taste_avg.beer)
+
+    return beer_list
