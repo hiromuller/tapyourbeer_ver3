@@ -1,5 +1,7 @@
 {% load static %}
 {% load custom_tags %}
+{% ifequal comment_list|length 0 %}
+{% else %}
 <div class="row" id="hrizontalline">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8 text-center">
@@ -11,6 +13,7 @@
   </div>
   <div class="col-0 col-sm-2"></div>
 </div>
+{% endifequal %}
 
 <div class="row" id="hrizontalline">
   <div class="col-3 col-sm-2"></div>
