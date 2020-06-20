@@ -21,3 +21,11 @@ def get_like_count(comment_id):
         return count
     except Exception as e:
         return 0
+
+@register.filter(name='length_over_50')
+def length_over_50(list):
+    count = len(list)
+    if count > 50:
+        return True
+    else:
+        return False
