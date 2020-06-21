@@ -104,7 +104,7 @@ def index(request):
         return view(request)
 
 def view(request):
-    return HOME_VIEWS.index(request)
+    return HOME_VIEWS.Home(request)
 
 def like(request, comment_id):
     logger.info('like method')
@@ -119,3 +119,6 @@ def like(request, comment_id):
         num_like = 0
 
     return JsonResponse({"like":num_like})
+
+def csrf_failure(request):
+    return HOME_VIEWS.Home(request)
