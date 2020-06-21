@@ -190,6 +190,7 @@ NEWS_FEED_URLS = [
                 'https://mycraftbeers.com/feed',
                 'http://japanbeertimes.com/feed/',
                 'https://news.google.com/rss/search?q=%E3%82%AF%E3%83%A9%E3%83%95%E3%83%88%E3%83%93%E3%83%BC%E3%83%AB&hl=ja&gl=JP&ceid=JP:ja',
+                'https://www.craftbeer-times.com/feed/',
                 ]
 
 #一般的なサイト
