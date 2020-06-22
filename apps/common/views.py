@@ -100,6 +100,10 @@ def index(request):
         return MANAGER_VIEWS.untouchedBrewery(request)
     elif action == CONFIG.ACTION_UNTOUCHED_BEER:
         return MANAGER_VIEWS.untouchedBeer(request)
+    elif action == CONFIG.ACTION_LATEST_COMMENT:
+        return MANAGER_VIEWS.latestComment(request)
+    elif action == CONFIG.ACTION_LATEST_USERS:
+        return MANAGER_VIEWS.latestUsers(request)
     else:
         return view(request)
 

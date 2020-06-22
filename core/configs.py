@@ -112,6 +112,9 @@ ACTION_MERGE_VENUE = 'merge_venue' #店舗情報を統合して店舗詳細画�
 ACTION_UPDATE_VENUE = 'update_venue' #店舗情報を更新してビール詳細画面へ遷移
 ACTION_UNTOUCHED_BREWERY = 'untouched_brewery' #未編集のブルワリー一覧を表示
 ACTION_UNTOUCHED_BEER = 'untouched_beer' #未編集のビール一覧を表示
+ACTION_LATEST_COMMENT = 'latest_comment' #最新コメント一覧
+ACTION_LATEST_USERS = 'latest_users' #最新ユーザ一覧
+
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -155,6 +158,8 @@ ACTION_DICT = {
                 'ACTION_MERGE_VENUE':ACTION_MERGE_VENUE,
                 'ACTION_UNTOUCHED_BREWERY':ACTION_UNTOUCHED_BREWERY,
                 'ACTION_UNTOUCHED_BEER':ACTION_UNTOUCHED_BEER,
+                'ACTION_LATEST_COMMENT':ACTION_LATEST_COMMENT,
+                'ACTION_LATEST_USERS':ACTION_LATEST_USERS,
                }
 """
 コンテンツHTML
