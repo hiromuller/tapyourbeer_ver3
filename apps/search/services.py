@@ -6,7 +6,6 @@ from decimal import Decimal
 from core import settings as SETTING
 import logging
 import random
-import pprint
 
 #最大検索結果数
 MAX_RESULTS = 50
@@ -33,8 +32,10 @@ def selectCommentListByUserOverallvalue(user):
         comment_list = []
         n = 5
         for i in range(5):
-            comment_list.extend(MODELS.Comment.objects.filter(user=user, overall=n).order_by('?')[:30])
+            comment_list.extend(MODELS.Comment.objects.filter(user=user, overall=n).order_by('?'))
             n = n - 1
+            if len(comment_list)>30:
+                break
         del comment_list[30:]
         return comment_list
     except:
@@ -59,14 +60,14 @@ def calculateUserEvaluationAveragebyUserEvaluationValue(user):
             pressure_value_list.append(comment.pressure)
             specialness_value_list.append(comment.specialness)
 
-        bitterness_avelage = sum(bitterness_value_list)/len(bitterness_value_list)
-        aroma_avelage = sum(aroma_value_list)/len(aroma_value_list)
-        body_avelage = sum(body_value_list)/len(body_value_list)
-        drinkability_avelage = sum(drinkability_value_list)/len(drinkability_value_list)
-        pressure_avelage = sum(pressure_value_list)/len(pressure_value_list)
-        specialness_avelage = sum(specialness_value_list)/len(specialness_value_list)
+        bitterness_average = sum(bitterness_value_list)/len(bitterness_value_list)
+        aroma_average = sum(aroma_value_list)/len(aroma_value_list)
+        body_average = sum(body_value_list)/len(body_value_list)
+        drinkability_average = sum(drinkability_value_list)/len(drinkability_value_list)
+        pressure_average = sum(pressure_value_list)/len(pressure_value_list)
+        specialness_average = sum(specialness_value_list)/len(specialness_value_list)
 
-        average_list = [bitterness_avelage, aroma_avelage, body_avelage, drinkability_avelage, pressure_avelage, specialness_avelage]
+        average_list = {'bitterness_average':bitterness_average, 'aroma_average':aroma_average, 'body_average':body_average, 'drinkability_average':drinkability_average, 'pressure_average':pressure_average, 'specialness_average':specialness_average}
 
         return average_list
 
@@ -76,38 +77,39 @@ def calculateUserEvaluationAveragebyUserEvaluationValue(user):
 
 def selectRecommendedBeerbyUserEvaluationAverage(user):
     try:
-        user_average_list = calculateUserEvaluationAveragebyUserEvaluationValue(user)
-        beer_list = MODELS.BeerTasteAvg.objects.order_by('?')[:100]
-        defference_value_list = []
-        for beer in beer_list:
+        user_comment_list = []
+        user_comment_list.extend(MODELS.Comment.objects.filter(user=user))
+        if len(user_comment_list)>=5:
+            user_average_list = calculateUserEvaluationAveragebyUserEvaluationValue(user)
+            beer_list = MODELS.BeerTasteAvg.objects.order_by('?')[:100]
+            defference_value_list = []
+            for beer in beer_list:
 
-            beer_evaluation_elements_list = []
-            beer_evaluation_elements_list.append(float(beer.bitterness))
-            beer_evaluation_elements_list.append(float(beer.aroma))
-            beer_evaluation_elements_list.append(float(beer.body))
-            beer_evaluation_elements_list.append(float(beer.pressure))
-            beer_evaluation_elements_list.append(float(beer.drinkability))
-            beer_evaluation_elements_list.append(float(beer.specialness))
+                beer_evaluation_elements_list = []
+                beer_evaluation_elements_list.append(float(beer.bitterness))
+                beer_evaluation_elements_list.append(float(beer.aroma))
+                beer_evaluation_elements_list.append(float(beer.body))
+                beer_evaluation_elements_list.append(float(beer.drinkability))
+                beer_evaluation_elements_list.append(float(beer.pressure))
+                beer_evaluation_elements_list.append(float(beer.specialness))
 
-            evaluation_defference = []
+                evaluation_defference = []
 
-            for a, b in zip(user_average_list, beer_evaluation_elements_list):
-                evaluation_defference.append(abs(a-b))
+                for a, b in zip(user_average_list.values(), beer_evaluation_elements_list):
+                    evaluation_defference.append(abs(a-b))
 
-            defference_value_list.append(sum(evaluation_defference))
+                defference_value_list.append(sum(evaluation_defference))
 
-        recommended_beertasteavg_index = defference_value_list.index(min(defference_value_list))
-        recommended_beer_id = beer_list[recommended_beertasteavg_index].beer.id
-
-        return MODELS.Beer.objects.get(id=recommended_beer_id)
+            recommended_beertasteavg_index = defference_value_list.index(min(defference_value_list))
+        else:
+            None
+        return beer_list[recommended_beertasteavg_index].beer
 
     except:
         return None
 
-def selectNumnerofUserComments(user):
+def selectNumberofUserComments(user):
     try:
-        user_comment_list = []
-        user_comment_list.extend(MODELS.Comment.objects.filter(user=user))
-        return len(user_comment_list)
+        return len(MODELS.Comment.objects.filter(user=user.id))
     except:
         return None
