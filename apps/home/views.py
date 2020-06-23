@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 from core import configs as CONFIG
@@ -16,6 +17,15 @@ def Home(request):
 
     comment_list = SERVICES.selectCommentListByFollowingUser(request.user)
 
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comment_list, 5)
+    try:
+        paginate_comment_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_comment_list = paginator.page(1)
+    except EmptyPage:
+        paginate_comment_list = paginator.page(paginator.num_pages)
+
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.HOME_PAGE_TITLE_URL
     main_content = CONFIG.HOME_MAIN_URL
@@ -25,8 +35,7 @@ def Home(request):
                 'main_content':main_content,
                 }
 
-    c.update({'comment_list':comment_list})
-
+    c.update({'comment_list':paginate_comment_list})
     c.update({'html_title':CONFIG.HOME_HTML_TITLE})
     c.update(url_dict)
     c.update(action_dict)
