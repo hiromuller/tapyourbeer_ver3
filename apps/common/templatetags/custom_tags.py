@@ -29,3 +29,10 @@ def length_over_50(list):
         return True
     else:
         return False
+
+@register.filter(name='int_over_50')
+def int_over_50(int):
+    if int > 50:
+        return True
+    else:
+        return False
