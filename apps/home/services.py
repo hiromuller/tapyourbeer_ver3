@@ -28,7 +28,7 @@ def selectCommentListByFollowingUser(user):
         query = queries.pop()
         for item in queries:
             query |= item
-        comment_list = MODELS.Comment.objects.filter(query).order_by('-registered_date')[:30]
+        comment_list = MODELS.Comment.objects.filter(query).order_by('-registered_date')
         return comment_list
     except:
         return None

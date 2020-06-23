@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 from core import configs as CONFIG
@@ -118,8 +119,6 @@ def userBeerDetail(request):
             result_beer.photo = SERVICES.selectRandomBeerPhotoByBeer(result_beer)
             similar_beer_list.append(result_beer)
 
-    for similar_beer in similar_beer_list:
-        print (similar_beer.name)
     c.update({'user_comment':comment})
     c.update({'beer':comment.beer})
     c.update({'brewery':comment.beer.brewery})
@@ -198,23 +197,45 @@ def showUserUpdate(request):
     c.update(action_dict)
     return render(request, 'common/main.html', c)
 
+
 def showUser(request):
     logger.info('user')
     c = {}
 
     if request.method == "POST":
         key = request.POST["key"]
+    return redirect('/user/?user='+key)
+
+def showUserGet(request):
+    logger.info('user')
+    c = {}
+
+    if request.method == "GET":
+        key = request.GET["user"]
 
     if key is None:
         friend = MODELS.CustomUser()
         friend.id = 0
         friend.username = '存在しません'
+        comment_list = []
     else:
         friend = SERVICES.selectUserById(key)
         comment_list = SERVICES.selectCommentListByUser(friend)
 
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comment_list, 6)
+
+    try:
+        paginate_comment_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_comment_list = paginator.page(1)
+    except EmptyPage:
+        paginate_comment_list = paginator.page(paginator.num_pages)
+
+
     c.update({'friend':friend})
-    c.update({'comment_list':comment_list})
+    c.update({'comment_list':paginate_comment_list})
 
     return show(request, c)
 

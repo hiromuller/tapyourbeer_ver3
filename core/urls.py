@@ -20,6 +20,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.urls import path
 import common.views
+import home.views
+import user.views
 import accounts.views
 admin.autodiscover()
 
@@ -29,6 +31,8 @@ urlpatterns = [
     path('signup/', accounts.views.signup_index, name='signup'),
     path('', include('accounts.urls')),
     path("api/like/<int:comment_id>/", common.views.like, name="like"),
+    path('home/', home.views.Home, name='Home'),
+    path('user/', user.views.showUserGet, name='showUserGet'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
