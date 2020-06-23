@@ -108,9 +108,14 @@
 
               <div id="panel1" class="tab_panel">
 
+                {% if recommended_beer %}
+                <div class=thumbnail>
                 <p>Recommended Beer</p>
-                <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{recommended_beer.id}}');">{{ recommended_beer.name }}</a></b></p>
-                <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{recommended_beer.brewery.id}}');">{{ recommended_beer.brewery.name }}</a></b></p>
+                  <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{recommended_beer.id}}');">{{ recommended_beer.name }}</a></b></p>
+                  <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{recommended_beer.brewery.id}}');">{{ recommended_beer.brewery.name }}</a></b></p>
+                </div>
+                <hr>
+                {% endif %}
 
                 {% if beer_list %}
 
