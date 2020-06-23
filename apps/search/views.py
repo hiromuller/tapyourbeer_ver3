@@ -46,8 +46,6 @@ def searchList(request):
     if num_user_comments >= 5:
         recommended_beer = SERVICES.selectRecommendedBeerbyUserEvaluationAverage(request.user)
         c.update({'recommended_beer':recommended_beer})
-    else:
-        None
 
     return showSearch(request, c)
 
