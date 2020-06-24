@@ -10,15 +10,17 @@
       <div class="subtopic text-center">
         <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{brewery.id}}');">{{ brewery.name }}</a></b></p>
       </div>
+
+      <div class="description-text text-center">
+        {% if beer.style %}style: {{ beer.style }}{% endif %}&nbsp;&nbsp;&nbsp;{% if beer.abv %}abv: {{ beer.abv }}% {% endif %}
+      </div>
+
       {% if user_comment.venue %}
       <div class="description-text text-center">
         <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{ user_comment.venue.id}}');">{{ user_comment.venue.name }}</a></b></p>
       </div>
       {% endif %}
 
-      <div class="description-text text-center">
-        {% if beer.style %}style: {{ beer.style }}{% endif %}&nbsp;&nbsp;&nbsp;{% if beer.abv %}abv: {{ beer.abv }}% {% endif %}
-      </div>
     </div>
 </div>
 
