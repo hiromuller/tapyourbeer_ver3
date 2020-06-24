@@ -92,8 +92,16 @@ def unfollow(request):
     return show(request, c)
 
 def userBeerDetail(request):
+    logger.info('user')
+    c = {}
+
     if request.method == "POST":
-        comment_id = request.POST.get("key")
+        key = request.POST["key"]
+    return redirect('/user-beer/?comment='+key)
+
+def userBeerDetailGet(request):
+    if request.method == "GET":
+        comment_id = request.GET.get("comment")
 
     c ={}
     comment = SERVICES.selectCommentById(comment_id)
@@ -119,11 +127,22 @@ def userBeerDetail(request):
             result_beer.photo = SERVICES.selectRandomBeerPhotoByBeer(result_beer)
             similar_beer_list.append(result_beer)
 
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comment_list, 5)
+
+    try:
+        paginate_comment_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_comment_list = paginator.page(1)
+    except EmptyPage:
+        paginate_comment_list = paginator.page(paginator.num_pages)
+
+
     c.update({'user_comment':comment})
     c.update({'beer':comment.beer})
     c.update({'brewery':comment.beer.brewery})
     c.update({'beer_taste_avg':beer_taste_avg})
-    c.update({'comment_list':comment_list})
+    c.update({'comment_list':paginate_comment_list})
     c.update({'venue_list':venue_list})
     c.update({'similar_beer_list':similar_beer_list})
 

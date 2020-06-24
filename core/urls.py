@@ -33,6 +33,7 @@ urlpatterns = [
     path("api/like/<int:comment_id>/", common.views.like, name="like"),
     path('home/', home.views.Home, name='Home'),
     path('user/', user.views.showUserGet, name='showUserGet'),
+    path('user-beer/', user.views.userBeerDetailGet, name='userBeerDetailGet'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
