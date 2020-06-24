@@ -58,7 +58,7 @@
   </div>
 
   {% if comment_list.has_next %}
-     <a class="infinite-more-link" href="?user={{ request.user.id }}&page={{ comment_list.next_page_number }}">More</a>
+     <a class="infinite-more-link" href="?user={{ friend.id }}&page={{ comment_list.next_page_number }}">More</a>
    {% endif %}
 
 </form>
