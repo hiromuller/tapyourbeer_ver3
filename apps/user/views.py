@@ -252,13 +252,14 @@ def showUserGet(request):
     except EmptyPage:
         paginate_comment_list = paginator.page(paginator.num_pages)
 
-    c.update({'num_drink':len(comment_list)})
     c.update({'friend':friend})
     c.update({'comment_list':paginate_comment_list})
 
     return show(request, c)
 
 def show(request, c):
+
+    c.update({'num_drink':len(c['comment_list'])})
 
     #フォロー判断
     friend = c['friend']
