@@ -158,8 +158,8 @@ def addBeerEvaluationForm(request):
                                                 'brewery_id':beer.brewery.id,
                                                 'brewery_name':beer.brewery.name,
                                                 })
-        form.fields['beer_name'].widget.attrs['readonly'] = 'readonly'
-        form.fields['brewery_name'].widget.attrs['readonly'] = 'readonly'
+        #form.fields['beer_name'].widget.attrs['readonly'] = 'readonly'
+        #form.fields['brewery_name'].widget.attrs['readonly'] = 'readonly'
     else:
         form = FORMS.addCommentForm()
 
