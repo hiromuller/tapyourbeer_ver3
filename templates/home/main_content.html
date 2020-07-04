@@ -104,7 +104,7 @@
                 <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b></span>
                 <span class="description-text">
               <br>is drinking  <a class="home-link" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a> by <a class="home-link" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
-              {% if comment.venue %}<br> at <a class="home-link" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a>{% endif %}
+              {% if comment.venue %} at <a class="home-link" href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a>{% endif %}
               <br><span class="feed-info-left">{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</span><span class="feed-info-right"> {{ comment.registered_date }}</span>
                 </span>
               </p>
