@@ -305,6 +305,12 @@ hr.hr-home{
   padding-bottom: 15px;
 }
 
+/* === ブルワリーロゴ画像設定 ============================= */
+.brewery-logo-search{
+  max-width: 130px;
+  max-height: 75px;
+  padding-bottom: 15px;
+}
 /* === フォロー画面のプロフィール画像設定 ============================= */
 .profile-follow{
   border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */

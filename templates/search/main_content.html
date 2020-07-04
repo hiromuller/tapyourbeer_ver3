@@ -70,63 +70,74 @@
                 </div>
 
 
-                       <div id="panel3" class="tab_panel">
-                         {% if venue_list %}
-                         <hr>
-                           {% for venue in venue_list %}
-                           <div class="topic text-center">
-                             <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{venue.id}}');">{{ venue.name }}</a></b></p>
+                 <div id="panel3" class="tab_panel">
+                   {% if venue_list %}
+                   <hr>
+                     {% for venue in venue_list %}
+                     <div class="topic text-center">
+                       <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{venue.id}}');">{{ venue.name }}</a></b></p>
+                     </div>
+                     <hr>
+                     {% endfor %}
+
+                   {% else %}
+                   <div class="subtopic text-center">
+                     <p><b>There is no related results/keyword not typed</b></p>
+                   </div>
+                   {% endif %}
+                 </div>
+
+
+                 <div id="panel2" class="tab_panel">
+                   {% if brewery_list %}
+                   <hr>
+                     {% for brewery in brewery_list %}
+                       <p>
+                         <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{brewery.id}}');">
+                           {% if brewery.logo %}
+                           <img class="brewery-logo-search" src='{{ MEDIA_URL }}{{brewery.logo}}'>
+                           <div class="subtopic text-center">
+                             <b>{{ brewery.name }}</b>
                            </div>
-                           <hr>
-                           {% endfor %}
+                           {% else %}
+                           <div class="topic text-center">
+                             <b>{{ brewery.name }}</b>
+                           </div>
+                           {% endif %}
+                         </a>
+                       </p>
+                     <hr>
+                     {% endfor %}
 
-                         {% else %}
-                         <div class="subtopic text-center">
-                           <p><b>There is no related results/keyword not typed</b></p>
-                         </div>
-                         {% endif %}
-                       </div>
-
-
-       <div id="panel2" class="tab_panel">
-         {% if brewery_list %}
-         <hr>
-           {% for brewery in brewery_list %}
-           <div class="topic text-center">
-             <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{brewery.id}}');">{{ brewery.name }}</a></b></p>
-           </div>
-           <hr>
-           {% endfor %}
-
-         {% else %}
-         <div class="subtopic text-center">
-           <p><b>There is no related results/keyword not typed</b></p>
-         </div>
-         {% endif %}
-       </div>
+                   {% else %}
+                   <div class="subtopic text-center">
+                     <p><b>There is no related results/keyword not typed</b></p>
+                   </div>
+                   {% endif %}
+                 </div>
 
 
-              <div id="panel1" class="tab_panel">
+                  <div id="panel1" class="tab_panel">
 
-                {% if beer_list %}
-                <hr>
-                  {% for beer in beer_list %}
-                  <div class="topic text-center">
-                    <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+                    {% if beer_list %}
+                    <hr>
+                      {% for beer in beer_list %}
+                      <div class="topic text-center">
+                        <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+                      </div>
+                      <div class="subtopic text-center">
+                        <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
+                      </div>
+                      <hr>
+                      {% endfor %}
+
+                    {% else %}
+                    <div class="subtopic text-center">
+                      <p><b>There is no related results/keyword not typed</b></p>
+                    </div>
+                    {% endif %}
+
                   </div>
-                  <div class="subtopic text-center">
-                    <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
-                  </div>
-                  <hr>
-                  {% endfor %}
-
-                {% else %}
-                <div class="subtopic text-center">
-                  <p><b>There is no related results/keyword not typed</b></p>
-                </div>
-                {% endif %}
-
-              </div>
 
 
        </div>
