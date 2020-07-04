@@ -241,9 +241,17 @@ def showUserGet(request):
         friend = SERVICES.selectUserById(key)
         comment_list = SERVICES.selectCommentListByUser(friend)
 
+    c.update({'comment_list':comment_list})
+    c.update({'friend':friend})
+
+    return show(request, c)
+
+def show(request, c):
+
+    c.update({'num_drink':len(c['comment_list'])})
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(comment_list, 6)
+    paginator = Paginator(c['comment_list'], 6)
 
     try:
         paginate_comment_list = paginator.page(page)
@@ -251,15 +259,7 @@ def showUserGet(request):
         paginate_comment_list = paginator.page(1)
     except EmptyPage:
         paginate_comment_list = paginator.page(paginator.num_pages)
-
-    c.update({'friend':friend})
     c.update({'comment_list':paginate_comment_list})
-
-    return show(request, c)
-
-def show(request, c):
-
-    c.update({'num_drink':len(c['comment_list'])})
 
     #フォロー判断
     friend = c['friend']
