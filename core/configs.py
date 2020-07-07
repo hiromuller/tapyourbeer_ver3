@@ -38,12 +38,14 @@ NEWS_PAGE_TITLE_URL = 'news/page_title.html'
 NEWS_MAIN_URL = 'news/main_content.html'
 NEWS_SUB_URL = 'news/sub_content.html'
 
-
 USER_PAGE_TITLE_URL = 'user/page_title.html'
 USER_MAIN_URL = 'user/main_content.html'
 USER_SUB_URL = 'user/sub_content.html'
 USER_UPDATE_URL = 'user/edit.html'
 USER_FOLLOW_INFO_URL = 'user/follow_info.html'
+USER_BEER_DETAIL_PAGE_TITLE_URL = 'user/beer_detail_page_title.html'
+USER_BEER_DETAIL_MAIN_URL = 'user/beer_detail_main_content.html'
+USER_BEER_DETAIL_SUB_URL = 'user/beer_detail_sub_content.html'
 
 VENUE_PAGE_TITLE_URL = 'venue/page_title.html'
 VENUE_MAIN_URL = 'venue/main_content.html'
@@ -85,6 +87,8 @@ ACTION_FOLLOW = 'follow'
 ACTION_UNFOLLOW = 'unfollow'
 ACTION_FOLLOW_INFO = 'follow_info'
 ACTION_FOLLOWER_INFO = 'follower_info'
+ACTION_USER_BEER_DETAIL = 'user_beer_detail'
+
 #venue機能
 ACTION_VENUE_DETAIL = 'venue_detail'
 #manager機能
@@ -108,6 +112,9 @@ ACTION_MERGE_VENUE = 'merge_venue' #店舗情報を統合して店舗詳細画�
 ACTION_UPDATE_VENUE = 'update_venue' #店舗情報を更新してビール詳細画面へ遷移
 ACTION_UNTOUCHED_BREWERY = 'untouched_brewery' #未編集のブルワリー一覧を表示
 ACTION_UNTOUCHED_BEER = 'untouched_beer' #未編集のビール一覧を表示
+ACTION_LATEST_COMMENT = 'latest_comment' #最新コメント一覧
+ACTION_LATEST_USERS = 'latest_users' #最新ユーザ一覧
+
 
 ACTION_DICT = {
                 'ACTION_HOME':ACTION_HOME,
@@ -130,6 +137,7 @@ ACTION_DICT = {
                 'ACTION_UNFOLLOW':ACTION_UNFOLLOW,
                 'ACTION_FOLLOW_INFO':ACTION_FOLLOW_INFO,
                 'ACTION_FOLLOWER_INFO':ACTION_FOLLOWER_INFO,
+                'ACTION_USER_BEER_DETAIL':ACTION_USER_BEER_DETAIL,
                 'ACTION_VENUE_DETAIL':ACTION_VENUE_DETAIL,
                 'ACTION_DELETE_BEER':ACTION_DELETE_BEER,
                 'ACTION_DELETE_USER':ACTION_DELETE_USER,
@@ -150,6 +158,8 @@ ACTION_DICT = {
                 'ACTION_MERGE_VENUE':ACTION_MERGE_VENUE,
                 'ACTION_UNTOUCHED_BREWERY':ACTION_UNTOUCHED_BREWERY,
                 'ACTION_UNTOUCHED_BEER':ACTION_UNTOUCHED_BEER,
+                'ACTION_LATEST_COMMENT':ACTION_LATEST_COMMENT,
+                'ACTION_LATEST_USERS':ACTION_LATEST_USERS,
                }
 """
 コンテンツHTML
@@ -172,6 +182,7 @@ USER_HTML_TITLE = 'User'
 SEARCH_HTML_TITLE = 'Search'
 DETAIL_SEARCH_HTML_TITLE = 'Detail Search'
 VENUE_HTML_TITLE = 'Venue'
+USER_BEER_DETAIL_HTML_TITLE = 'Personal Beer Detail'
 
 """
 ニュースフィード取得元
@@ -184,6 +195,7 @@ NEWS_FEED_URLS = [
                 'https://mycraftbeers.com/feed',
                 'http://japanbeertimes.com/feed/',
                 'https://news.google.com/rss/search?q=%E3%82%AF%E3%83%A9%E3%83%95%E3%83%88%E3%83%93%E3%83%BC%E3%83%AB&hl=ja&gl=JP&ceid=JP:ja',
+                'https://www.craftbeer-times.com/feed/',
                 ]
 
 #一般的なサイト

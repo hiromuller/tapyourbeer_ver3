@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 from core import configs as CONFIG
@@ -8,6 +9,7 @@ from core import consts as CONSTS
 from core import settings as SETTING
 import common.models as MODELS
 import common.services as COMMON_SERVICES
+import beer.services as BEER_SERVICES
 import user.services as SERVICES
 import user.forms as FORMS
 import logging
@@ -89,6 +91,77 @@ def unfollow(request):
 
     return show(request, c)
 
+def userBeerDetail(request):
+    logger.info('user')
+    c = {}
+
+    if request.method == "POST":
+        key = request.POST["key"]
+    return redirect('/user-beer/?comment='+key)
+
+def userBeerDetailGet(request):
+    if request.method == "GET":
+        comment_id = request.GET.get("comment")
+
+    c ={}
+    comment = SERVICES.selectCommentById(comment_id)
+
+    beer_taste_avg = BEER_SERVICES.selectBeerTasteAvgByBeer(comment.beer)
+    comment_list = list(BEER_SERVICES.selectCommentListByBeer(comment.beer))
+    del comment_list[20:]
+    venue_list = list(BEER_SERVICES.selectVenueListByBeer(comment.beer))
+    del venue_list[20:]
+
+    keys = {'overall':beer_taste_avg.overall,
+            'bitterness':beer_taste_avg.bitterness,
+            'aroma':beer_taste_avg.aroma,
+            'body':beer_taste_avg.body,
+            'drinkability':beer_taste_avg.drinkability,
+            'pressure':beer_taste_avg.pressure,
+            'specialness':beer_taste_avg.specialness,
+            }
+    result_beer_list = SERVICES.selectSimilarBeer(keys)
+    similar_beer_list = []
+    for result_beer in result_beer_list:
+        if not result_beer.id == comment.beer.id:
+            result_beer.photo = SERVICES.selectRandomBeerPhotoByBeer(result_beer)
+            similar_beer_list.append(result_beer)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comment_list, 5)
+
+    try:
+        paginate_comment_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_comment_list = paginator.page(1)
+    except EmptyPage:
+        paginate_comment_list = paginator.page(paginator.num_pages)
+
+
+    c.update({'user_comment':comment})
+    c.update({'beer':comment.beer})
+    c.update({'brewery':comment.beer.brewery})
+    c.update({'beer_taste_avg':beer_taste_avg})
+    c.update({'comment_list':paginate_comment_list})
+    c.update({'venue_list':venue_list})
+    c.update({'similar_beer_list':similar_beer_list})
+
+
+    main_url = CONFIG.TOP_URL
+    page_title = CONFIG.USER_BEER_DETAIL_PAGE_TITLE_URL
+    main_content = CONFIG.USER_BEER_DETAIL_MAIN_URL
+    sub_content = CONFIG.USER_BEER_DETAIL_SUB_URL
+    action_dict = CONFIG.ACTION_DICT
+    url_dict = {'main_url':main_url,
+                'page_title':page_title,
+                'main_content':main_content,
+                'sub_content':sub_content,
+                }
+    c.update({'html_title':CONFIG.USER_BEER_DETAIL_HTML_TITLE})
+    c.update(url_dict)
+    c.update(action_dict)
+    return render(request, 'common/main.html', c)
+
 
 def updateUser(request):
     #更新処理を入れる
@@ -143,27 +216,50 @@ def showUserUpdate(request):
     c.update(action_dict)
     return render(request, 'common/main.html', c)
 
+
 def showUser(request):
     logger.info('user')
     c = {}
 
     if request.method == "POST":
         key = request.POST["key"]
+    return redirect('/user/?user='+key)
+
+def showUserGet(request):
+    logger.info('user')
+    c = {}
+
+    if request.method == "GET":
+        key = request.GET["user"]
 
     if key is None:
         friend = MODELS.CustomUser()
         friend.id = 0
         friend.username = '存在しません'
+        comment_list = []
     else:
         friend = SERVICES.selectUserById(key)
         comment_list = SERVICES.selectCommentListByUser(friend)
 
-    c.update({'friend':friend})
     c.update({'comment_list':comment_list})
+    c.update({'friend':friend})
 
     return show(request, c)
 
 def show(request, c):
+
+    c.update({'num_drink':len(c['comment_list'])})
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(c['comment_list'], 6)
+
+    try:
+        paginate_comment_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_comment_list = paginator.page(1)
+    except EmptyPage:
+        paginate_comment_list = paginator.page(paginator.num_pages)
+    c.update({'comment_list':paginate_comment_list})
 
     #フォロー判断
     friend = c['friend']

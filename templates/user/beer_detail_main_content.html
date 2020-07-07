@@ -1,0 +1,127 @@
+{% load static %}
+{% load custom_tags %}
+<div class="row" id="main_content">
+  <div class="col-0 col-sm-2 profile-frame text-center">
+  </div>
+  <div class="col-12 col-sm-8">
+      <div class="topic text-center">
+          <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+      </div>
+      <div class="subtopic text-center">
+        <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{brewery.id}}');">{{ brewery.name }}</a></b></p>
+      </div>
+
+      <div class="description-text text-center">
+        {% if beer.style %}style: {{ beer.style }}{% endif %}&nbsp;&nbsp;&nbsp;{% if beer.abv %}abv: {{ beer.abv }}% {% endif %}
+      </div>
+
+      {% if user_comment.venue %}
+      <div class="description-text text-center">
+        <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{ user_comment.venue.id}}');">{{ user_comment.venue.name }}</a></b></p>
+      </div>
+      {% endif %}
+
+    </div>
+</div>
+
+<div class="row" id="user-subcontent-beer-list">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    <div class="description-text">
+    {% if user_comment.photo %}
+    <img class="img-fluid" src='{{ MEDIA_URL }}/{{user_comment.photo}}'>
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="row" id="user-subcontent-beer-list">
+  <div class="col-1 col-sm-3"></div>
+  <div class="col-5 col-sm-3">
+    <div class="description-text text-center">
+      <p>{% for i in user_comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</p>
+    </div>
+  </div>
+  <div class="col-5 col-sm-3">
+    <div class="description-text text-center">
+      <p><span class="feed-info-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' user_comment.id %}', {{ user_comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ user_comment.id }}">{{ user_comment.id|get_like_count }}</span></a></span></p>
+    </div>
+  </div>
+</div>
+
+<div class="row" id="user-subcontent-beer-list">
+  <div class="col-1 col-sm-2"></div>
+  <div class="col-2 col-sm-2 text-center">
+    {% if user_comment.user.photo %}
+    <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{user_comment.user.photo}}'>
+    {% else %}
+    <img src="{% static 'images/no-profile-image.png' %}" class="profile-home img-fluid" />
+    {% endif %}
+  </div>
+  <div class="col-8 col-sm-6">
+    <div class="description-text text-left">
+    <p>
+    <span class="description-text"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{user_comment.user.id}}');">{{ user_comment.user.username }}</a></b> says;</span>
+    <br>{{ user_comment.comment }}
+    <br><span class="feed-info-right"> {{ user_comment.registered_date }}</span>
+    {% ifequal request.user.username user_comment.user.username %}<br><span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{user_comment.id}}');">削除</a></span>{% endifequal %}
+    </p>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row" id="content-header">
+    <div class="col-1 col-sm-2"></div>
+    <div class="col-5 col-sm-3">
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="description-text text-center">
+        <p>Average</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-2">
+      <div class="description-text text-center">
+        <p>{{user_comment.user.username}}</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-2"></div>
+</div>
+
+
+<div class="row" id="main_content2">
+    <div class="col-1 col-sm-2"></div>
+    <div class="col-5 col-sm-3">
+      <div class="subtopic text-left">
+        <p>Over All:</p>
+        <p>Bitterness:</p>
+        <p>Aroma:</p>
+        <p>Body:</p>
+        <p>Drinkability:</p>
+        <p>Pressure:</p>
+        <p>Specialness:</p>
+      </div>
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="subtopic text-center">
+        <p>{{ beer_taste_avg.overall }}</p>
+        <p>{{ beer_taste_avg.bitterness }}</p>
+        <p>{{ beer_taste_avg.aroma }}</p>
+        <p>{{ beer_taste_avg.body }}</p>
+        <p>{{ beer_taste_avg.drinkability }}</p>
+        <p>{{ beer_taste_avg.pressure }}</p>
+        <p>{{ beer_taste_avg.specialness }}</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-2">
+      <div class="subtopic text-center">
+        <p>{{ user_comment.overall }}</p>
+        <p>{{ user_comment.bitterness }}</p>
+        <p>{{ user_comment.aroma }}</p>
+        <p>{{ user_comment.body }}</p>
+        <p>{{ user_comment.drinkability }}</p>
+        <p>{{ user_comment.pressure }}</p>
+        <p>{{ user_comment.specialness }}</p>
+      </div>
+    </div>
+    <div class="col-1 col-sm-2"></div>
+</div>

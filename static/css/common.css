@@ -30,11 +30,16 @@
   padding-right: 20px;
   padding-left: 20px;
   width: 100%;
-  background-color: #81bafa;
+  background: linear-gradient(#fff 90%, rgba(255,255,255,0));
 }
 
 #login{
   padding-bottom: 100px
+}
+
+img.like-icon{
+  width: 20px;
+  padding-right:3px;
 }
 
 a.howto-icon{
@@ -81,7 +86,7 @@ section#howto{
 
 #navigation {
   width: 100%;
-  background-color: #4f91db;
+  background-color: #d4d3d3;
 }
 
 #navigation li{
@@ -105,9 +110,13 @@ section#howto{
   width:30%;
 }
 
-.follow-data {
-  padding-left: 5px;
-  padding-right: 5px;
+.follow-data-left {
+  padding-right: 7px;
+  display:inline-block;
+}
+
+.follow-data-right {
+  padding-left: 7px;
   display:inline-block;
 }
 
@@ -123,16 +132,21 @@ section#howto{
 /* howto セクションのスタイル*/
 .howto-topic {
 	font-family: 'M PLUS 1p', sans-serif;
-	color:#FDF9F4;
+	color:#0090ff;
   font-size:2em;
   padding-bottom:30px;
 }
 
 .howto-description {
 	font-family: 'M PLUS 1c', sans-serif;
-	color:#FDF9F4;
+	color:#000000;
   font-size:1.5em;
 	margin-bottom:100px;
+}
+
+a.btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
 }
 
 a.btn-info {
@@ -160,10 +174,27 @@ input {
   float: right;
 }
 
+.feed-info-right-md {
+  font-size:12px;
+  float: right;
+}
+
 .feed-info-left {
   font-size:10px;
   float: left;
   padding-bottom:7px;
+}
+
+.like-block{
+  padding-bottom: 5px;
+  display: inline-block;
+  float: right;
+}
+
+.feed-info-md {
+  font-size:12px;
+  float: center;
+  display: inline-block;
 }
 
 img.feed-star {
@@ -193,12 +224,93 @@ hr.hr-home{
   margin-top: 5px;
   margin-bottom: 15px;
   border: 0;
-  border-top: 0.5px solid #76b3f6;
+  border-top: 0.5px solid #eeeded;
+}
+
+.left-padding-md {
+  padding-left: 20px;
+}
+
+.similar-beer-list {
+  padding-right:15px;
+}
+
+.similar-beer-image{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit:cover;
+  background-position: center center;
+  max-width: 70px;
+  margin-top: 7px;
+  margin-right: 20px;
+}
+
+.home-link {
+  color: #1861b3;
+}
+
+/* === コメントボタン ============================= */
+.comment-btn {
+  width: 100%;
+}
+
+/* === 横スクロール ============================= */
+.horizontal_scroll {
+	/*中身スクロールします*/
+   overflow: auto;
+	/*テーブルを入れた場合、セル内の文字を折り返ししないようにします*/
+   white-space: nowrap;
+	/*惰性を与えてスムーズなスクロールにしますよ*/
+   -webkit-overflow-scrolling: touch;
+}
+
+/* === ユーザ画面の画像一覧設定 ============================= */
+.square-content {
+  object-fit    :cover;
+  width         :100%;
+  padding-bottom: 3px;
+}
+
+.user-subcontent-beer-list-desc > .feed-info-right-md {
+  font-size:12px;
+  float: right;
+  padding-right: 4px;
+}
+
+#user-subcontent-beer-list.row {
+  margin-right:-9px;
+  margin-left:-9px;
+}
+
+#user-subcontent-beer-list > .col-sm-2 {
+  padding-right:1px;
+  padding-left:1px;
+}
+
+#user-subcontent-beer-list > .col-4 {
+  padding-right:1px;
+  padding-left:1px;
+}
+
+#user-subcontent-beer-list > .col-12 {
+  padding-right:1px;
+  padding-left:1px;
+}
+
+#user-subcontent-beer-list > .col-6 {
+  padding-right:1px;
+  padding-left:1px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+.user-subcontent-beer-list-desc {
+  padding-left: 3px;
+  padding-bottom: 17px;
 }
 
 /* === 投稿写真画像設定 ============================= */
 .feed-photo {
-  border-radius: 5%;  /* 角丸半径を50%にする(=円形にする) */  
+  border-radius: 5%;  /* 角丸半径を50%にする(=円形にする) */
 }
 
 /* === ブルワリーロゴ画像設定 ============================= */
@@ -207,6 +319,12 @@ hr.hr-home{
   padding-bottom: 15px;
 }
 
+/* === ブルワリーロゴ画像設定 ============================= */
+.brewery-logo-search{
+  max-width: 130px;
+  max-height: 75px;
+  padding-bottom: 15px;
+}
 /* === フォロー画面のプロフィール画像設定 ============================= */
 .profile-follow{
   border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
@@ -238,6 +356,7 @@ hr.hr-home{
 }
 
 /* === タブのSTYLE設定 ============================= */
+
 @keyframes tabAnim{
  0%{top:-100%;}
  100%{top:0;}
@@ -259,16 +378,16 @@ input[type="radio"]{
 .tab_area label{
   width:80px;
   display:inline-block;
-  color:#fff;
+  color:#d4d3d3;
   background:transparent;
   text-align:center;
   font-size:15px;
   font-family: 'M PLUS Rounded 1c', Helvetica, Arial, sans-serif;
   font-weight:normal;
-  border-top: solid 4px #fff;
-  border-bottom: solid 4px #fff;
-  border-right: solid 2px #fff;
-  border-left: solid 2px #fff;
+  border-top: solid 4px #d4d3d3;
+  border-bottom: solid 4px #d4d3d3;
+  border-right: solid 2px #d4d3d3;
+  border-left: solid 2px #d4d3d3;
   cursor:pointer;
   transition:ease 0.2s opacity;
 }
@@ -282,7 +401,7 @@ input[type="radio"]{
 }
 .tab_panel{
   width:100%;
-  background:#81bafa;
+  background:#fff;
   overflow:hidden;
   position:absolute;
   height:100%;
@@ -298,8 +417,12 @@ input[type="radio"]{
 #tab3:checked ~ .panel_area #panel3{animation:tabAnim ease 0.4s forwards; -ms-animation:tabAnim ease 0.4s forwards; z-index:1;}
 
 .tab_area label.active {
-  background:#fff;
-  color:#81bafa;
+  background:#d4d3d3;
+  color:#fff;
+}
+
+.search-found {
+  color: #000000;
 }
 
 /* === 検索入力欄のSTYLE設定 ============================= */
@@ -352,8 +475,8 @@ a.scroll-down span {
   width: 24px;
   height: 24px;
   margin-left: -12px;
-  border-left: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  border-left: 1px solid #0090ff;
+  border-bottom: 1px solid #0090ff;
   -webkit-transform: rotateZ(-45deg);
   transform: rotateZ(-45deg);
   -webkit-animation: sdb 1.5s infinite;

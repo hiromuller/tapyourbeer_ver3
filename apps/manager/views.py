@@ -18,6 +18,18 @@ import logging
 
 logger = logging.getLogger('app')
 
+def latestComment(request):
+    c = {}
+    comment_list = SERVICES.selectLatestCommentList()
+    c.update({'latest_comment_list':comment_list})
+    return show(request, c)
+
+def latestUsers(request):
+    c = {}
+    user_list = SERVICES.selectLatestUserList()
+    c.update({'latest_user_list':user_list})
+    return show(request, c)
+
 def untouchedBrewery(request):
     c = {}
     untouched_brewery_list = SERVICES.selectUntouchedBrewery()

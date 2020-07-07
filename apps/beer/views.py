@@ -158,8 +158,8 @@ def addBeerEvaluationForm(request):
                                                 'brewery_id':beer.brewery.id,
                                                 'brewery_name':beer.brewery.name,
                                                 })
-        form.fields['beer_name'].widget.attrs['readonly'] = 'readonly'
-        form.fields['brewery_name'].widget.attrs['readonly'] = 'readonly'
+        #form.fields['beer_name'].widget.attrs['readonly'] = 'readonly'
+        #form.fields['brewery_name'].widget.attrs['readonly'] = 'readonly'
     else:
         form = FORMS.addCommentForm()
 
@@ -197,14 +197,13 @@ def beerDetail(request):
 def beerDetailInfo(request, key):
     c = {}
     beer = SERVICES.selectBeerById(key)
-    brewery = SERVICES.selectBreweryById(beer.brewery_id)
     beer_taste_avg = SERVICES.selectBeerTasteAvgByBeer(beer)
     comment_list = list(SERVICES.selectCommentListByBeer(beer))
     del comment_list[20:]
     venue_list = list(SERVICES.selectVenueListByBeer(beer))
     del venue_list[20:]
     c.update({'beer':beer})
-    c.update({'brewery':brewery})
+    c.update({'brewery':beer.brewery})
     c.update({'beer_taste_avg':beer_taste_avg})
     c.update({'comment_list':comment_list})
     c.update({'venue_list':venue_list})

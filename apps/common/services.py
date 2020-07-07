@@ -55,6 +55,21 @@ def resizeImage(img_path):
 
         final_image.save(SETTING.MEDIA_ROOT + '/' + str(img_path), quality=100)
 
+        createThumbnail(img_path)
+
+def createThumbnail(img_path):
+    logger.info('create thumbnail')
+    if img_path:
+        img_resize = Image.open(SETTING.MEDIA_ROOT + '/' + str(img_path))
+
+        new_size = 300
+        # トリミング
+        center_x = int(img_resize.width / 2)
+        center_y = int(img_resize.height / 2)
+        img_crop = img_resize.crop((center_x - new_size / 2, center_y - new_size / 2, center_x + new_size / 2, center_y + new_size / 2))
+        img_crop.save(SETTING.MEDIA_ROOT + '/thumb_' + str(img_path), quality=100)
+
+
 def resizeProfileImage(img_path):
     logger.info('resize profile image')
     if img_path:
@@ -112,3 +127,40 @@ def parseDate(dateData):
         dateData.tm_sec,
         tzinfo=timezone.utc
     )
+
+def selectCommentById(id):
+    try:
+        return MODELS.Comment.objects.get(id=id)
+    except:
+        return None
+
+def addLike(user, comment):
+    try:
+        like = MODELS.Like()
+        like.comment = comment
+        like.user = user
+        like.save()
+        return True
+    except:
+        return False
+
+def deleteLike(user, comment):
+    try:
+        like = MODELS.Like.objects.get(comment=comment.id, user=user.id)
+        like.delete()
+        return True
+    except:
+        return False
+
+def is_liked(user, comment):
+    try:
+        return MODELS.Like.objects.get(comment=comment.id, user=user.id)
+    except:
+        return False
+
+def getLikeCount(comment):
+    try:
+        num = len(MODELS.Like.objects.filter(comment = comment.id))
+        return num
+    except:
+        return 0

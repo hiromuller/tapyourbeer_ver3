@@ -3,6 +3,7 @@
 from django.shortcuts import render
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
+from django.http.response import JsonResponse
 from core import consts as CONST
 from core import configs as CONFIG
 from core import settings as SETTING
@@ -69,6 +70,8 @@ def index(request):
         return USER_VIEWS.followInfo(request)
     elif action == CONFIG.ACTION_FOLLOWER_INFO:
         return USER_VIEWS.followerInfo(request)
+    elif action == CONFIG.ACTION_USER_BEER_DETAIL:
+        return USER_VIEWS.userBeerDetail(request)
     elif action == CONFIG.ACTION_VENUE_DETAIL:
         return VENUE_VIEWS.venueDetail(request)
     elif action == CONFIG.ACTION_DELETE_COMMENT:
@@ -101,8 +104,29 @@ def index(request):
         return MANAGER_VIEWS.untouchedBrewery(request)
     elif action == CONFIG.ACTION_UNTOUCHED_BEER:
         return MANAGER_VIEWS.untouchedBeer(request)
+    elif action == CONFIG.ACTION_LATEST_COMMENT:
+        return MANAGER_VIEWS.latestComment(request)
+    elif action == CONFIG.ACTION_LATEST_USERS:
+        return MANAGER_VIEWS.latestUsers(request)
     else:
         return view(request)
 
 def view(request):
-    return HOME_VIEWS.index(request)
+    return HOME_VIEWS.Home(request)
+
+def like(request, comment_id):
+    logger.info('like method')
+    comment = SERVICES.selectCommentById(comment_id)
+    if comment:
+        if SERVICES.is_liked(request.user, comment):
+            result = SERVICES.deleteLike(request.user, comment)
+        else:
+            result = SERVICES.addLike(request.user, comment)
+        num_like = SERVICES.getLikeCount(comment)
+    else:
+        num_like = 0
+
+    return JsonResponse({"like":num_like})
+
+def csrf_failure(request):
+    return HOME_VIEWS.Home(request)

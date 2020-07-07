@@ -6,10 +6,7 @@
       {% csrf_token %}
       <ul class="navigation navbar w-100 justify-content-around">
         <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_HOME}}');" class="nav-icon"><img src="{% static 'images/home.png' %}" class="nav-icon"/></a>
-        </li>
-        <li>
-          <a href="javascript:void(0)" onClick="movePage('{{ACTION_SEARCH}}');" class="nav-icon"><img src="{% static 'images/search.png' %}" class="nav-icon"/></a>
+          <a href="/home/" class="nav-icon"><img src="{% static 'images/home.png' %}" class="nav-icon"/></a>
         </li>
         <li>
           <a href="javascript:void(0)" onClick="movePage('{{ACTION_NEWS}}');" class="nav-icon"><img src="{% static 'images/nav-news.png' %}" class="nav-icon"/></a>

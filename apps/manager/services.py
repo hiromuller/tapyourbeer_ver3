@@ -4,6 +4,12 @@ from django.db import transaction
 from core import settings as SETTING
 import logging
 
+def selectLatestCommentList():
+    return MODELS.Comment.objects.filter().order_by('registered_date').reverse()[:20]
+
+def selectLatestUserList():
+    return MODELS.CustomUser.objects.filter().order_by('date_joined').reverse()[:50]
+
 def selectUntouchedBrewery():
     return MODELS.Brewery.objects.filter(logo="", address=None, description=None, web=None, webshop=None)
 
@@ -154,7 +160,7 @@ def updateBeerBreweryMerge(base_brewery, merging_brewery):
 
 def deleteBreweryByBrewery(brewery):
     try:
-        MODELS.Brewery.objects.get(brewery=brewery.id).delete()
+        MODELS.Brewery.objects.get(id=brewery.id).delete()
         return True
     except:
         return False

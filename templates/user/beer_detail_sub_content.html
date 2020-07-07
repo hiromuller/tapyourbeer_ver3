@@ -1,0 +1,162 @@
+{% load static %}
+{% load custom_tags %}
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
+</div>
+<form id="list_form" method="post" action="{{main_url}}">
+  {% csrf_token %}
+
+{% if similar_beer_list %}
+  <div class="row" id="subcontent_comment_title">
+    <div class="col-0 col-sm-2"></div>
+    <div class="col-12 col-sm-8">
+      <div class="subtopic text-center">
+        <img src="{% static 'images/subtopic-similar-beer.png' %}" class="page-title-img" />
+      </div>
+    </div>
+    <div class="col-0 col-sm-2"></div>
+  </div>
+<div class="horizontal_scroll">
+  <div class="left-padding-md">
+      {%for similar_beer in similar_beer_list %}
+        {% if similar_beer.photo %}
+        <span class="similar-beer-list">
+          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{similar_beer.id}}');">
+            <img class="similar-beer-image img-fluid" src='{{ MEDIA_URL }}thumb_{{similar_beer.photo}}'>
+          </a>
+        {% else %}
+          <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{similar_beer.id}}');">
+            <img src="{% static 'images/no-beer-image.png' %}" class="similar-beer-image img-fluid" />
+          </a>
+        {% endif %}
+        </span>
+      {% endfor%}
+  </div>
+</div>
+
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
+</div>
+<br>
+
+{% endif %}
+
+<div class="row" id="subcontent_comment_title">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    <div class="subtopic text-center">
+      <img src="{% static 'images/subtopic-comments.png' %}" class="page-title-img" />
+    </div>
+  </div>
+  <div class="col-0 col-sm-2"></div>
+</div>
+<br>
+<div class="row" id="subcontent_comment_list">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8 infinite-container">
+    {% for comment in comment_list %}
+
+    <div class="infinite-item">
+    <div class="row" id="comment_list">
+      <div class="col-2 col-sm-2 profile-frame text-center">
+        {% if comment.user.photo %}
+        <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{comment.user.photo}}'>
+        {% else %}
+        <img src="{% static 'images/no-profile-image.png' %}" class="profile-home img-fluid" />
+        {% endif %}
+      </div>
+
+      <div class="col-10 col-sm-8">
+        <div class="description-text text-left">
+          <p>
+            <span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{comment.user.id}}');">{{ comment.user.username }}</a></b>{% if request.user.is_admin %}<span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a></span>{% endif %}</span>
+            <span class="description-text">
+          {% if comment.venue %}<br> at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a>{% endif %}
+          <br><span class="feed-info-left">{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</span><span class="feed-info-right"> {{ comment.registered_date }}</span>
+            </span>
+          </p>
+        </div>
+      </div>
+    <div class="col-0 col-sm-2"></div>
+    </div>
+
+    <div class="row" id="comment_list">
+    <div class="col-2 col-sm-2"></div>
+    <div class="col-10 col-sm-8">
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+        <div class="description-text text-left">
+          <p>
+            <span class="description-text">
+              {{ comment.comment }}
+            </span>
+          </p>
+        </div>
+      </a>
+      </div>
+    <div class="col-0 col-sm-2"></div>
+    </div>
+
+    <div class="row" id="comment_list">
+    <div class="col-2 col-sm-2"></div>
+    {% if comment.photo %}
+    <div class="col-10 col-sm-8">
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+        <div class="description-text text-left">
+          <p>
+            <span class="description-text">
+              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
+            </span>
+          </p>
+        </div>
+      </a>
+    </div>
+    {% else %}
+    <div class="col-10 col-sm-8"></div>
+    {% endif %}
+    <div class="col-0 col-sm-2"></div>
+    </div>
+
+    <div class="row" id="comment_list">
+    <div class="col-12 col-sm-10">
+      <div class="description-text">
+        <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+      </div>
+    </div>
+    </div>
+
+    <div class="row" id="hrizontalline">
+      <div class="col-0 col-sm-2"></div>
+      <div class="col-12 col-sm-8"><hr class="hr-home"></div>
+      <div class="col-0 col-sm-2"></div>
+    </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+<div class="col-2 col-sm-2"></div>
+</div>
+
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
+</div>
+
+<br>
+
+{% if comment_list.has_next %}
+   <a class="infinite-more-link" href="?comment={{ user_comment.id }}&page={{ comment_list.next_page_number }}">More</a>
+ {% endif %}
+
+</form>
+
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0]
+  });
+</script>

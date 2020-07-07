@@ -1,54 +1,70 @@
 {% load static %}
 {% load custom_tags %}
+{% ifequal comment_list|length 0 %}
+{% else %}
+<div class="row" id="hrizontalline">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8 text-center">
+    {% if num_drink|int_over_50 %}
+    <img src="{% static 'images/beer_count50.png' %}" class="img-fluid"/>
+    {% else %}
+    <img src="/static/images/beer_count{{num_drink}}.png" class="img-fluid"/>
+    {% endif %}
+  </div>
+  <div class="col-0 col-sm-2"></div>
+</div>
+{% endifequal %}
+
 <div class="row" id="hrizontalline">
   <div class="col-3 col-sm-2"></div>
-  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-6 col-sm-8">
+    <hr/>
+  </div>
   <div class="col-3 col-sm-2"></div>
 </div>
 <br>
 <form id="list_form" method="post" action="{{main_url}}">
   {% csrf_token %}
-<div class="row" id="subcontent_beerlist_title">
+
+
+<div class="row" id="user-subcontent-beer-list">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
-    <div class="subtopic text-center">
-      <img src="{% static 'images/subtopic-comments.png' %}" class="page-title-img" />
+    <div class="row infinite-container" id="user-subcontent-beer-list">
+        {% for comment in comment_list %}
+        <div class="col-6 infinite-item">
+              <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{comment.id}}');">
+                {% if comment.photo %}
+                <img class="square-content" src='{{ MEDIA_URL }}thumb_{{comment.photo}}'>
+                {% else %}
+                <img class="square-content" src="{% static 'images/no-beer-image.png' %}" class="img-fluid" />
+                {% endif %}
+              </a>
+              <div class="description-text user-subcontent-beer-list-desc">
+                <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
+                <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %} <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+              </div>
+            </div>
+        {% endfor %}
     </div>
   </div>
-  <div class="col-0 col-sm-2"></div>
 </div>
-<br>
 
-{% for comment in comment_list %}
-<div class="row" id="subcontent_beer_list">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    <div class="description-text text-left">
-      <p><span class="subtopic"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a></b></span><span class="delete-right">{% if request.user.is_admin %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endif %}{% ifequal request.user.id friend.id %} - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{comment.id}}');">削除</a>{% endifequal %}</span>
-        <br>by <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>{% if comment.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{comment.venue.id}}');">{{ comment.venue.name }}</a> {% endif %}
-        <br>苦味:{{comment.bitterness}} 香り:{{comment.aroma}} ボディ:{{comment.body}} 飲み易さ:{{comment.drinkability}} 炭酸:{{comment.pressure}} 独自感:{{comment.specialness}}
-        <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %} <span class="feed-info-right">{{ comment.registered_date }}</span>
-      </p>
-    <p>{{ comment.comment }}</p>
-    {% if comment.photo %}
-          <p>
-              <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{comment.photo}}'>
-          </p>
-    {% endif %}
 
-    </div>
+  <div class="row" id="hrizontalline">
+    <div class="col-3 col-sm-2"></div>
+    <div class="col-6 col-sm-8"><hr/></div>
+    <div class="col-3 col-sm-2"></div>
   </div>
-<div class="col-0 col-sm-2"></div>
-</div>
 
-<hr class="hr-home">
-{% endfor %}
-
-
-<div class="row" id="hrizontalline">
-  <div class="col-3 col-sm-2"></div>
-  <div class="col-6 col-sm-8"><hr/></div>
-  <div class="col-3 col-sm-2"></div>
-</div>
+  {% if comment_list.has_next %}
+     <a class="infinite-more-link" href="?user={{ friend.id }}&page={{ comment_list.next_page_number }}">More</a>
+   {% endif %}
 
 </form>
+
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0]
+  });
+</script>

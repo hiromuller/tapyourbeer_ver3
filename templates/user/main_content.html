@@ -37,11 +37,11 @@
     <form id="list_form" method="post" action="{{main_url}}">
       {% csrf_token %}
     <div class="description-text text-left">
-      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data">follower: {{ num_follower }}</div></a>
+      <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOW_INFO}}', '{{ friend.id }}');"><div class="follow-data-left">follow: {{ num_follow }}</div></a><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_FOLLOWER_INFO}}', '{{ friend.id }}');"><div class="follow-data-right">follower: {{ num_follower }}</div></a>
     </div>
 
     <div class="description-text text-left">
-      飲んだビール数: {{comment_list | length}}杯<br>
+      飲んだビール数: {{num_drink}}杯<br>
     </div>
 
     <div class="description-text text-left">
@@ -50,6 +50,8 @@
     {% if request.user.is_admin%}
       <br><a href="javascript:void(0)" class="btn btn-outline-info" onClick="movePage('{{ACTION_UNTOUCHED_BREWERY}}');">未編集ブルワリー一覧</a>
       <br><a href="javascript:void(0)" class="btn btn-outline-info" onClick="movePage('{{ACTION_UNTOUCHED_BEER}}');">未編集ビール一覧</a>
+      <br><a href="javascript:void(0)" class="btn btn-outline-info" onClick="movePage('{{ACTION_LATEST_COMMENT}}');">最新コメント一覧</a>
+      <br><a href="javascript:void(0)" class="btn btn-outline-info" onClick="movePage('{{ACTION_LATEST_USERS}}');">最新ユーザ一覧</a>
     {% endif %}
 
   {% else %}
