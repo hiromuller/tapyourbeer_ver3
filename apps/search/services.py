@@ -67,9 +67,9 @@ def calculateUserEvaluationAveragebyUserEvaluationValue(user):
         pressure_average = sum(pressure_value_list)/len(pressure_value_list)
         specialness_average = sum(specialness_value_list)/len(specialness_value_list)
 
-        average_list = {'bitterness_average':bitterness_average, 'aroma_average':aroma_average, 'body_average':body_average, 'drinkability_average':drinkability_average, 'pressure_average':pressure_average, 'specialness_average':specialness_average}
+        average_dict = {'bitterness_average':bitterness_average, 'aroma_average':aroma_average, 'body_average':body_average, 'drinkability_average':drinkability_average, 'pressure_average':pressure_average, 'specialness_average':specialness_average}
 
-        return average_list
+        return average_dict
 
     except:
         return None
@@ -80,23 +80,25 @@ def selectRecommendedBeerbyUserEvaluationAverage(user):
         user_comment_list = []
         user_comment_list.extend(MODELS.Comment.objects.filter(user=user))
         if len(user_comment_list)>=5:
-            user_average_list = calculateUserEvaluationAveragebyUserEvaluationValue(user)
+            user_average_dict = calculateUserEvaluationAveragebyUserEvaluationValue(user)
             beer_list = MODELS.BeerTasteAvg.objects.order_by('?')[:100]
             defference_value_list = []
             for beer in beer_list:
 
-                beer_evaluation_elements_list = []
-                beer_evaluation_elements_list.append(float(beer.bitterness))
-                beer_evaluation_elements_list.append(float(beer.aroma))
-                beer_evaluation_elements_list.append(float(beer.body))
-                beer_evaluation_elements_list.append(float(beer.drinkability))
-                beer_evaluation_elements_list.append(float(beer.pressure))
-                beer_evaluation_elements_list.append(float(beer.specialness))
+
+                beer_evaluation_elements_dict = {}
+                beer_evaluation_elements_dict['bitterness_average']=float(beer.bitterness)
+                beer_evaluation_elements_dict['aroma_average']=float(beer.aroma)
+                beer_evaluation_elements_dict['body_average']=float(beer.body)
+                beer_evaluation_elements_dict['drinkability_average']=float(beer.drinkability)
+                beer_evaluation_elements_dict['pressure_average']=float(beer.pressure)
+                beer_evaluation_elements_dict['specialness_average']=float(beer.specialness)
 
                 evaluation_defference = []
 
-                for a, b in zip(user_average_list.values(), beer_evaluation_elements_list):
-                    evaluation_defference.append(abs(a-b))
+                for a, b in zip(user_average_dict.values(), beer_evaluation_elements_dict.values()):
+                    evaluation_defference_value=abs(a-b)
+                    evaluation_defference.append(evaluation_defference_value)
 
                 defference_value_list.append(sum(evaluation_defference))
 

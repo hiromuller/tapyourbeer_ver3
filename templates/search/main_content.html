@@ -108,6 +108,8 @@
 
               <div id="panel1" class="tab_panel">
 
+                {% if beer_list %}
+
                 {% if recommended_beer %}
                 <div class=thumbnail>
                 <p>Recommended Beer</p>
@@ -116,9 +118,6 @@
                 </div>
                 <hr>
                 {% endif %}
-
-                {% if beer_list %}
-
 
                   {% for beer in beer_list %}
                   <div class="topic text-center">
