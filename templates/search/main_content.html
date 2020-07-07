@@ -121,15 +121,23 @@
 
                     {% if beer_list %}
                     <hr>
-                      {% for beer in beer_list %}
-                      <div class="topic text-center">
-                        <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
-                      </div>
-                      <div class="subtopic text-center">
-                        <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
-                      </div>
-                      <hr>
-                      {% endfor %}
+                    {% if recommended_beer %}
+                    <div class=thumbnail>
+                      <p>Recommended Beer</p>
+                      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{recommended_beer.id}}');">{{ recommended_beer.name }}</a></b></p>
+                      <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{recommended_beer.brewery.id}}');">{{ recommended_beer.brewery.name }}</a></b></p>
+                    </div>
+                    <hr>
+                    {% endif %}
+                    {% for beer in beer_list %}
+                    <div class="topic text-center">
+                      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+                    </div>
+                    <div class="subtopic text-center">
+                      <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
+                    </div>
+                    <hr>
+                    {% endfor %}
 
                     {% else %}
                     <div class="subtopic text-center">

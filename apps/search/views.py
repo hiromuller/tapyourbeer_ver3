@@ -42,6 +42,10 @@ def searchList(request):
     else:
         return index(request)
 
+    num_user_comments = SERVICES.selectNumberofUserComments(request.user)
+    if num_user_comments >= 5:
+        recommended_beer = SERVICES.selectRecommendedBeerbyUserEvaluationAverage(request.user)
+        c.update({'recommended_beer':recommended_beer})
 
     return showSearch(request, c)
 
@@ -49,7 +53,6 @@ def index(request):
     logger.info('search')
     c = {}
     search_form = {'search_form':FORMS.searchForm()}
-
     c.update(search_form)
     return showSearch(request, c)
 
