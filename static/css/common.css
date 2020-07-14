@@ -227,6 +227,13 @@ hr.hr-home{
   border-top: 0.5px solid #eeeded;
 }
 
+hr.hr-recommend{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0;
+  border-top: 0.5px solid #eeeded;
+}
+
 .left-padding-md {
   padding-left: 20px;
 }
@@ -353,6 +360,12 @@ hr.hr-home{
 
 .profile-frame {
   padding-right: 0px;
+}
+
+/* === おすすめビール画像設定 ============================= */
+.recommend-beer {
+  background-position: left;
+  max-height: 20px;
 }
 
 /* === タブのSTYLE設定 ============================= */
