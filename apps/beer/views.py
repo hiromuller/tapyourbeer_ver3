@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 from core import configs as CONFIG
@@ -129,7 +129,8 @@ def addBeerEvaluation(request):
                 COMMON_COMMANDS.saveAverage(beer)
 
                 if comment:
-                    return beerDetailInfo(request, beer.id)
+                    #return beerDetailInfo(request, beer.id)
+                    return redirect('/user-beer/?comment='+str(comment.id))
                 else:
                     c.update({'form_message':MSG.COMMENT_NOT_ADDED})
 
