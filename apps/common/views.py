@@ -104,6 +104,8 @@ def index(request):
         return MANAGER_VIEWS.untouchedBrewery(request)
     elif action == CONFIG.ACTION_UNTOUCHED_BEER:
         return MANAGER_VIEWS.untouchedBeer(request)
+    elif action == CONFIG.ACTION_UNTOUCHED_VENUE:
+        return MANAGER_VIEWS.untouchedVenue(request)
     elif action == CONFIG.ACTION_LATEST_COMMENT:
         return MANAGER_VIEWS.latestComment(request)
     elif action == CONFIG.ACTION_LATEST_USERS:

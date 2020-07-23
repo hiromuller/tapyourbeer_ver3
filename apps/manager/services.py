@@ -16,6 +16,9 @@ def selectUntouchedBrewery():
 def selectUntouchedBeer():
     return MODELS.Beer.objects.filter(photo="", style=None, description=None, ibu=None, abv=None)
 
+def selectUntouchedVenue():
+    return MODELS.Venue.objects.filter(photo="", address=None, description=None)
+
 def deleteCommentById(id):
     try:
         MODELS.Comment.objects.get(id=id).delete()

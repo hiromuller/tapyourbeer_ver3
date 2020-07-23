@@ -92,12 +92,15 @@ class Venue(models.Model):
     description = models.CharField(max_length=200, null=True, blank=True)
     # アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
+    # photo (画像）
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def encode(self):
         return {
             'gurunavi_id': self.gurunavi_id,
             'name': self.name,
             'address': self.address,
+            'photo': self.photo,
         }
 
 class TodaysTap(models.Model):

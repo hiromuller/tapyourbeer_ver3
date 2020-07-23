@@ -26,9 +26,13 @@ def venueDetailInfo(request, key):
     c = {}
     venue = SERVICES.selectVenueById(key)
     comment_list = SERVICES.selectCommentListByVenue(venue)
+    beer_list = SERVICES.selectBeerListByVenue(venue)
+    brewery_list = SERVICES.selectBreweryListByBeerList(beer_list)
 
     c.update({'venue':venue})
     c.update({'comment_list':comment_list})
+    c.update({'beer_list':beer_list})
+    c.update({'brewery_list':brewery_list})
     return showVenueDetail(request, c)
 
 def showVenueDetail(request, c):

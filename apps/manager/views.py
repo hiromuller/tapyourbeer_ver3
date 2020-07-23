@@ -44,6 +44,13 @@ def untouchedBeer(request):
 
     return show(request, c)
 
+def untouchedVenue(request):
+    c = {}
+    untouched_venue_list = SERVICES.selectUntouchedVenue()
+    c.update({'untouched_venue_list':untouched_venue_list})
+
+    return show(request, c)
+
 def deleteComment(request):
     if request.method == "POST":
         key = request.POST.get("key")
@@ -182,7 +189,16 @@ def updateVenue(request):
     if request.method == "POST":
         venue_id = request.POST.get("venue_id")
 
-    if form.is_valid() and venue_id:
+    venue = SERVICES.selectVenueById(venue_id)
+    previous_photo = venue.photo
+
+    if venue:
+        form = FORMS.updateVenueForm(request.POST, request.FILES, instance=venue)
+    else:
+        return SEARCH_VIEWS.index(request)
+
+    if form.is_valid():
+        """
         venue = SERVICES.selectVenueById(venue_id)
         venue.name = COMMON_SERVICES.normalizeStr(form.cleaned_data.get('name'))
         try:
@@ -194,14 +210,18 @@ def updateVenue(request):
         except:
             venue.description = None
         venue.save()
+        """
+        form.save()
+        if venue.photo:
+            COMMON_SERVICES.resizeImage(venue.photo)
+        if previous_photo:
+            if previous_photo != str(venue.photo):
+                os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_photo))
+                pass
     else:
         return SEARCH_VIEWS.index(request)
 
-    c = {}
-    comment_list = SERVICES.selectCommentListByVenue(venue)
-    c.update({'venue':venue})
-    c.update({'comment_list':comment_list})
-    return VENUE_VIEWS.showVenueDetail(request, c)
+    return VENUE_VIEWS.venueDetailInfo(request, venue.id)
 
 
 def showVenueUpdate(request):
@@ -218,6 +238,7 @@ def showVenueUpdate(request):
                                         'name':venue.name,
                                         'address':venue.address,
                                         'description':venue.description,
+                                        'photo':venue.photo,
                                         })
 
     c.update({'venue':venue})

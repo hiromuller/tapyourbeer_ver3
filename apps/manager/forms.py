@@ -39,13 +39,17 @@ class updateVenueForm(forms.ModelForm):
 
     class Meta:
         model = MODELS.Venue
-        fields = ('name', 'address', 'description')
+        fields = ('name', 'photo', 'address', 'description')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+    def clean_name(self):
+        name = COMMON_SERVICES.normalizeStr(self.cleaned_data.get('name'))
+        return name
 
 class mergeBreweryForm(forms.Form):
     base_brewery_id = forms.CharField(label='ベースとなるブルワリー', max_length=200)

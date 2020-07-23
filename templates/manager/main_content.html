@@ -98,6 +98,18 @@
       </form>
       {% endif %}
 
+      {% if untouched_venue_list %}
+      <form id="list_form" enctype="multipart/form-data" method="POST" action="{{main_url}}">
+        {% csrf_token %}
+        {% for venue in untouched_venue_list %}
+        <div class="topic text-center">
+          <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{venue.id}}');">{{ venue.name }}</a></b></p>
+        </div>
+        <hr>
+        {% endfor %}
+      </form>
+      {% endif %}
+
       {% if latest_comment_list %}
       <form id="list_form" enctype="multipart/form-data" method="POST" action="{{main_url}}">
         {% csrf_token %}
