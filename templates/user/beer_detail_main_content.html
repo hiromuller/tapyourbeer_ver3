@@ -11,9 +11,11 @@
         <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{brewery.id}}');">{{ brewery.name }}</a></b></p>
       </div>
 
+      {% if beer.style or beer.abv %}
       <div class="description-text text-center">
         {% if beer.style %}style: {{ beer.style }}{% endif %}&nbsp;&nbsp;&nbsp;{% if beer.abv %}abv: {{ beer.abv }}% {% endif %}
       </div>
+      {% endif %}
 
       {% if user_comment.venue %}
       <div class="description-text text-center">

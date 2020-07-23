@@ -320,6 +320,12 @@ hr.hr-recommend{
   border-radius: 5%;  /* 角丸半径を50%にする(=円形にする) */
 }
 
+/* === 店舗画像設定 ============================= */
+.venue-photo-top{
+  width: 100%;
+  padding-bottom: 25px;
+}
+
 /* === ブルワリーロゴ画像設定 ============================= */
 .brewery-logo-top{
   width: 130px;

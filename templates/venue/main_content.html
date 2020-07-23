@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
-    <div id="main_content">
+    {% if venue.photo %}
+    <img class="venue-photo-top" src='{{ MEDIA_URL }}{{venue.photo}}'>
+    <br>
+    {% endif %}
 
       <div class="topic text-center">
           <p><b>{{ venue.name }}</b></p>
       </div>
-      <br>
 
-    </div>
   </div>
   <div class="col-0 col-sm-2"></div>
 </div>
@@ -18,7 +19,7 @@
 <div class="row">
   <div class="col-0 col-sm-2"></div>
     <div class="col-12 col-sm-8">
-      <div class="subtopic text-center">
+      <div class="description-text text-center">
         {{ venue.address }}
       </div>
     </div>
