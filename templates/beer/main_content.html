@@ -65,3 +65,28 @@
     </div>
     <div class="col-2 col-sm-3"></div>
 </div>
+
+{% if venue_list %}
+<br>
+<div class="row" id="subcontent_comment_title">
+  <div class="col-0 col-sm-2"></div>
+  <div class="col-12 col-sm-8">
+    <div class="subtopic text-center">
+      <img src="{% static 'images/subtopic-venues.png' %}" class="page-title-img" />
+    </div>
+  </div>
+  <div class="col-0 col-sm-2"></div>
+</div>
+
+<div class="row" id="subcontent_venue_list">
+  <div class="col-1 col-sm-2"></div>
+  <div class="col-10 col-sm-8">
+    <div class="description-text text-center">
+    {% for venue in venue_list %}
+    <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{venue.id}}');">{{ venue.name }}</a>,
+    {% endfor %}
+  </div>
+</div>
+<div class="col-1 col-sm-2"></div>
+</div>
+{% endif %}
