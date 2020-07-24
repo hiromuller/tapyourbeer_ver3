@@ -19,6 +19,48 @@ def normalizeStr(str):
     return str
 
 
+def resizeImage_venue_header(img_path):
+    logger.info('resize image venue header')
+    if img_path:
+        new_max_width = 800
+        img = Image.open(SETTING.MEDIA_ROOT + '/' + str(img_path))
+        #exif情報取得
+        try:
+            exifinfo = img._getexif()
+        except:
+            exifinfo = None
+
+        if exifinfo:
+            #exif情報からOrientationの取得
+            orientation = exifinfo.get(0x112, 1)
+            #画像を回転
+            rot_img = rotateImage(img, orientation)
+        else:
+            #exif情報が取得できなかった場合は、そのまま処理を続ける
+            rot_img = img
+
+        img_w, img_h = rot_img.size
+        aspect_ratio = img_w / float(img_h)
+
+        #リサイズ
+        if img_w >= new_max_width:
+            new_width = new_max_width
+            new_height = new_width/aspect_ratio
+            resized_image = rot_img.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
+        else:
+            resized_image = rot_img
+
+        #高さトリミング
+        if resized_image.height > resized_image.width / 2:
+            crop_height = resized_image.width / 2
+            center_y = int(resized_image.height / 2)
+            final_image = resized_image.crop((0, center_y - crop_height / 2, resized_image.width, center_y + crop_height / 2))
+        else:
+            final_image = resized_image
+
+        final_image.save(SETTING.MEDIA_ROOT + '/' + str(img_path), quality=100)
+
+
 def resizeImage(img_path):
     logger.info('resize image')
     if img_path:

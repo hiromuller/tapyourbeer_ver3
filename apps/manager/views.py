@@ -213,7 +213,7 @@ def updateVenue(request):
         """
         form.save()
         if venue.photo:
-            COMMON_SERVICES.resizeImage(venue.photo)
+            COMMON_SERVICES.resizeImage_venue_header(venue.photo)
         if previous_photo:
             if previous_photo != str(venue.photo):
                 os.remove(SETTING.MEDIA_ROOT + '/' + str(previous_photo))
