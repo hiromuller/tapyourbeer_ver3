@@ -60,6 +60,18 @@ def selectCommentById(id):
     except:
         return None
 
+def selectCommentListByBeerExcludeTargetComment(beer, comment):
+    try:
+        query_result_list = MODELS.Comment.objects.filter(beer=beer.id).order_by('registered_date').reverse()
+        comment_list = []
+        for query_result in query_result_list:
+            if not query_result == comment:
+                comment_list.append(query_result)
+        return comment_list
+    except:
+        return []
+
+
 def selectCommentListByUser(user):
     try:
         comment_list = MODELS.Comment.objects.filter(user = user.id).order_by('registered_date').reverse()

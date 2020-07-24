@@ -107,10 +107,7 @@ def userBeerDetailGet(request):
     comment = SERVICES.selectCommentById(comment_id)
 
     beer_taste_avg = BEER_SERVICES.selectBeerTasteAvgByBeer(comment.beer)
-    comment_list = list(BEER_SERVICES.selectCommentListByBeer(comment.beer))
-    del comment_list[20:]
-    venue_list = list(BEER_SERVICES.selectVenueListByBeer(comment.beer))
-    del venue_list[20:]
+    comment_list = SERVICES.selectCommentListByBeerExcludeTargetComment(comment.beer, comment)
 
     keys = {'overall':beer_taste_avg.overall,
             'bitterness':beer_taste_avg.bitterness,
@@ -143,7 +140,6 @@ def userBeerDetailGet(request):
     c.update({'brewery':comment.beer.brewery})
     c.update({'beer_taste_avg':beer_taste_avg})
     c.update({'comment_list':paginate_comment_list})
-    c.update({'venue_list':venue_list})
     c.update({'similar_beer_list':similar_beer_list})
 
 
