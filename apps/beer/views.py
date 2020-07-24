@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from core import configs as CONFIG
 from core import consts as CONSTS
 from core import settings as SETTING
@@ -190,6 +191,12 @@ def beerDetail(request):
     if request.method == "POST":
         key = request.POST["key"]
 
+    return redirect('/beer/?beer='+key)
+
+def beerDetailGet(request):
+    if request.method == "GET":
+        key = request.GET.get("beer")
+
     if key is None:
         return HOME_VIEWS.index(request)
     else:
@@ -200,18 +207,23 @@ def beerDetailInfo(request, key):
     beer = SERVICES.selectBeerById(key)
     beer_taste_avg = SERVICES.selectBeerTasteAvgByBeer(beer)
     comment_list = list(SERVICES.selectCommentListByBeer(beer))
-    del comment_list[20:]
     venue_list = list(SERVICES.selectVenueListByBeer(beer))
-    del venue_list[20:]
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comment_list, 5)
+
+    try:
+        paginate_comment_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_comment_list = paginator.page(1)
+    except EmptyPage:
+        paginate_comment_list = paginator.page(paginator.num_pages)
+
+    c.update({'comment_list':paginate_comment_list})
     c.update({'beer':beer})
     c.update({'brewery':beer.brewery})
     c.update({'beer_taste_avg':beer_taste_avg})
-    c.update({'comment_list':comment_list})
     c.update({'venue_list':venue_list})
-    return showBeerDetail(request, c)
-
-
-def showBeerDetail(request, c):
 
     main_url = CONFIG.TOP_URL
     page_title = CONFIG.BEER_PAGE_TITLE_URL

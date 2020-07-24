@@ -22,6 +22,7 @@ from django.urls import path
 import common.views
 import home.views
 import user.views
+import beer.views
 import accounts.views
 admin.autodiscover()
 
@@ -34,6 +35,7 @@ urlpatterns = [
     path('home/', home.views.Home, name='Home'),
     path('user/', user.views.showUserGet, name='showUserGet'),
     path('user-beer/', user.views.userBeerDetailGet, name='userBeerDetailGet'),
+    path('beer/', beer.views.beerDetailGet, name='beerDetailGet'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

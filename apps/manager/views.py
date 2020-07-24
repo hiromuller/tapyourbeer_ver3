@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_protect
 from core import configs as CONFIG
@@ -128,8 +128,8 @@ def mergeBeer(request):
     else:
         return SEARCH_VIEWS.index(request)
 
-    return BEER_VIEWS.beerDetailInfo(request, base_beer.id)
-
+    #return BEER_VIEWS.beerDetailInfo(request, base_beer.id)
+    return redirect('/beer/?beer='+str(base_beer.id))
 
 def showBeerMerge(request):
     logger.info('show beer merge form')
@@ -348,7 +348,8 @@ def updateBeer(request):
     else:
         return SEARCH_VIEWS.index(request)
 
-    return BEER_VIEWS.beerDetailInfo(request, beer.id)
+    #return BEER_VIEWS.beerDetailInfo(request, beer.id)
+    return redirect('/beer/?beer='+str(beer.id))
 
 def showBeerUpdate(request):
     logger.info('show beer update form')
