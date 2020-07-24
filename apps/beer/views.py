@@ -198,7 +198,7 @@ def beerDetailGet(request):
         key = request.GET.get("beer")
 
     if key is None:
-        return HOME_VIEWS.index(request)
+        return HOME_VIEWS.Home(request)
     else:
         return beerDetailInfo(request, key)
 

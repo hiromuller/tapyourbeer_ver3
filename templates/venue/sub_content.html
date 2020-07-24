@@ -46,7 +46,9 @@
 </div>
 
 <br>
+<div class="infinite-container">
 {% for comment in comment_list %}
+<div class="infinite-item">
 <div class="row">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
@@ -72,11 +74,28 @@
 <div class="row" id="comment_list">
   <div class="col-12 col-sm-10">
     <div class="description-text">
-      <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+      <span class="like-block feed-info-right-md">
+        <a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})">
+          <img src="{% static 'images/pre_like.png' %}" class="like-icon" />
+          <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span>
+        </a>
+      </span>
     </div>
   </div>
 </div>
 
 <hr class="hr-home">
+</div>
 {% endfor %}
+</div>
+{% if comment_list.has_next %}
+   <a class="infinite-more-link" href="?venue={{ venue.id }}&page={{ comment_list.next_page_number }}">More</a>
+{% endif %}
+
 </form>
+
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0]
+  });
+</script>

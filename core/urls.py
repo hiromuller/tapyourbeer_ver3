@@ -24,6 +24,7 @@ import home.views
 import user.views
 import beer.views
 import brewery.views
+import venue.views
 import accounts.views
 admin.autodiscover()
 
@@ -38,6 +39,7 @@ urlpatterns = [
     path('user-beer/', user.views.userBeerDetailGet, name='userBeerDetailGet'),
     path('beer/', beer.views.beerDetailGet, name='beerDetailGet'),
     path('brewery/', brewery.views.breweryDetailGet, name='breweryDetailGet'),
+    path('venue/', venue.views.venueDetailGet, name='venueDetailGet'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

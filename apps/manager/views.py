@@ -182,7 +182,8 @@ def mergeVenue(request):
     else:
         return SEARCH_VIEWS.index(request)
 
-    return VENUE_VIEWS.venueDetailInfo(request, base_venue.id)
+    #return VENUE_VIEWS.venueDetailInfo(request, base_venue.id)
+    return redirect('/venue/?venue='+str(base_venue.id))
 
 def updateVenue(request):
     form = FORMS.updateVenueForm(request.POST)
@@ -221,7 +222,8 @@ def updateVenue(request):
     else:
         return SEARCH_VIEWS.index(request)
 
-    return VENUE_VIEWS.venueDetailInfo(request, venue.id)
+    #return VENUE_VIEWS.venueDetailInfo(request, venue.id)
+    return redirect('/venue/?venue='+str(venue.id))
 
 
 def showVenueUpdate(request):
