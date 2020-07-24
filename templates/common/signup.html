@@ -22,37 +22,38 @@
           <div class="signupform">
           <div class="fieldWrapper form-group">
           {{ SignUpForm.username.errors }}
-          <label for="id_name">名前:</label>
+          <label for="id_name">ユーザー名</label>
           {{ SignUpForm.username }}
+          <span class="account-note">（ログイン時に使用します。また、ユーザ名として表示されます。）</span>
           </div>
 
           <div class="fieldWrapper form-group signup-selecter">
           {{ SignUpForm.gender_style.errors }}
-          <label for="id_gender_style">性別スタイル:</label>
+          <label for="id_gender_style">性別スタイル</label>
           {{ SignUpForm.gender_style }}
           </div>
 
           <div class="fieldWrapper form-group signup-selecter">
           {{ SignUpForm.birthday.errors }}
-          <label for="id_birthday">生年月日:</label>
+          <label for="id_birthday">生年月日</label>
           {{ SignUpForm.birthday }}
           </div>
 
           <div class="fieldWrapper form-group">
           {{ SignUpForm.password1.errors }}
-          <label for="id_password1">パスワード:</label>
+          <label for="id_password1">パスワード</label>
           {{ SignUpForm.password1 }}
           </div>
 
           <div class="fieldWrapper form-group">
           {{ SignUpForm.password2.errors }}
-          <label for="id_password2">パスワード再入力:</label>
+          <label for="id_password2">パスワード再入力</label>
           {{ SignUpForm.password2 }}
           </div>
 
           <div class="fieldWrapper form-group">
           {{ SignUpForm.email.errors }}
-          <label for="id_email">メールアドレス:</label>
+          <label for="id_email">メールアドレス</label>
           {{ SignUpForm.email }}
           </div>
 

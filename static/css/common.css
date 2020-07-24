@@ -129,6 +129,11 @@ section#howto{
   height: 30px;
 }
 
+.account-note {
+  font-size: 10px;
+  color: gray;
+}
+
 /* howto セクションのスタイル*/
 .howto-topic {
 	font-family: 'M PLUS 1p', sans-serif;
