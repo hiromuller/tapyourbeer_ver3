@@ -15,7 +15,7 @@ def selectBeerListByNameKey(key):
     return beer_list
 
 def selectBreweryListByNameKey(key):
-    brewery_list = MODELS.Brewery.objects.filter(name__icontains=key, is_active=True)[:MAX_RESULTS]
+    brewery_list = MODELS.Brewery.objects.filter(Q(name__icontains=key) | Q(address__icontains=key), is_active=True)[:MAX_RESULTS]
     return brewery_list
 
 def selectVenueListByNameKey(key):
