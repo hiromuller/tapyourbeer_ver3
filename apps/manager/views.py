@@ -88,8 +88,8 @@ def mergeBrewery(request):
     else:
         return SEARCH_VIEWS.index(request)
 
-    return BREWERY_VIEWS.breweryDetailInfo(request, base_brewery.id)
-
+    #return BREWERY_VIEWS.breweryDetailInfo(request, base_brewery.id)
+    return redirect('/brewery/?brewery='+str(base_brewery.id))
 
 def showBreweryMerge(request):
     logger.info('show breweru merge form')
@@ -292,7 +292,8 @@ def updateBrewery(request):
         return SEARCH_VIEWS.index(request)
 
 
-    return BREWERY_VIEWS.breweryDetailInfo(request, brewery.id)
+    #return BREWERY_VIEWS.breweryDetailInfo(request, brewery.id)
+    return redirect('/brewery/?brewery='+str(brewery.id))
 
 
 def showBreweryUpdate(request):
