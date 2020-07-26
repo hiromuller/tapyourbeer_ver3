@@ -18,7 +18,7 @@
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
     <div class="description-text text-center">
-      {% if brewery.address %} <a href="https://www.google.com/maps/search/?api=1&query={{ venue.address }}" target="_blank"><img src="{% static 'images/gmap.png' %}" class="feed-star" />{{ brewery.address }}</a> {% endif %}
+      {% if brewery.address %} <a href="https://www.google.com/maps/search/?api=1&query={{ brewery.address }}" target="_blank"><img src="{% static 'images/gmap.png' %}" class="feed-star" />{{ brewery.address }}</a> {% endif %}
       {%if brewery.web %}<br> <a href="{{brewery.web}}" target="_blank"><img src="{% static 'images/new_window.png' %}" class="feed-star" />web</a> {% endif %}{%if brewery.webshop %}<br> <a href="{{brewery.webshop}}" target="_blank"><img src="{% static 'images/new_window.png' %}" class="feed-star" />webshop</a> {% endif %}
     </div>
   </div>
