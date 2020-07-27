@@ -168,7 +168,17 @@
               </a>
               <div class="description-text user-subcontent-beer-list-desc">
                 <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{comment.beer.id}}');">{{ comment.beer.name }}</a> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{comment.beer.brewery.id}}');">{{ comment.beer.brewery.name }}</a>
-                <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %} <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+                <br>{% for i in comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}
+                 <span class="like-block feed-info-right-md">
+                   <a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})">
+                     {% if comment.id|is_liked:request.user%}
+                     <img src="{% static 'images/liked.png' %}" class="like-icon" id="comment-like-{{ comment.id }}" />
+                     {% else %}
+                     <img src="{% static 'images/pre_like.png' %}" class="like-icon" id="comment-like-{{ comment.id }}" />
+                     {% endif %}
+                      <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span>
+                    </a>
+                 </span>
               </div>
             </div>
         {% endfor %}
