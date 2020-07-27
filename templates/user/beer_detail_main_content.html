@@ -39,14 +39,33 @@
 
 <div class="row" id="user-subcontent-beer-list">
   <div class="col-1 col-sm-3"></div>
-  <div class="col-5 col-sm-3">
+  <div class="col-4 col-sm-3">
     <div class="description-text text-center">
       <p>{% for i in user_comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</p>
     </div>
   </div>
-  <div class="col-5 col-sm-3">
-    <div class="description-text text-center">
-      <p><span class="feed-info-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' user_comment.id %}', {{ user_comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ user_comment.id }}">{{ user_comment.id|get_like_count }}</span></a></span></p>
+  <div class="col-3 col-sm-3 description-text text-center">
+    <div class="feed-info-md">
+      <a role="button" aria-pressed="false" onclick="comment_wish('{% url 'comment_wish' user_comment.id %}', {{ user_comment.id }})">
+        {% if user_comment.id|comment_is_wished:request.user%}
+        <img src="{% static 'images/wishlist_on.png' %}" class="wish-icon" id="comment-wish-{{ user_comment.id }}" />
+        {% else %}
+        <img src="{% static 'images/wishlist_off.png' %}" class="wish-icon" id="comment-wish-{{ user_comment.id }}" />
+        {% endif %}
+         <span id="comment-wish-count-{{ user_comment.id }}">{{ user_comment.id|get_comment_wish_count }}</span>
+       </a>
+    </div>
+  </div>
+  <div class="col-3 col-sm-3 description-text text-center">
+    <div class="feed-info-md">
+      <a role="button" aria-pressed="false" onclick="like('{% url 'like' user_comment.id %}', {{ user_comment.id }})">
+        {% if user_comment.id|is_liked:request.user%}
+        <img src="{% static 'images/liked.png' %}" class="like-icon" id="comment-like-{{ user_comment.id }}" />
+        {% else %}
+        <img src="{% static 'images/pre_like.png' %}" class="like-icon" id="comment-like-{{ user_comment.id }}" />
+        {% endif %}
+         <span id="like-count-{{ user_comment.id }}">{{ user_comment.id|get_like_count }}</span>
+       </a>
     </div>
   </div>
 </div>
@@ -66,7 +85,10 @@
     <span class="description-text"><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{user_comment.user.id}}');">{{ user_comment.user.username }}</a></b> says;</span>
     <br>{{ user_comment.comment }}
     <br><span class="feed-info-right"> {{ user_comment.registered_date }}</span>
-    {% ifequal request.user.username user_comment.user.username %}<br><span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{user_comment.id}}');">削除</a></span>{% endifequal %}
+    {% ifequal request.user.username user_comment.user.username %}
+    <br>
+    <span class="feed-info-right"> - <a href="javascript:void(0)" onClick="deleteRecord('{{ACTION_DELETE_COMMENT}}', '{{user_comment.id}}');">削除</a></span>
+    {% endifequal %}
     </p>
     </div>
   </div>

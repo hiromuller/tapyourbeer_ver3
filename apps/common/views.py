@@ -122,13 +122,46 @@ def like(request, comment_id):
     if comment:
         if SERVICES.is_liked(request.user, comment):
             result = SERVICES.deleteLike(request.user, comment)
+            like_img = '/static/images/pre_like.png'
         else:
             result = SERVICES.addLike(request.user, comment)
+            like_img = '/static/images/liked.png'
         num_like = SERVICES.getLikeCount(comment)
     else:
         num_like = 0
 
-    return JsonResponse({"like":num_like})
+    return JsonResponse({"like":num_like, "like_img":like_img})
+
+
+def comment_wish(request, item_id):
+    logger.info('comment wish method')
+    comment = SERVICES.selectCommentById(item_id)
+    if comment:
+        if SERVICES.comment_is_wished(request.user, comment):
+            result = SERVICES.deleteCommentWish(request.user, comment)
+            wish_img = '/static/images/wishlist_off.png'
+        else:
+            result = SERVICES.addCommentWish(request.user, comment)
+            wish_img = '/static/images/wishlist_on.png'
+        num_wish = SERVICES.getCommentWishCount(comment)
+    else:
+        num_wish = 0
+
+    return JsonResponse({"wish":num_wish, "wish_img":wish_img})
+
+
+def beer_wish(request, item_id):
+    logger.info('beer wish method')
+    beer = SERVICES.selectBeerById(item_id)
+    if beer:
+        if SERVICES.beer_is_wished(request.user, beer):
+            result = SERVICES.deleteBeerWish(request.user, beer)
+            wished = False
+        else:
+            result = SERVICES.addBeerWish(request.user, beer)
+            wished = True
+
+    return JsonResponse({"wished":wished})
 
 def csrf_failure(request):
     return HOME_VIEWS.Home(request)

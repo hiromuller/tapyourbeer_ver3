@@ -34,6 +34,8 @@ urlpatterns = [
     path('signup/', accounts.views.signup_index, name='signup'),
     path('', include('accounts.urls')),
     path("api/like/<int:comment_id>/", common.views.like, name="like"),
+    path("api/comment_wish/<int:item_id>/", common.views.comment_wish, name="comment_wish"),
+    path("api/beer_wish/<int:item_id>/", common.views.beer_wish, name="beer_wish"),
     path('home/', home.views.Home, name='Home'),
     path('user/', user.views.showUserGet, name='showUserGet'),
     path('user-beer/', user.views.userBeerDetailGet, name='userBeerDetailGet'),

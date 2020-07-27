@@ -176,6 +176,12 @@ def selectCommentById(id):
     except:
         return None
 
+def selectBeerById(id):
+    try:
+        return MODELS.Beer.objects.get(id=id)
+    except:
+        return None
+
 def addLike(user, comment):
     try:
         like = MODELS.Like()
@@ -206,3 +212,61 @@ def getLikeCount(comment):
         return num
     except:
         return 0
+
+def comment_is_wished(user, comment):
+    try:
+        return MODELS.WishList.objects.get(item_category=4, item_id=comment.id, user_id=user.id)
+    except:
+        return False
+
+def deleteCommentWish(user, comment):
+    try:
+        wish = MODELS.WishList.objects.get(item_category=4, item_id=comment.id, user_id=user.id)
+        wish.delete()
+        return True
+    except:
+        return False
+
+def addCommentWish(user, comment):
+    try:
+        wish = MODELS.WishList()
+        wish.item_category = 4
+        wish.item_id = comment.id
+        wish.user = user
+        wish.save()
+        return True
+    except:
+        return False
+
+def getCommentWishCount(comment):
+    try:
+        num = len(MODELS.WishList.objects.filter(item_category=4, item_id=comment.id))
+        print ("bbbbbbb")
+        return num
+    except:
+        return 0
+
+def beer_is_wished(user, beer):
+    try:
+        return MODELS.WishList.objects.get(item_category=1, item_id=beer.id, user_id=user.id)
+    except:
+        return False
+
+def deleteBeerWish(user, beer):
+    try:
+        wish = MODELS.WishList.objects.get(item_category=1, item_id=beer.id, user_id=user.id)
+        wish.delete()
+        return True
+    except:
+        return False
+
+def addBeerWish(user, beer):
+    try:
+        wish = MODELS.WishList()
+        wish.item_category = 1
+        wish.item_id = beer.id
+        wish.user = user
+        wish.save()
+        return True
+    except:
+        return False

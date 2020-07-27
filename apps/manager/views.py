@@ -60,11 +60,7 @@ def deleteComment(request):
         SERVICES.deleteCommentById(key)
         comment_list = SERVICES.selectCommentListByUser(user)
 
-    #ユーザ画面に遷移する処理を入れる
-    c = {}
-    c.update({'friend':user})
-    c.update({'comment_list':comment_list})
-    return USER_VIEWS.show(request, c)
+    return redirect('/user/?user='+str(user.id))
 
 
 def mergeBrewery(request):

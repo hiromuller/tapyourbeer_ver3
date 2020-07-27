@@ -22,6 +22,44 @@ def get_like_count(comment_id):
     except Exception as e:
         return 0
 
+@register.filter(name='is_liked')
+def is_liked(comment_id, user_id):
+    try:
+        if len(MODELS.Like.objects.filter(comment=comment_id, user=user_id)) == 0:
+            return False
+        else:
+            return True
+    except Exception as e:
+        return False
+
+@register.filter(name='get_comment_wish_count')
+def get_comment_wish_count(comment_id):
+    try:
+        count = len(MODELS.WishList.objects.filter(item_category=4, item_id=comment_id))
+        return count
+    except Exception as e:
+        return 0
+
+@register.filter(name='comment_is_wished')
+def comment_is_wished(comment_id, user_id):
+    try:
+        if len(MODELS.WishList.objects.filter(item_category=4, item_id=comment_id, user=user_id)) == 0:
+            return False
+        else:
+            return True
+    except Exception as e:
+        return False
+
+@register.filter(name='beer_is_wished')
+def comment_is_wished(beer_id, user_id):
+    try:
+        if len(MODELS.WishList.objects.filter(item_category=1, item_id=beer_id, user=user_id)) == 0:
+            return False
+        else:
+            return True
+    except Exception as e:
+        return False
+
 @register.filter(name='length_over_50')
 def length_over_50(list):
     count = len(list)

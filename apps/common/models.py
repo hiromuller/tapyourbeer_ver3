@@ -314,6 +314,20 @@ class NewsFeed(models.Model):
             'date': self.date,
         }
 
+class WishList(models.Model):
+    """
+    ウィッシュリストモデル
+    1=beer, 2=brewery, 3=venue, 4=comment
+    """
+    #　アイテムカテゴリ
+    item_category = models.IntegerField(choices=CONST.WISH_ITEM_CATEGORY_CHOICES)
+    # アイテムID
+    item_id = models.IntegerField()
+    # ユーザー
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    # 日時
+    date = models.DateTimeField(default=timezone.now)
+
 
 admin.site.register(Beer)
 admin.site.register(Brewery)
@@ -328,3 +342,4 @@ admin.site.register(VenueManager)
 admin.site.register(Like)
 admin.site.register(BeerTasteAvg)
 admin.site.register(NewsFeed)
+admin.site.register(WishList)

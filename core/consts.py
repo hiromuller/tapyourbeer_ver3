@@ -118,6 +118,17 @@ USER_RANK_CHOICES = (
                 )
 
 """
+wish listのアイテムカテゴリチョイス
+カテゴリ名はテーブル名と対応させる
+"""
+WISH_ITEM_CATEGORY_CHOICES = (
+                (1,'Beer'),
+                (2,'Brewery'),
+                (3,'Venue'),
+                (4,'Comment')
+)
+
+"""
 国
 """
 COUNTRY_CHOICES = (

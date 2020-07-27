@@ -17,3 +17,4 @@ PLEASE_INSERT_ALL_EVALUATION = 'すべての評価項目を入力してくださ
 BEER_DOES_NOT_EXIST = '入力されたIDのビールは存在しません'
 SAME_VALUE_INPUT = '同じ値が入力されています'
 BREWERY_DOES_NOT_EXIST = '入力されたIDのブルワリーは存在しません'
+NO_WISHES ='no wishes yet...'

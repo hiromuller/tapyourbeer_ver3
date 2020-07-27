@@ -6,6 +6,7 @@ from django.db import transaction
 from django.db.models import Q
 from decimal import Decimal
 from core import settings as SETTING
+from core import messages as MSGS
 import logging
 
 #最大SQL発行数
@@ -78,6 +79,85 @@ def selectCommentListByUser(user):
         return comment_list
     except:
         return []
+
+class ModWish(object):
+    pass
+
+def selectItemByCategoryAndId(item_category, id):
+    try:
+        if item_category == 1:
+            item = selectBeerById(id)
+        elif item_category == 2:
+            item = selectBreweryById(id)
+        elif item_category == 3:
+            item = selectVenueById(id)
+        elif item_category == 4:
+            item = selectCommentById(id)
+        else:
+            return None
+        return item
+    except:
+        return None
+
+def selectBeerById(id):
+    try:
+        beer = MODELS.Beer.objects.get(id=id)
+        return beer
+    except:
+        return None
+
+def selectBreweryById(id):
+    try:
+        beer = MODELS.Brewery.objects.get(id=id)
+        return beer
+    except:
+        return None
+
+def selectVenueById(id):
+    try:
+        beer = MODELS.Venue.objects.get(id=id)
+        return beer
+    except:
+        return None
+
+def selectCommentById(id):
+    try:
+        beer = MODELS.Comment.objects.get(id=id)
+        return beer
+    except:
+        return None
+
+def selectWishListByUser(user):
+    try:
+        wish_list = MODELS.WishList.objects.filter(user = user.id).order_by('date').reverse()
+
+        if len(wish_list) == 0:
+            wish_list = []
+            wish = MODELS.WishList()
+            wish.item_category = 5
+            wish.item_id = MSGS.NO_WISHES
+            wish_list.append(wish)
+        else:
+            mod_wish_list = []
+            for wish in wish_list:
+                mod_wish = ModWish()
+                mod_wish.item_category = wish.item_category
+                mod_wish.item = selectItemByCategoryAndId(wish.item_category, wish.item_id)
+                mod_wish.date = wish.date
+                if mod_wish.item:
+                    mod_wish_list.append(mod_wish)
+
+            wish_list = mod_wish_list
+
+        return wish_list
+    except:
+
+        wish_list = []
+        wish = MODELS.WishList()
+        wish.item_category = 5
+        wish.item_id = MSGS.NO_WISHES
+        wish_list.append(wish)
+        return wish_list
 
 def selectFollowListByUser(user):
     try:

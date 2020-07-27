@@ -42,6 +42,11 @@ img.like-icon{
   padding-right:3px;
 }
 
+img.wish-icon{
+  width: 20px;
+  padding-right:3px;
+}
+
 a.howto-icon{
   padding-right: 5px;
   width: 25px;
@@ -154,6 +159,16 @@ a.btn-outline-primary {
   border-color: #007bff;
 }
 
+a.btn-outline-success {
+  color: #01ae26;
+  border-color: #01ae26;
+}
+
+a.btn-success {
+  color: #ffffff;
+  border-color: #01ae26;
+}
+
 a.btn-info {
   color: #fff;
   background-color: #00c1de;
@@ -179,9 +194,17 @@ input {
   float: right;
 }
 
+.bottom-margin-sm {
+  margin-bottom:7px;
+}
+
 .feed-info-right-md {
   font-size:12px;
   float: right;
+}
+
+.has-padding-right-feed {
+  padding-right: 20px;
 }
 
 .feed-info-left {
@@ -232,6 +255,13 @@ hr.hr-home{
   border-top: 0.5px solid #eeeded;
 }
 
+hr.hr-home-lg{
+  margin-top: 10px;
+  margin-bottom: 25px;
+  border: 0;
+  border-top: 0.5px solid #eeeded;
+}
+
 hr.hr-recommend{
   margin-top: 5px;
   margin-bottom: 5px;
@@ -258,6 +288,29 @@ hr.hr-recommend{
 
 .home-link {
   color: #1861b3;
+}
+
+/* === ユーザ画面のサブトピックリンク ============================= */
+.user_page_subtopic {
+  padding-top:10px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.user_page_selected {
+  color: #646464;
+  border-bottom:solid;
+  border-width: 1px;
+  border-color: #646464;
+}
+
+.user_page_unselected  > a {
+  color: #9b9c9b;
+}
+
+/* === wishボタン ============================= */
+.wish-btn {
+  width: 100%;
 }
 
 /* === コメントボタン ============================= */

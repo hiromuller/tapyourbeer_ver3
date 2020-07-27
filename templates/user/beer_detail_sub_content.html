@@ -123,7 +123,27 @@
     <div class="row" id="comment_list">
     <div class="col-12 col-sm-10">
       <div class="description-text">
-        <span class="like-block feed-info-right-md"><a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})"> <img src="{% static 'images/pre_like.png' %}" class="like-icon" /> <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span></a></span>
+        <span class="like-block feed-info-right-md">
+        <span class="has-padding-right-feed">
+        <a role="button" aria-pressed="false" onclick="comment_wish('{% url 'comment_wish' comment.id %}', {{ comment.id }})">
+          {% if comment.id|comment_is_wished:request.user%}
+          <img src="{% static 'images/wishlist_on.png' %}" class="wish-icon" id="comment-wish-{{ comment.id }}" />
+          {% else %}
+          <img src="{% static 'images/wishlist_off.png' %}" class="wish-icon" id="comment-wish-{{ comment.id }}" />
+          {% endif %}
+           <span id="comment-wish-count-{{ comment.id }}">{{ comment.id|get_comment_wish_count }}</span>
+         </a>
+         </span>
+
+         <a role="button" aria-pressed="false" onclick="like('{% url 'like' comment.id %}', {{ comment.id }})">
+           {% if comment.id|is_liked:request.user%}
+           <img src="{% static 'images/liked.png' %}" class="like-icon" id="comment-like-{{ comment.id }}" />
+           {% else %}
+           <img src="{% static 'images/pre_like.png' %}" class="like-icon" id="comment-like-{{ comment.id }}" />
+           {% endif %}
+            <span id="like-count-{{ comment.id }}">{{ comment.id|get_like_count }}</span>
+          </a>
+        </span>
       </div>
     </div>
     </div>

@@ -221,12 +221,21 @@ def showUser(request):
         key = request.POST["key"]
     return redirect('/user/?user='+key)
 
+
 def showUserGet(request):
     logger.info('user')
     c = {}
 
     if request.method == "GET":
-        key = request.GET["user"]
+        try:
+            key = request.GET["user"]
+        except:
+            key = None
+        try:
+            wishlist_flg = request.GET["wishlist"]
+        except:
+            wishlist_flg = False
+
 
     if key is None:
         friend = MODELS.CustomUser()
@@ -240,7 +249,28 @@ def showUserGet(request):
     c.update({'comment_list':comment_list})
     c.update({'friend':friend})
 
+    if wishlist_flg:
+        return showWishList(request, c)
+
     return show(request, c)
+
+def showWishList(request, c):
+    c.update({'num_drink':len(c['comment_list'])})
+
+    wish_list = SERVICES.selectWishListByUser(c['friend'])
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(wish_list, 5)
+
+    try:
+        paginate_wish_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginate_wish_list = paginator.page(1)
+    except EmptyPage:
+        paginate_wish_list = paginator.page(paginator.num_pages)
+    c.update({'wish_list':paginate_wish_list})
+
+    return showPage(request, c)
 
 def show(request, c):
 
@@ -256,6 +286,10 @@ def show(request, c):
     except EmptyPage:
         paginate_comment_list = paginator.page(paginator.num_pages)
     c.update({'comment_list':paginate_comment_list})
+
+    return showPage(request, c)
+
+def showPage(request, c):
 
     #フォロー判断
     friend = c['friend']
