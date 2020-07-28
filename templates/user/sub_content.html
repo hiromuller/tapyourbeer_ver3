@@ -99,7 +99,7 @@
                 <p>
                   <span class="subtopic">{{ wish.item.name }}</span>
                   <span class="description-text">
-                    <p>{{ wish.item.description }}</p>
+                    <p>{% if wish.item.description %}{{ wish.item.description }}{% endif %}</p>
                   </span>
                 </p>
               </div>
@@ -110,7 +110,7 @@
                 <p>
                   <span class="subtopic">{{ wish.item.name }}</span>
                   <span class="description-text">
-                    <p>{{ wish.item.description }}</p>
+                    <p>{% if wish.item.description %}{{ wish.item.description }}{% endif %}</p>
                   </span>
                 </p>
               </div>
