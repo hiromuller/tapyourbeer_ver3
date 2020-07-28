@@ -163,5 +163,31 @@ def beer_wish(request, item_id):
 
     return JsonResponse({"wished":wished})
 
+def brewery_wish(request, item_id):
+    logger.info('brewery wish method')
+    brewery = SERVICES.selectBreweryById(item_id)
+    if brewery:
+        if SERVICES.brewery_is_wished(request.user, brewery):
+            result = SERVICES.deleteBreweryWish(request.user, brewery)
+            wished = False
+        else:
+            result = SERVICES.addBreweryWish(request.user, brewery)
+            wished = True
+
+    return JsonResponse({"wished":wished})
+
+def venue_wish(request, item_id):
+    logger.info('venue wish method')
+    venue = SERVICES.selectVenueById(item_id)
+    if venue:
+        if SERVICES.venue_is_wished(request.user, venue):
+            result = SERVICES.deleteVenueWish(request.user, venue)
+            wished = False
+        else:
+            result = SERVICES.addVenueWish(request.user, venue)
+            wished = True
+
+    return JsonResponse({"wished":wished})
+
 def csrf_failure(request):
     return HOME_VIEWS.Home(request)

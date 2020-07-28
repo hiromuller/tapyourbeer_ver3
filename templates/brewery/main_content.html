@@ -36,6 +36,25 @@
 </div>
 {% endif %}
 
+<div class="row">
+  <div class="col-3 col-sm-4"></div>
+  <div class="col-6 col-sm-4">
+    <div class="description-text text-center">
+      {% if brewery.id|brewery_is_wished:request.user%}
+      <a href="javascript:void(0)" class="wish-btn btn btn-success" id ="wish-brewery-{{ brewery.id }}" onClick="brewery_wish('{% url 'brewery_wish' brewery.id %}', {{ brewery.id }})">
+        wished!
+      </a>
+      {% else %}
+      <a href="javascript:void(0)" class="wish-btn btn btn-outline-success" id ="wish-brewery-{{ brewery.id }}" onClick="brewery_wish('{% url 'brewery_wish' brewery.id %}', {{ brewery.id }})">
+        気になる！
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-3 col-sm-4"></div>
+</div>
+
+
 <form id="list_form" method="post" action="{{main_url}}">
   {% csrf_token %}
 

@@ -182,6 +182,18 @@ def selectBeerById(id):
     except:
         return None
 
+def selectBreweryById(id):
+    try:
+        return MODELS.Brewery.objects.get(id=id)
+    except:
+        return None
+
+def selectVenueById(id):
+    try:
+        return MODELS.Venue.objects.get(id=id)
+    except:
+        return None
+
 def addLike(user, comment):
     try:
         like = MODELS.Like()
@@ -265,6 +277,56 @@ def addBeerWish(user, beer):
         wish = MODELS.WishList()
         wish.item_category = 1
         wish.item_id = beer.id
+        wish.user = user
+        wish.save()
+        return True
+    except:
+        return False
+
+def brewery_is_wished(user, brewery):
+    try:
+        return MODELS.WishList.objects.get(item_category=2, item_id=brewery.id, user_id=user.id)
+    except:
+        return False
+
+def deleteBreweryWish(user, brewery):
+    try:
+        wish = MODELS.WishList.objects.get(item_category=2, item_id=brewery.id, user_id=user.id)
+        wish.delete()
+        return True
+    except:
+        return False
+
+def addBreweryWish(user, brewery):
+    try:
+        wish = MODELS.WishList()
+        wish.item_category = 2
+        wish.item_id = brewery.id
+        wish.user = user
+        wish.save()
+        return True
+    except:
+        return False
+
+def venue_is_wished(user, venue):
+    try:
+        return MODELS.WishList.objects.get(item_category=3, item_id=venue.id, user_id=user.id)
+    except:
+        return False
+
+def deleteVenueWish(user, venue):
+    try:
+        wish = MODELS.WishList.objects.get(item_category=3, item_id=venue.id, user_id=user.id)
+        wish.delete()
+        return True
+    except:
+        return False
+
+def addVenueWish(user, venue):
+    try:
+        wish = MODELS.WishList()
+        wish.item_category = 3
+        wish.item_id = venue.id
         wish.user = user
         wish.save()
         return True

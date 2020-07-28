@@ -56,7 +56,7 @@
             <div class="col-0 col-sm-2"></div>
             {% if wish.item.brewery.logo %}
             <div class="col-3 col-sm-2 profile-frame text-center">
-              <img class="profile-home img-fluid" src='{{ MEDIA_URL }}{{wish.item.brewery.logo}}'>
+              <img class="wish-logo img-fluid" src='{{ MEDIA_URL }}{{wish.item.brewery.logo}}'>
             </div>
             <div class="col-9 col-sm-8">
               <div class="description-text text-left">
@@ -83,13 +83,80 @@
           <div class="col-0 col-sm-2"></div>
           </div>
         </a>
-
-
         <hr class="hr-home-lg">
         {% endifequal %}
 
+        {% ifequal wish.item_category 2 %}
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{wish.item.id}}');">
+          <div class="row" id="brewery_list">
+            <div class="col-0 col-sm-2"></div>
+            {% if wish.item.logo %}
+            <div class="col-3 col-sm-2 profile-frame text-center">
+              <img class="wish-logo img-fluid" src='{{ MEDIA_URL }}{{wish.item.logo}}'>
+            </div>
+            <div class="col-9 col-sm-8">
+              <div class="description-text text-left">
+                <p>
+                  <span class="subtopic">{{ wish.item.name }}</span>
+                  <span class="description-text">
+                    <p>{{ wish.item.description }}</p>
+                  </span>
+                </p>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-12 col-sm-8">
+              <div class="description-text text-left">
+                <p>
+                  <span class="subtopic">{{ wish.item.name }}</span>
+                  <span class="description-text">
+                    <p>{{ wish.item.description }}</p>
+                  </span>
+                </p>
+              </div>
+            </div>
+            {% endif %}
+          <div class="col-0 col-sm-2"></div>
+          </div>
+        </a>
+        <hr class="hr-home-lg">
+        {% endifequal %}
 
-
+        {% ifequal wish.item_category 3 %}
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{wish.item.id}}');">
+          <div class="row" id="venue_list">
+            <div class="col-0 col-sm-2"></div>
+            {% if wish.item.photo %}
+            <div class="col-3 col-sm-2 profile-frame text-center">
+              <img class="wish-logo img-fluid" src='{{ MEDIA_URL }}{{wish.item.photo}}'>
+            </div>
+            <div class="col-9 col-sm-8">
+              <div class="description-text text-left">
+                <p>
+                  <span class="subtopic">{{ wish.item.name }}</span>
+                  <span class="description-text">
+                    <p>{{ wish.item.address }}</p>
+                  </span>
+                </p>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-12 col-sm-8">
+              <div class="description-text text-left">
+                <p>
+                  <span class="subtopic">{{ wish.item.name }}</span>
+                  <span class="description-text">
+                    <p>{{ wish.item.address }}</p>
+                  </span>
+                </p>
+              </div>
+            </div>
+            {% endif %}
+          <div class="col-0 col-sm-2"></div>
+          </div>
+        </a>
+        <hr class="hr-home-lg">
+        {% endifequal %}
 
         {% ifequal wish.item_category 4 %}
           <div class="row" id="comment_list">

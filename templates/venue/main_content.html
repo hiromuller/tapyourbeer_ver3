@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <div class="row">
   <div class="col-0 col-sm-2"></div>
   <div class="col-12 col-sm-8">
@@ -38,6 +39,23 @@
 </div>
 {% endif %}
 
+<div class="row">
+  <div class="col-3 col-sm-4"></div>
+  <div class="col-6 col-sm-4">
+    <div class="description-text text-center">
+      {% if venue.id|venue_is_wished:request.user%}
+      <a href="javascript:void(0)" class="wish-btn btn btn-success" id ="wish-venue-{{ venue.id }}" onClick="venue_wish('{% url 'venue_wish' venue.id %}', {{ venue.id }})">
+        wished!
+      </a>
+      {% else %}
+      <a href="javascript:void(0)" class="wish-btn btn btn-outline-success" id ="wish-venue-{{ venue.id }}" onClick="venue_wish('{% url 'venue_wish' venue.id %}', {{ venue.id }})">
+        行きたい！
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-3 col-sm-4"></div>
+</div>
 
 {% if request.user.is_admin %}
 <form id="list_form" method="post" action="{{main_url}}">

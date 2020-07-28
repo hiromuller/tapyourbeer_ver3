@@ -51,9 +51,29 @@ def comment_is_wished(comment_id, user_id):
         return False
 
 @register.filter(name='beer_is_wished')
-def comment_is_wished(beer_id, user_id):
+def beer_is_wished(beer_id, user_id):
     try:
         if len(MODELS.WishList.objects.filter(item_category=1, item_id=beer_id, user=user_id)) == 0:
+            return False
+        else:
+            return True
+    except Exception as e:
+        return False
+
+@register.filter(name='brewery_is_wished')
+def brewery_is_wished(brewery_id, user_id):
+    try:
+        if len(MODELS.WishList.objects.filter(item_category=2, item_id=brewery_id, user=user_id)) == 0:
+            return False
+        else:
+            return True
+    except Exception as e:
+        return False
+
+@register.filter(name='venue_is_wished')
+def venue_is_wished(venue_id, user_id):
+    try:
+        if len(MODELS.WishList.objects.filter(item_category=3, item_id=venue_id, user=user_id)) == 0:
             return False
         else:
             return True

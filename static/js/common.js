@@ -120,3 +120,45 @@ function beer_wish(api_url, beer_id) {
     request.open("GET",api_url);
     request.send();
 }
+
+function brewery_wish(api_url, brewery_id) {
+    var btn = document.getElementById("wish-brewery-" + brewery_id);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var received_data = JSON.parse(request.responseText);
+            if (received_data.wished) {
+              btn.classList.remove('btn-outline-success');
+              btn.classList.add('btn-success');
+              btn.innerText = "wish listに追加しました";
+            } else{
+              btn.classList.remove('btn-success');
+              btn.classList.add('btn-outline-success');
+              btn.innerText = "気になる！";
+            }
+        }
+    }
+    request.open("GET",api_url);
+    request.send();
+}
+
+function venue_wish(api_url, venue_id) {
+    var btn = document.getElementById("wish-venue-" + venue_id);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var received_data = JSON.parse(request.responseText);
+            if (received_data.wished) {
+              btn.classList.remove('btn-outline-success');
+              btn.classList.add('btn-success');
+              btn.innerText = "wish listに追加しました";
+            } else{
+              btn.classList.remove('btn-success');
+              btn.classList.add('btn-outline-success');
+              btn.innerText = "行きたい！";
+            }
+        }
+    }
+    request.open("GET",api_url);
+    request.send();
+}

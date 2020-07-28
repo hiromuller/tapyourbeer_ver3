@@ -108,22 +108,22 @@ def selectBeerById(id):
 
 def selectBreweryById(id):
     try:
-        beer = MODELS.Brewery.objects.get(id=id)
-        return beer
+        brewery = MODELS.Brewery.objects.get(id=id)
+        return brewery
     except:
         return None
 
 def selectVenueById(id):
     try:
-        beer = MODELS.Venue.objects.get(id=id)
-        return beer
+        venue = MODELS.Venue.objects.get(id=id)
+        return venue
     except:
         return None
 
 def selectCommentById(id):
     try:
-        beer = MODELS.Comment.objects.get(id=id)
-        return beer
+        comment = MODELS.Comment.objects.get(id=id)
+        return comment
     except:
         return None
 

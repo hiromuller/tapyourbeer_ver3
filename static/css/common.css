@@ -373,6 +373,13 @@ hr.hr-recommend{
   padding-bottom: 17px;
 }
 
+/* === wishlistのロゴ設定 ============================= */
+.wish-logo{
+  object-fit:cover;
+  background-position: center center;
+  max-width: 55px;
+}
+
 /* === 投稿写真画像設定 ============================= */
 .feed-photo {
   border-radius: 5%;  /* 角丸半径を50%にする(=円形にする) */
