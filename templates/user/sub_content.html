@@ -159,29 +159,60 @@
         {% endifequal %}
 
         {% ifequal wish.item_category 4 %}
+
+
+        <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{wish.item.id}}');">
           <div class="row" id="comment_list">
             <div class="col-0 col-sm-2"></div>
-            <div class="col-12 col-sm-8">
-          <div class="description-text text-left">
-              <span class="subtopic"><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{wish.item.beer.id}}');">{{ wish.item.beer.name }}</a></span>
-              <br><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{wish.item.beer.brewery.id}}');">{{ wish.item.beer.brewery.name }}</a> - <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_ACCOUNT}}', '{{wish.item.user.id}}');">{{ wish.item.user.username }}</a>{% if wish.item.venue %} at <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_VENUE_DETAIL}}', '{{wish.item.venue.id}}');">{{ wish.item.venue.name }}</a> {% endif %}
-              <br><div class="bottom-margin-sm">{% for i in wish.item.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ wish.item.registered_date }}</span></div>
-              <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{wish.item.id}}');">
-              <p>{{ wish.item.comment }}</p>
-            </a>
             {% if wish.item.photo %}
-            <a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_USER_BEER_DETAIL}}', '{{wish.item.id}}');">
-              <p>
-                <img class="img-fluid feed-photo" src='{{ MEDIA_URL }}{{wish.item.photo}}'>
-              </p>
-            </a>
+            <div class="col-3 col-sm-2 profile-frame text-center">
+              <img class="wish-logo img-fluid" src='{{ MEDIA_URL }}{{wish.item.photo}}'>
+            </div>
+            <div class="col-9 col-sm-8">
+              <div class="description-text text-left">
+                <p>
+                  <span class="subtopic">{{ wish.item.beer.name }}</span>
+                  <br>
+                  <span class="description-text">
+                    <p>
+                      {{ wish.item.beer.brewery.name }} - {{ wish.item.user.username }}{% if wish.item.venue %} at {{ wish.item.venue.name }} {% endif %}
+                      <br>
+                      <span class="bottom-margin-sm">{% for i in wish.item.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ wish.item.registered_date }}</span>
+                      </span>
+                    </p>
+                    <p>
+                      {{ wish.item.comment }}
+                    </p>
+                  </span>
+                </p>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-12 col-sm-8">
+              <div class="description-text text-left">
+                <p>
+                  <span class="subtopic">{{ wish.item.beer.name }}</span>
+                  <br>
+                  <span class="description-text">
+                    <p>
+                      {{ wish.item.beer.brewery.name }} - {{ wish.item.user.username }}{% if wish.item.venue %} at {{ wish.item.venue.name }} {% endif %}
+                      <br>
+                      <span class="bottom-margin-sm">{% for i in wish.item.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}<span class="feed-info-right">{{ wish.item.registered_date }}</span>
+                      </span>
+                    </p>
+                    <p>
+                      {{ wish.item.comment }}
+                    </p>
+                  </span>
+                </p>
+              </div>
+            </div>
             {% endif %}
+          <div class="col-0 col-sm-2"></div>
           </div>
-          </div>
-          <div class="col-2 col-sm-2"></div>
-          </div>
+        </a>
+        <hr class="hr-home-lg">
 
-          <hr class="hr-home-lg">
         {% endifequal %}
 
 

@@ -377,7 +377,7 @@ hr.hr-recommend{
 .wish-logo{
   object-fit:cover;
   background-position: center center;
-  max-width: 55px;
+  max-width: 100%;
 }
 
 /* === 投稿写真画像設定 ============================= */
