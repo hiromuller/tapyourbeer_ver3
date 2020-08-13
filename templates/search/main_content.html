@@ -17,7 +17,6 @@
        <label class="tab_label" for="tab4"><b>{% if user_list%}<span class="search-found">{% else %}<span>{% endif %}People</span></b></label>
        </div>
 
-
        <form id="list_form" method="post" action="{{main_url}}">
        {% csrf_token %}
 
@@ -121,36 +120,54 @@
 
                     {% if beer_list %}
                     <hr class="hr-recommend">
-                    {% if recommended_beer %}
-
-                    <div class="text-center">
+                      {% if recommended_beer %}
                       <div class="text-left">
-                        <img src="{% static 'images/beer_recommend.png' %}" class="recommend-beer img-fluid" />
+                        <img src="{% static 'images/beer_recommend.png' %}" class="recommend-beer-img" />
                       </div>
 
-                    <div class="bg-light">
-
-                      <div class="topic">
-                        <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{recommended_beer.id}}');">{{ recommended_beer.name }}</a></b>
+                      <div class="bg-light">
+                        <div class="row">
+                          <div class="col-3 col-sm-3 profile-frame">
+                          {% if recommended_beer.brewery.logo %}
+                            <img class="beer-search-logo" src='{{ MEDIA_URL }}{{recommended_beer.brewery.logo}}'>
+                          {% else %}
+                            <img class="beer-search-logo" src="{% static 'images/no-profile-image.png' %}"/>
+                          {% endif %}
+                          </div>
+                            <div class="col-9 col-sm-7">
+                              <div class="topic text-left beer-search-text">
+                                <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{recommended_beer.id}}');">{{ recommended_beer.name }}</a></b></p>
+                              </div>
+                              <div class="subtopic text-left beer-search-text">
+                                <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{recommended_beer.brewery.id}}');">{{ recommended_beer.brewery.name }}</a></b></p>
+                              </div>
+                            </div>
+                          <div class="col-0 col-sm-2"></div>
+                        </div>
                       </div>
-
-                      <div class="subtopic text-center">
-                        <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{recommended_beer.brewery.id}}');">{{ recommended_beer.brewery.name }}</a></b></p>
-                      </div>
-                    </div>
-
-                    </div>
+                      {% endif %}
 
                     <hr>
-                    {% endif %}
-                    {% for beer in beer_list %}
-                    <div class="topic text-center">
-                      <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
-                    </div>
-                    <div class="subtopic text-center">
-                      <p>by <b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
-                    </div>
-                    <hr>
+                      {% for beer in beer_list %}
+                          <div class="row">
+                            <div class="col-3 col-sm-3 profile-frame">
+                              {% if beer.brewery.logo %}
+                              <img class="beer-search-logo" src='{{ MEDIA_URL }}{{beer.brewery.logo}}'>
+                              {% else %}
+                              <img class="beer-search-logo" src="{% static 'images/no-profile-image.png' %}"/>
+                              {% endif %}
+                            </div>
+                            <div class="col-9 col-sm-7">
+                              <div class="topic text-left beer-search-text">
+                                <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BEER_DETAIL}}', '{{beer.id}}');">{{ beer.name }}</a></b></p>
+                              </div>
+                              <div class="subtopic text-left beer-search-text">
+                                <p><b><a href="javascript:void(0)" onClick="moveToDetailFromList('{{ACTION_BREWERY_DETAIL}}', '{{beer.brewery.id}}');">{{ beer.brewery.name }}</a></b></p>
+                              </div>
+                            </div>
+                            <div class="col-0 col-sm-2"></div>
+                          </div>
+                        <hr>
                     {% endfor %}
 
                     {% else %}
