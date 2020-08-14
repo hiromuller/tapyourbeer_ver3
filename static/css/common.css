@@ -264,7 +264,7 @@ hr.hr-home-lg{
 
 hr.hr-recommend{
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   border: 0;
   border-top: 0.5px solid #eeeded;
 }
@@ -434,9 +434,26 @@ hr.hr-recommend{
 }
 
 /* === おすすめビール画像設定 ============================= */
-.recommend-beer {
+.recommend-beer-img {
   background-position: left;
   max-height: 20px;
+}
+
+/* === ビール検索画面のブルワリーロゴ画像設定 ============================= */
+.beer-search-logo {
+  object-fit:cover;
+  background-position: center center;
+  max-width: 70px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%,-50%);
+  margin: auto 0 auto 20px;
+}
+
+/* === ビール検索画面のテキスト設定 ============================= */
+.beer-search-text {
+  margin: 10px 0
 }
 
 /* === タブのSTYLE設定 ============================= */
