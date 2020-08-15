@@ -1,2 +1,6 @@
 {% load static %}
+{% if world %}
+<img src="{% static 'images/header-world.png' %}" class="page-title-img" />
+{% else %}
 <img src="{% static 'images/header-home.png' %}" class="page-title-img" />
+{% endif %}

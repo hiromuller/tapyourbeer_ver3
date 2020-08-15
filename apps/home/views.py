@@ -24,7 +24,7 @@ def world(request):
     c = {}
 
     comment_list = SERVICES.selectCommentList()
-
+    c.update({'world':True})
     return homeShow(request, c, comment_list)
 
 def homeShow(request, c, comment_list):
