@@ -49,9 +49,11 @@ def addBeerEvaluation(request):
             　→コメントを登録する
         """
         if form.is_valid():
-            beer_id = form.cleaned_data.get('beer_id')
+            #beer_id = form.cleaned_data.get('beer_id')
+            beer_id = None
             beer_name = form.cleaned_data.get('beer_name')
-            brewery_id = form.cleaned_data.get('brewery_id')
+            #brewery_id = form.cleaned_data.get('brewery_id')
+            brewery_id = None
             brewery_name = form.cleaned_data.get('brewery_name')
             venue_id = form.cleaned_data.get('venue_id')
             venue_name = form.cleaned_data.get('venue_name')

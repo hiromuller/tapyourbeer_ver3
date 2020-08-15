@@ -126,7 +126,7 @@ class addCommentForm(forms.Form):
         venue_name = self.cleaned_data.get('venue_name')
         venue_id = self.cleaned_data.get('venue_id')
 
-
+        """
         if beer_id:
             beer = SERVICES.selectBeerById(beer_id)
             if beer_name != beer.name:
@@ -151,5 +151,5 @@ class addCommentForm(forms.Form):
             venue = SERVICES.selectVenueById(venue_id)
             if venue.name != venue_name:
                 raise forms.ValidationError(MSG.UNMATCH_VENUE_ID_AND_VENUE_NAME)
-
+        """
         return cleaned_data
