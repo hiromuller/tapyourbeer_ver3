@@ -17,6 +17,17 @@ def Home(request):
 
     comment_list = SERVICES.selectCommentListByFollowingUser(request.user)
 
+    return homeShow(request, c, comment_list)
+
+def world(request):
+    logger.info('home world')
+    c = {}
+
+    comment_list = SERVICES.selectCommentList()
+
+    return homeShow(request, c, comment_list)
+
+def homeShow(request, c, comment_list):
     page = request.GET.get('page', 1)
     paginator = Paginator(comment_list, 5)
     try:

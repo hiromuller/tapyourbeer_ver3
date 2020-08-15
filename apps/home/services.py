@@ -19,6 +19,12 @@ def selectFollowUserListByFollowUser(user):
     except:
         return None
 
+def selectCommentList():
+    try:
+        return MODELS.Comment.objects.all().order_by('-registered_date')[:500]
+    except:
+        return None
+
 def selectCommentListByFollowingUser(user):
     try:
         follow_user_list = selectFollowUserListByFollowUser(user)

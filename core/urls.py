@@ -39,6 +39,7 @@ urlpatterns = [
     path("api/brewery_wish/<int:item_id>/", common.views.brewery_wish, name="brewery_wish"),
     path("api/venue_wish/<int:item_id>/", common.views.venue_wish, name="venue_wish"),
     path('home/', home.views.Home, name='Home'),
+    path('home/world/', home.views.world, name='world'),
     path('user/', user.views.showUserGet, name='showUserGet'),
     path('user-beer/', user.views.userBeerDetailGet, name='userBeerDetailGet'),
     path('beer/', beer.views.beerDetailGet, name='beerDetailGet'),
