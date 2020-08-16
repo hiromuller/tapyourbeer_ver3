@@ -444,6 +444,7 @@ hr.hr-recommend{
 .beer-search-logo {
   object-fit:cover;
   background-position: center center;
+  max-height: 90px;
   max-width: 70px;
   position: absolute;
   top: 50%;

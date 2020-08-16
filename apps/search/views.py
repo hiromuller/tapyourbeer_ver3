@@ -24,8 +24,7 @@ def searchList(request):
             key = form.cleaned_data.get('keyword')
 
             #ビール取得（最大５０件）
-            beer_list = SERVICES.selectBeerListByNameKey(key)
-            c.update({'beer_list':beer_list})
+            base_beer_list = SERVICES.selectBeerListByNameKey(key)
 
             #ブルワリー取得（最大５０件）
             brewery_list = SERVICES.selectBreweryListByNameKey(key)
@@ -46,6 +45,12 @@ def searchList(request):
     if num_user_comments >= 5:
         recommended_beer = SERVICES.selectRecommendedBeerbyUserEvaluationAverage(request.user)
         c.update({'recommended_beer':recommended_beer})
+
+    beer_list = []
+    for beer in base_beer_list:
+        if not beer == recommended_beer:
+            beer_list.append(beer)
+            c.update({'beer_list':beer_list})
 
     return showSearch(request, c)
 
