@@ -45,15 +45,30 @@
 
 {% endif %}
 
-<div class="row" id="subcontent_comment_title">
-  <div class="col-0 col-sm-2"></div>
-  <div class="col-12 col-sm-8">
-    <div class="subtopic text-center">
-      <img src="{% static 'images/subtopic-comments.png' %}" class="page-title-img" />
+{% if reply_form %}
+  <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
+  {%csrf_token%}
+    <div class="text-center">
+      {{ reply_form.reply.errors }}
+      {{ reply_form.reply }}
+      <input id="id_search" type="submit" class="btn btn-outline-info btn-search" value="reply">
     </div>
-  </div>
-  <div class="col-0 col-sm-2"></div>
+  <input type="hidden" name="action" value="{{ACTION_SEARCH_LIST}}">
+  </form>
+{% endif %}
+
+<br>
+
+{% if reply_list %}
+<div class="row" id="hrizontalline">
+  <div class="col-3 col-sm-2"></div>
+  <div class="col-6 col-sm-8"><hr/></div>
+  <div class="col-3 col-sm-2"></div>
 </div>
+<br>
+
+{% endif %}
+
 <br>
 <div class="row" id="subcontent_comment_list">
   <div class="col-0 col-sm-2"></div>
