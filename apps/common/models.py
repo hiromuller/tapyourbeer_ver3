@@ -19,13 +19,13 @@ class Brewery(models.Model):
     # logo
     logo = models.ImageField(upload_to='images/', null=True, blank=True)
     # 住所
-    address = models.CharField(max_length=200, null=True, blank=True)
+    address = models.CharField(max_length=300, null=True, blank=True)
     # 説明
-    description = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=500, null=True, blank=True)
     # ウェブサイト
-    web = models.CharField(max_length=200, null=True, blank=True)
+    web = models.CharField(max_length=400, null=True, blank=True)
     # ウェブショップ
-    webshop = models.CharField(max_length=200, null=True, blank=True)
+    webshop = models.CharField(max_length=400, null=True, blank=True)
     #アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
 
@@ -51,7 +51,7 @@ class Beer(models.Model):
     # style
     style = models.CharField(max_length=200, null=True, blank=True)
     # 説明
-    description = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=500, null=True, blank=True)
     # ibu（苦さ）
     ibu = models.CharField(max_length=200, null=True, blank=True)
     # abv（アルコール度数）
@@ -89,7 +89,7 @@ class Venue(models.Model):
     # 住所
     address = models.CharField(max_length=200, null=True, blank=True)
     # 説明
-    description = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=500, null=True, blank=True)
     # アクティブか非アクティブか
     is_active = models.BooleanField(default=True)
     # photo (画像）
@@ -188,7 +188,7 @@ class Comment(models.Model):
     # 総合
     overall = models.IntegerField(choices=CONST.EVALUATION_CHOICES_GOODNESS)
     # コメント
-    comment = models.CharField(max_length=200, null=True)
+    comment = models.CharField(max_length=500, null=True)
     # 登録日
     registered_date = models.DateTimeField(default=timezone.now)
 
@@ -313,6 +313,20 @@ class NewsFeed(models.Model):
             'photo': self.photo,
             'date': self.date,
         }
+
+class Reply(models.Model):
+    """
+    コメントに対するリプライ
+    """
+    #リプライ
+    reply = models.CharField(max_length=500, null=True)
+    # リプライ先
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    # リプライしたユーザ
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    # 日時
+    date = models.DateTimeField(default=timezone.now)
+
 
 class WishList(models.Model):
     """

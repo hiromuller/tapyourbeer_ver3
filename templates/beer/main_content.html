@@ -64,28 +64,90 @@
 
 <div class="row" id="main_content2">
     <div class="col-2 col-sm-3"></div>
-    <div class="col-4 col-sm-3">
+    <div class="col-5 col-sm-3">
       <div class="subtopic text-left">
-        <p>Bitterness:</p>
-        <p>Aroma:</p>
-        <p>Body:</p>
-        <p>Drinkability:</p>
-        <p>Pressure:</p>
-        <p>Specialness:</p>
+        <p>苦味:</p>
       </div>
     </div>
     <div class="col-4 col-sm-3">
       <div class="subtopic text-right">
         <p>{{ beer_taste_avg.bitterness }}</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-3"></div>
+</div>
+<div class="row" id="main_content2">
+    <div class="col-2 col-sm-3"></div>
+    <div class="col-5 col-sm-3">
+      <div class="subtopic text-left">
+        <p>香り:</p>
+      </div>
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="subtopic text-right">
         <p>{{ beer_taste_avg.aroma }}</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-3"></div>
+</div>
+
+<div class="row" id="main_content2">
+    <div class="col-2 col-sm-3"></div>
+    <div class="col-5 col-sm-3">
+      <div class="subtopic text-left">
+        <p>ボディ:</p>
+      </div>
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="subtopic text-right">
         <p>{{ beer_taste_avg.body }}</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-3"></div>
+</div>
+<div class="row" id="main_content2">
+    <div class="col-2 col-sm-3"></div>
+    <div class="col-5 col-sm-3">
+      <div class="subtopic text-left">
+        <p>飲みやすさ:</p>
+      </div>
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="subtopic text-right">
         <p>{{ beer_taste_avg.drinkability }}</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-3"></div>
+</div>
+<div class="row" id="main_content2">
+    <div class="col-2 col-sm-3"></div>
+    <div class="col-5 col-sm-3">
+      <div class="subtopic text-left">
+        <p>炭酸:</p>
+      </div>
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="subtopic text-right">
         <p>{{ beer_taste_avg.pressure }}</p>
+      </div>
+    </div>
+    <div class="col-2 col-sm-3"></div>
+</div>
+<div class="row" id="main_content2">
+    <div class="col-2 col-sm-3"></div>
+    <div class="col-5 col-sm-3">
+      <div class="subtopic text-left">
+        <p>独自感:</p>
+      </div>
+    </div>
+    <div class="col-3 col-sm-3">
+      <div class="subtopic text-right">
         <p>{{ beer_taste_avg.specialness }}</p>
       </div>
     </div>
     <div class="col-2 col-sm-3"></div>
 </div>
+
 
 {% if venue_list %}
 <br>

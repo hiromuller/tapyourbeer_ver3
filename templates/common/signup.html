@@ -1,4 +1,3 @@
-
 {% extends "common/base.html" %}
 
 {% block title %}{{ html_title }} | tapyourbeer{% endblock %}
@@ -11,10 +10,21 @@
 {% endif %}
 
 <!-- サインアップフォーム作成 -->
+{% load static %}
 {% if SignUpForm %}
+<div class="row">
+  <div class="col-0 col-sm-1 col-md-2"></div>
+  <div class="col-12 col-sm-10 col-md-8">
+    <div class="title-image">
+    <img src="{% static 'images/title.png' %}" class="img-fluid" />
+    </div>
+  </div>
+  <div class="col-2 col-sm-1"></div>
+</div>
 
 <div class="row">
   <div class="col-12 col-sm-12">
+
     <div class="card">
         <div class="card-body">
     <form enctype="multipart/form-data" method="POST" action="{{main_url}}">
@@ -64,11 +74,14 @@
       </div>
       </div>
   </div>
+  <div class="col-12 col-sm-12 text-center">
+    アカウントをお持ちの方は <a href="{% url 'accounts:logout' %}">ログイン画面</a> へ
+  </div>
 </div>
 
 {% endif%}
-
-
+<br>
+<br>
 <div class="row">
   <div class="col-xs-12 col-sm-12">
     {% include "common/footer.html" %}
