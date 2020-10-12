@@ -124,6 +124,10 @@ def userBeerDetailGet(request):
             result_beer.photo = SERVICES.selectRandomBeerPhotoByBeer(result_beer)
             similar_beer_list.append(result_beer)
 
+    reply_form = FORMS.replyForm()
+
+    reply_list = SERVICES.selectReplyListByComment(comment)
+
     page = request.GET.get('page', 1)
     paginator = Paginator(comment_list, 5)
 
@@ -141,6 +145,8 @@ def userBeerDetailGet(request):
     c.update({'beer_taste_avg':beer_taste_avg})
     c.update({'comment_list':paginate_comment_list})
     c.update({'similar_beer_list':similar_beer_list})
+    c.update({'reply_list':reply_list})
+    c.update({'reply_form':reply_form})
 
 
     main_url = CONFIG.TOP_URL

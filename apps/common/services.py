@@ -7,6 +7,7 @@ import logging
 import jaconv
 from datetime import datetime as dt
 from django.utils import timezone
+import user.services as USER_SERVICES
 
 logger = logging.getLogger('app')
 
@@ -332,3 +333,15 @@ def addVenueWish(user, venue):
         return True
     except:
         return False
+
+def addReply(user, input_text, comment_id):
+    try:
+        comment = USER_SERVICES.selectCommentById(comment_id)
+        reply_model = MODELS.Reply()
+        reply_model.reply = input_text
+        reply_model.user = user
+        reply_model.comment = comment
+        reply_model.save()
+        return reply_model
+    except:
+        return None

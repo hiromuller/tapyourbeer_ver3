@@ -38,6 +38,7 @@ urlpatterns = [
     path("api/beer_wish/<int:item_id>/", common.views.beer_wish, name="beer_wish"),
     path("api/brewery_wish/<int:item_id>/", common.views.brewery_wish, name="brewery_wish"),
     path("api/venue_wish/<int:item_id>/", common.views.venue_wish, name="venue_wish"),
+    path("api/reply/", common.views.reply, name="reply"),
     path('home/', home.views.Home, name='Home'),
     path('home/world/', home.views.world, name='world'),
     path('user/', user.views.showUserGet, name='showUserGet'),

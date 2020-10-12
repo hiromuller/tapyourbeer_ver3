@@ -18,3 +18,17 @@ class updateUserForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label  # placeholderにフィールドのラベルを入れる
+
+class replyForm(forms.ModelForm):
+
+    class Meta:
+        model = MODELS.Reply
+        fields = ('reply', 'comment', 'user', 'date')
+        widgets = {
+                    'reply': forms.Textarea(attrs={'cols': 80, 'rows': 2}),
+                    }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['reply'].widget.attrs['placeholder'] = 'この投稿に返信する'

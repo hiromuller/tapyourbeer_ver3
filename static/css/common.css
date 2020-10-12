@@ -194,6 +194,12 @@ input {
   float: right;
 }
 
+.feed-info-right-sm {
+  font-size:8px;
+  float: right;
+  color: gray;
+}
+
 .bottom-margin-sm {
   margin-bottom:7px;
 }
@@ -290,6 +296,58 @@ hr.hr-recommend{
   color: #1861b3;
 }
 
+.reply-submit {
+  padding-top:5px;
+}
+
+#replys hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+}
+
+#replys p {
+  margin-bottom: 0px;
+}
+
+.profile-reply{
+  border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+  object-fit:cover;
+  background-position: center center;
+  max-width: 25px;
+  margin-top: 3px;
+}
+
+/* === ログインフォーム ============================= */
+.login-form-style {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-top: 0px;
+    border-right: 0;
+    border-left:0;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login-content {
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+.btn-login {
+  background-color: #fff000;
+  border: 0px;
+  padding: 12px 30px;
+}
 /* === ユーザ画面のサブトピックリンク ============================= */
 .user_page_subtopic {
   padding-top:10px;

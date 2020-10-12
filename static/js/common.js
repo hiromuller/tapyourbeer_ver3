@@ -70,6 +70,68 @@ $(".tab_label").on("click",function(){
  $("#panel"+$th).addClass("active").appendTo($("#cj_panelarea"));
 });
 
+
+
+$('#reply_form').submit(function(event){
+  //通常のアクションをキャンセルする
+  event.preventDefault();
+  //Formの参照を取る
+  var form = $(this);
+  $.ajax({
+       url: form.attr('action'),
+       type: form.attr('method'),
+       data: form.serialize(),
+       dataType: "text",
+     })
+     .done(function(data) {
+       const parsed_data = JSON.parse(data);
+       var new_reply = document.createElement('div');
+       new_reply.id = 'replys';
+       new_reply.className = 'row';
+
+       var first_col = document.createElement('div');
+       first_col.className = 'col-1 col-sm-2';
+
+       var second_col = document.createElement('div');
+       second_col.className = 'col-2 col-sm-2 text-center align-middle';
+
+       var user_photo = document.createElement('img');
+       user_photo.src = '/media/' + parsed_data.user_photo;
+       user_photo.className = 'profile-reply img-fluid';
+       second_col.appendChild(user_photo);
+
+       var third_col = document.createElement('div');
+       third_col.className = 'col-8 col-sm-6';
+
+       var reply_area = document.createElement('div');
+       reply_area.className = 'description-text text-left';
+
+       reply_area.innerHTML = parsed_data.user_username + '<br>' + parsed_data.reply + '<br><span class="feed-info-right-sm">' + parsed_data.reply_date + '</span>';
+       third_col.appendChild(reply_area);
+
+       var forth_col = document.createElement('div');
+       forth_col.className = 'col-1 col-sm-2';
+
+       new_reply.appendChild(first_col);
+       new_reply.appendChild(second_col);
+       new_reply.appendChild(third_col);
+       new_reply.appendChild(forth_col);
+
+       var hr = document.createElement('div');
+       hr.id = 'replys';
+       hr.className = 'row';
+       hr.innerHTML =  '<div class="col-3 col-sm-2"></div><div class="col-6 col-sm-8"><hr></div><div class="col-3 col-sm-2"></div>'
+
+       document.getElementById('reply_container').appendChild(new_reply);
+       document.getElementById('reply_container').appendChild(hr);
+
+       var input_text = document.getElementById("id_reply");
+       input_text.value = '';
+     })
+});
+
+
+
 function like(api_url, comment_id) {
     var btn = document.getElementById("like-count-" + comment_id);
     var img = document.getElementById("comment-like-" + comment_id);

@@ -189,5 +189,24 @@ def venue_wish(request, item_id):
 
     return JsonResponse({"wished":wished})
 
+def reply(request):
+    logger.info('reply')
+    input_text = request.POST.getlist("reply")
+    comment_id = request.POST.getlist("comment_id")
+    reply_result = SERVICES.addReply(request.user, input_text[0], comment_id[0])
+    if reply_result:
+        reply_response = {}
+        reply_response.update({"reply":reply_result.reply})
+        reply_response.update({"user_id":reply_result.user.id})
+        reply_response.update({"user_username":reply_result.user.username})
+        if reply_result.user.photo:
+            reply_response.update({"user_photo":str(reply_result.user.photo)})
+        else:
+            reply_response.update({"user_photo":"images/no-profile-image.png"})
+        reply_response.update({"reply_date":reply_result.date})
+    else:
+        reply_response = None
+    return JsonResponse(reply_response)
+
 def csrf_failure(request):
     return HOME_VIEWS.Home(request)
