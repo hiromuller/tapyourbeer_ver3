@@ -21,6 +21,8 @@
   </div>
   <div class="col-2 col-sm-1"></div>
 </div>
+<br>
+<br>
 
 <div class="row">
   <div class="col-12 col-sm-12">
@@ -67,7 +69,7 @@
           {{ SignUpForm.email }}
           </div>
 
-        <button id="signup_user" type="submit" class="btn btn-success btn-lg btn-block">登録</button>
+        <button id="signup_user" type="submit" class="btn btn-login btn-lg btn-block">登録</button>
         <input type="hidden" name="action" value="{{ACTION_SIGNUP_USER}}">
         </div>
       </form>
@@ -75,7 +77,7 @@
       </div>
   </div>
   <div class="col-12 col-sm-12 text-center">
-    アカウントをお持ちの方は <a href="{% url 'accounts:logout' %}">ログイン画面</a> へ
+    アカウントをお持ちの方は <span class="description-text-bl"><a href="{% url 'accounts:logout' %}">ログイン画面</a></span> へ
   </div>
 </div>
 

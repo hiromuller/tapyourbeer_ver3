@@ -19,6 +19,9 @@
 <body>
   <section class="container-login">
 
+    <br>
+    <br>
+    <br>
     <div class="row">
       <div class="col-0 col-sm-1 col-md-2"></div>
       <div class="col-12 col-sm-10 col-md-8">
@@ -29,6 +32,9 @@
       <div class="col-2 col-sm-1"></div>
     </div>
 
+    <br>
+    <br>
+    <br>
 
     <div class="row">
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
@@ -37,11 +43,14 @@
                 <div class="card-body">
                     {{ form.non_field_errors }}
                     {% for field in form %}
+                        <div class="login-content">
                         {{ field }}
                         {{ field.errors }}
-                        <hr>
+                      </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-success btn-lg btn-block" >ログイン</button>
+                    <div class="login-content">
+                    <button type="submit" class="btn btn-login btn-lg btn-block" >ログイン</button>
+                  </div>
                     <input type="hidden" name="next" value="{{ next }}" />
                     {% csrf_token %}
                     <br>
@@ -62,64 +71,35 @@
       </section>
 
       <section id="howto">
+
         <div class="row">
           <div class="col-12 text-center">
-            <div class="howto-topic">
-          <img src="{% static 'images/eval.png' %}" class="nav-icon"/> ビールを記録しよう
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-10 text-center">
             <div class="howto-description">
-              <img src="{% static 'images/howto-beer-desc.png' %}" class="img-fluid" />
+              <img src="{% static 'images/TYB_login_1.jpg' %}" class="img-fluid" />
             </div>
           </div>
         </div>
+
 
         <div class="row">
           <div class="col-12 text-center">
-            <div class="howto-topic">
-          <img src="{% static 'images/detail_search.png' %}" class="header-l"/> ビールを味わいから<br><br>検索しよう
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-10 text-center">
             <div class="howto-description">
-              <img src="{% static 'images/howto-search-desc.png' %}" class="img-fluid" />
+              <img src="{% static 'images/TYB_login_2.jpg' %}" class="img-fluid" />
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-12 text-center">
-            <div class="howto-topic">
-          <img src="{% static 'images/home.png' %}" class="nav-icon"/> 友達をフォローしよう
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-10 text-center">
             <div class="howto-description">
-              <img src="{% static 'images/howto-friends-desc.png' %}" class="img-fluid" />
+              <img src="{% static 'images/TYB_login_3.jpg' %}" class="img-fluid" />
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-12 text-center">
-            <div class="howto-topic">
-          <a class="btn btn-info btn-lg" href="{% url 'signup' %}" role="button">無料登録して始める！</a>
-            </div>
+          <a class="btn btn-login btn-lg btn-block" href="{% url 'signup' %}" role="button">無料登録して始める！</a>
           </div>
         </div>
 
