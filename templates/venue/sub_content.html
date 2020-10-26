@@ -75,6 +75,12 @@
   <div class="col-12 col-sm-10">
     <div class="description-text">
       <span class="like-block feed-info-right-md">
+
+        <span class="has-padding-right-feed">
+          <img src="{% static 'images/conv.png' %}" class="conv-icon" />
+           <span>{{ comment.id|get_comment_reply_count }}</span>
+         </span>
+
       <span class="has-padding-right-feed">
       <a role="button" aria-pressed="false" onclick="comment_wish('{% url 'comment_wish' comment.id %}', {{ comment.id }})">
         {% if comment.id|comment_is_wished:request.user%}

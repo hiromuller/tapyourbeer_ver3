@@ -40,6 +40,14 @@ def get_comment_wish_count(comment_id):
     except Exception as e:
         return 0
 
+@register.filter(name='get_comment_reply_count')
+def get_comment_reply_count(comment_id):
+    try:
+        count = len(MODELS.Reply.objects.filter(comment=comment_id))
+        return count
+    except Exception as e:
+        return 0
+
 @register.filter(name='comment_is_wished')
 def comment_is_wished(comment_id, user_id):
     try:

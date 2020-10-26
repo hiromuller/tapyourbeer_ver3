@@ -38,13 +38,26 @@
 </div>
 
 <div class="row" id="user-subcontent-beer-list">
-  <div class="col-1 col-sm-2"></div>
-  <div class="col-4 col-sm-3">
-    <div class="description-text text-center">
-      <p>{% for i in user_comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</p>
-    </div>
+<div class="col-12 col-sm-12">
+  <div class="description-text text-center">
+    <p>{% for i in user_comment.overall|make_range %}<img src="{% static 'images/star-feed.png' %}" class="feed-star" /> {% endfor %}</p>
   </div>
-  <div class="col-3 col-sm-3 description-text text-center">
+</div>
+</div>
+
+<div class="row" id="user-subcontent-beer-list">
+  <div class="col-3 col-sm-3"></div>
+
+  <div class="col-2 col-sm-2 description-text text-center">
+    <div class="feed-info-md">
+      <span class="has-padding-right-feed">
+        <img src="{% static 'images/conv.png' %}" class="conv-icon" />
+        <span>{{ user_comment.id|get_comment_reply_count }}</span>
+      </span>
+    </div>
+   </div>
+
+  <div class="col-2 col-sm-2 description-text text-center">
     <div class="feed-info-md">
       <a role="button" aria-pressed="false" onclick="comment_wish('{% url 'comment_wish' user_comment.id %}', {{ user_comment.id }})">
         {% if user_comment.id|comment_is_wished:request.user%}
@@ -56,7 +69,7 @@
        </a>
     </div>
   </div>
-  <div class="col-3 col-sm-2 description-text text-center">
+  <div class="col-2 col-sm-2 description-text text-center">
     <div class="feed-info-md">
       <a role="button" aria-pressed="false" onclick="like('{% url 'like' user_comment.id %}', {{ user_comment.id }})">
         {% if user_comment.id|is_liked:request.user%}
