@@ -19,8 +19,9 @@ class Login(LoginView):
     template_name = 'common/login.html'
 
 
-class Logout(LoginRequiredMixin, LogoutView):
+class Logout(LoginRequiredMixin, LoginView):
     """ログアウトページ"""
+    form_class = FORMS.LoginForm    
     template_name = 'common/login.html'
 
 def signup_index(request):
